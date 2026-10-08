@@ -1,5 +1,7 @@
 function renderWebsiteSummary() {
   const en = state.activeDoc === "en";
+  document.getElementById("share-result").hidden = true;
+  text("share-status", "");
   const profile = getActiveDoc().profile;
   const demo = !profile.fullName.trim() || profile.fullName === demoDocVi.profile.fullName || profile.fullName === demoDocEn.profile.fullName;
   const notice = document.getElementById("demo-notice");
