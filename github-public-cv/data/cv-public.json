@@ -1,0 +1,251 @@
+{
+  "activeDoc": "vi",
+  "documents": {
+    "vi": {
+      "profile": {
+        "fullName": "Nguyễn Văn A",
+        "headline": "AI Engineer",
+        "dob": "01/01/2000",
+        "nationality": "Việt Nam",
+        "email": "example@email.com",
+        "phone": "+84 900 000 000",
+        "website": "linkedin.com/in/your-profile",
+        "address": "Hồ Chí Minh, Việt Nam",
+        "summary": "Tìm kiếm vai trò AI Engineer để phát triển sản phẩm ứng dụng Machine Learning.\nĐóng góp giải pháp đạt hiệu quả kinh doanh đo lường được.",
+        "photo": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=640&q=80"
+      },
+      "theme": {
+        "accent": "#1d7c73",
+        "layout": "left",
+        "fontPreset": "be_vietnam",
+        "baseFontSize": 13.3,
+        "sectionTitleSize": 15,
+        "entryTitleSize": 14.4,
+        "lineHeight": 1.55,
+        "sectionGap": 14,
+        "sidebarWidth": 34,
+        "sidebarPadding": 20,
+        "awardColumnGap": 8,
+        "sidebarSectionGap": 18,
+        "justifyText": false,
+        "photoSize": 170,
+        "photoBorder": 3
+      },
+      "visibility": {
+        "photo": true,
+        "personal": true,
+        "skills": true,
+        "languages": true,
+        "awards": true,
+        "summary": true,
+        "education": true,
+        "experience": true,
+        "projects": true,
+        "customSections": true,
+        "certifications": true
+      },
+      "contactVisibility": {
+        "dob": true,
+        "nationality": true,
+        "email": true,
+        "phone": true,
+        "website": true,
+        "address": true
+      },
+      "experience": [
+        {
+          "role": "AI Intern",
+          "company": "ABC Tech",
+          "period": "09/2024 - 10/2024",
+          "location": "Hồ Chí Minh",
+          "details": "Tham gia dự án gợi ý dữ liệu lớn.\nHỗ trợ xây pipeline ETL và quản trị chất lượng dữ liệu.\nBáo cáo kết quả theo tuần cho team."
+        }
+      ],
+      "education": [
+        {
+          "school": "Nguyen Tat Thanh University",
+          "degree": "Công nghệ thông tin - Trí tuệ nhân tạo",
+          "period": "09/2021 - 02/2025",
+          "details": "GPA: 3.75 - Xuất sắc"
+        }
+      ],
+      "projects": [
+        {
+          "name": "Ecommerce FiveStars",
+          "role": "Trưởng nhóm",
+          "period": "02/2023 - 03/2023",
+          "details": "Xây dựng dashboard đánh giá hiệu quả các mô hình.\nTối ưu metric và theo dõi chất lượng sản phẩm."
+        }
+      ],
+      "customSections": [
+        {
+          "title": "Hoạt động",
+          "details": "Tình nguyện viên cho CLB kỹ thuật.\nTổ chức workshop chia sẻ về AI ứng dụng."
+        }
+      ],
+      "skills": [
+        {
+          "name": "Python",
+          "level": "Advanced",
+          "details": "FastAPI, Pandas, Numpy"
+        },
+        {
+          "name": "Machine Learning",
+          "level": "Advanced",
+          "details": "Model training, evaluation, deployment"
+        }
+      ],
+      "languages": [
+        {
+          "name": "Tiếng Việt",
+          "level": "Bản ngữ"
+        },
+        {
+          "name": "Tiếng Anh",
+          "level": "IELTS 7.0"
+        }
+      ],
+      "certifications": [
+        {
+          "title": "Basic IT Application",
+          "year": "2020"
+        }
+      ],
+      "awards": [
+        {
+          "month": "11",
+          "year": "2024",
+          "title": "Top 5 Data Science Challenge"
+        },
+        {
+          "month": "07",
+          "year": "2024",
+          "title": "Third Prize AI Contest"
+        }
+      ]
+    },
+    "en": {
+      "profile": {
+        "fullName": "Nguyễn Văn A",
+        "headline": "AI Engineer",
+        "dob": "Jan 01, 2000",
+        "nationality": "Vietnamese",
+        "email": "example@email.com",
+        "phone": "+84 900 000 000",
+        "website": "linkedin.com/in/your-profile",
+        "address": "Ho Chi Minh City, Vietnam",
+        "summary": "Seeking an AI Engineer role to build production-ready Machine Learning solutions.\nFocused on measurable business impact and reliable deployment.",
+        "photo": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=640&q=80"
+      },
+      "theme": {
+        "accent": "#1f4e79",
+        "layout": "right",
+        "fontPreset": "roboto",
+        "baseFontSize": 13.2,
+        "sectionTitleSize": 15.2,
+        "entryTitleSize": 14.3,
+        "lineHeight": 1.55,
+        "sectionGap": 14,
+        "sidebarWidth": 35,
+        "sidebarPadding": 20,
+        "awardColumnGap": 8,
+        "sidebarSectionGap": 18,
+        "justifyText": false,
+        "photoSize": 170,
+        "photoBorder": 3
+      },
+      "visibility": {
+        "photo": true,
+        "personal": true,
+        "skills": true,
+        "languages": true,
+        "awards": true,
+        "summary": true,
+        "education": true,
+        "experience": true,
+        "projects": true,
+        "customSections": true,
+        "certifications": true
+      },
+      "contactVisibility": {
+        "dob": true,
+        "nationality": true,
+        "email": true,
+        "phone": true,
+        "website": true,
+        "address": true
+      },
+      "experience": [
+        {
+          "role": "AI Intern",
+          "company": "ABC Tech",
+          "period": "Sep 2024 - Oct 2024",
+          "location": "Ho Chi Minh City",
+          "details": "Contributed to a recommendation system project.\nBuilt ETL support scripts and data quality checks.\nReported weekly progress to product and engineering teams."
+        }
+      ],
+      "education": [
+        {
+          "school": "Nguyen Tat Thanh University",
+          "degree": "BSc in Computer Science - Artificial Intelligence",
+          "period": "Sep 2021 - Feb 2025",
+          "details": "GPA: 3.75 - Excellent"
+        }
+      ],
+      "projects": [
+        {
+          "name": "Ecommerce FiveStars",
+          "role": "Team Lead",
+          "period": "Feb 2023 - Mar 2023",
+          "details": "Built an analytics dashboard for model quality.\nDefined metrics and improved release confidence."
+        }
+      ],
+      "customSections": [
+        {
+          "title": "Activities",
+          "details": "Volunteer at technical student club.\nOrganized an internal AI workshop."
+        }
+      ],
+      "skills": [
+        {
+          "name": "Python",
+          "level": "Advanced",
+          "details": "FastAPI, Pandas, Numpy"
+        },
+        {
+          "name": "Machine Learning",
+          "level": "Advanced",
+          "details": "Training, eval, deployment"
+        }
+      ],
+      "languages": [
+        {
+          "name": "Vietnamese",
+          "level": "Native"
+        },
+        {
+          "name": "English",
+          "level": "IELTS 7.0"
+        }
+      ],
+      "certifications": [
+        {
+          "title": "Basic IT Application",
+          "year": "2020"
+        }
+      ],
+      "awards": [
+        {
+          "month": "11",
+          "year": "2024",
+          "title": "Top 5 Data Science Challenge"
+        },
+        {
+          "month": "07",
+          "year": "2024",
+          "title": "Third Prize AI Contest"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CV Builder Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="refinements.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="topbar__title">
+          <p class="eyebrow">CV Toolkit</p>
+          <h1>CV Builder Pro</h1>
+          <p class="subtitle">2 CV riêng biệt (Việt/Anh), tùy chỉnh font, bố cục và xuất PDF.</p>
+        </div>
+
+        <div class="doc-switch" aria-label="Chọn CV">
+          <button type="button" class="doc-switch__btn active" data-doc-switch="vi">CV Tiếng Việt</button>
+          <button type="button" class="doc-switch__btn" data-doc-switch="en">English CV</button>
+        </div>
+
+        <div class="topbar__actions">
+          <button type="button" id="reset-demo" class="btn btn-muted">Dùng dữ liệu mẫu</button>
+          <button type="button" id="download-json" class="btn btn-muted">Xuất CV hiện tại</button>
+          <label class="btn btn-muted file-btn">
+            Nhập CV hiện tại
+            <input type="file" id="import-json" accept=".json,application/json" />
+          </label>
+          <button type="button" id="download-all-json" class="btn btn-muted">Xuất cả Việt + Anh</button>
+          <label class="btn btn-muted file-btn">
+            Nhập cả Việt + Anh
+            <input type="file" id="import-all-json" accept=".json,application/json" />
+          </label>
+          <button type="button" id="print-cv" class="btn btn-primary">In / Xuất PDF</button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <aside class="editor-panel">
+          <p id="editing-language" class="editor-caption"></p><p id="save-status" role="status" class="helper-text">Tự động lưu trên trình duyệt</p><nav id="editor-nav" aria-label="Chuyển nhanh đến mục"></nav><form id="cv-form" novalidate>
+            <section class="form-card">
+              <h2>Thông tin chính</h2>
+              <div class="form-grid two">
+                <label>
+                  Họ và tên
+                  <input type="text" data-bind="profile.fullName" />
+                </label>
+                <label>
+                  Chức danh
+                  <input type="text" data-bind="profile.headline" />
+                </label>
+                <label>
+                  Ngày sinh
+                  <textarea rows="2" data-bind="profile.dob"></textarea>
+                </label>
+                <label>
+                  Quốc tịch
+                  <textarea rows="2" data-bind="profile.nationality"></textarea>
+                </label>
+                <label>
+                  Email
+                  <textarea rows="2" data-bind="profile.email"></textarea>
+                </label>
+                <label>
+                  Điện thoại
+                  <textarea rows="2" data-bind="profile.phone"></textarea>
+                </label>
+                <label>
+                  Website
+                  <textarea rows="2" data-bind="profile.website"></textarea>
+                </label>
+                <label>
+                  Địa chỉ
+                  <textarea rows="2" data-bind="profile.address"></textarea>
+                </label>
+              </div>
+              <label>
+                Tóm tắt nghề nghiệp
+                <textarea rows="4" data-bind="profile.summary"></textarea>
+              </label>
+              <label>
+                Ảnh đại diện
+                <input type="file" id="photo-upload" accept="image/*" />
+              </label>
+            </section>
+
+            <section class="form-card">
+              <h2>Giao diện và bố cục</h2>
+              <div class="form-grid two">
+                <label>
+                  Font chữ
+                  <select data-bind="theme.fontPreset">
+                    <option value="be_vietnam">Be Vietnam Pro</option>
+                    <option value="roboto">Roboto</option>
+                  </select>
+                </label>
+
+                <label>
+                  Bố cục
+                  <select data-bind="theme.layout">
+                    <option value="left">Sidebar trái</option>
+                    <option value="right">Sidebar phải</option>
+                    <option value="stacked">Stacked (trên)</option>
+                  </select>
+                </label>
+
+                <label>
+                  Màu chủ đạo
+                  <input type="color" data-bind="theme.accent" />
+                </label>
+
+                <label class="range-field">
+                  Cỡ chữ tổng
+                  <div class="range-inline">
+                    <input type="range" min="11.5" max="16" step="0.1" data-bind="theme.baseFontSize" />
+                    <span class="value-badge" data-display-for="theme.baseFontSize"></span>
+                  </div>
+                </label>
+
+                <label class="range-field">
+                  Cỡ chữ tiêu đề mục
+                  <div class="range-inline">
+                    <input
+                      type="range"
+                      min="12"
+                      max="22"
+                      step="0.5"
+                      data-bind="theme.sectionTitleSize"
+                    />
+                    <span class="value-badge" data-display-for="theme.sectionTitleSize"></span>
+                  </div>
+                </label>
+
+                <label class="range-field">
+                  Cỡ chữ tiêu đề nội dung
+                  <div class="range-inline">
+                    <input type="range" min="12" max="18" step="0.5" data-bind="theme.entryTitleSize" />
+                    <span class="value-badge" data-display-for="theme.entryTitleSize"></span>
+                  </div>
+                </label>
+
+                <label class="range-field">
+                  Khoảng cách dòng
+                  <div class="range-inline">
+                    <input type="range" min="1.2" max="2" step="0.05" data-bind="theme.lineHeight" />
+                    <span class="value-badge" data-display-for="theme.lineHeight"></span>
+                  </div>
+                </label>
+
+                <label class="range-field">
+                  Khoảng cách các khối
+                  <div class="range-inline">
+                    <input type="range" min="8" max="24" step="1" data-bind="theme.sectionGap" />
+                    <span class="value-badge" data-display-for="theme.sectionGap"></span>
+                  </div>
+                </label>
+
+                <label class="range-field">
+                  Kích thước sidebar
+                  <div class="range-inline">
+                    <input type="range" min="22" max="48" step="1" data-bind="theme.sidebarWidth" />
+                    <span class="value-badge" data-display-for="theme.sidebarWidth"></span>
+                  </div>
+                </label>
+
+                <label class="range-field">
+                  Độ thoáng sidebar
+                  <div class="range-inline">
+                    <input type="range" min="14" max="30" step="1" data-bind="theme.sidebarPadding" />
+                    <span class="value-badge" data-display-for="theme.sidebarPadding"></span>
+                  </div>
+                </label>
+
+                <label class="range-field">
+                  Khoảng cách 2 ô giải thưởng
+                  <div class="range-inline">
+                    <input
+                      type="range"
+                      min="4"
+                      max="24"
+                      step="1"
+                      data-bind="theme.awardColumnGap"
+                    />
+                    <span class="value-badge" data-display-for="theme.awardColumnGap"></span>
+                  </div>
+                </label>
+
+                <label class="range-field">
+                  Khoảng cách khối sidebar
+                  <div class="range-inline">
+                    <input
+                      type="range"
+                      min="8"
+                      max="28"
+                      step="1"
+                      data-bind="theme.sidebarSectionGap"
+                    />
+                    <span class="value-badge" data-display-for="theme.sidebarSectionGap"></span>
+                  </div>
+                </label>
+
+                <label class="range-field">
+                  Kích thước ảnh
+                  <div class="range-inline">
+                    <input type="range" min="110" max="220" step="1" data-bind="theme.photoSize" />
+                    <span class="value-badge" data-display-for="theme.photoSize"></span>
+                  </div>
+                </label>
+
+                <label class="range-field">
+                  Độ dày viền ảnh
+                  <div class="range-inline">
+                    <input type="range" min="1" max="6" step="1" data-bind="theme.photoBorder" />
+                    <span class="value-badge" data-display-for="theme.photoBorder"></span>
+                  </div>
+                </label>
+
+                <label class="inline-check">
+                  <input type="checkbox" data-bind="theme.justifyText" />
+                  Căn đều nội dung hai cột
+                </label>
+              </div>
+            </section>
+
+            <section class="form-card">
+              <h2>Bật / tắt nội dung</h2>
+              <div class="toggle-grid">
+                <label><input type="checkbox" data-bind="visibility.photo" /> Ảnh đại diện</label>
+                <label><input type="checkbox" data-bind="visibility.personal" /> Thông tin cá nhân</label>
+                <label><input type="checkbox" data-bind="visibility.skills" /> Các kỹ năng</label>
+                <label><input type="checkbox" data-bind="visibility.languages" /> Ngôn ngữ</label>
+                <label><input type="checkbox" data-bind="visibility.awards" /> Giải thưởng</label>
+                <label><input type="checkbox" data-bind="visibility.summary" /> Mục tiêu nghề nghiệp</label>
+                <label><input type="checkbox" data-bind="visibility.education" /> Học vấn</label>
+                <label><input type="checkbox" data-bind="visibility.experience" /> Kinh nghiệm</label>
+                <label><input type="checkbox" data-bind="visibility.projects" /> Dự án</label>
+                <label><input type="checkbox" data-bind="visibility.customSections" /> Mục bổ sung</label>
+                <label><input type="checkbox" data-bind="visibility.certifications" /> Chứng chỉ</label>
+              </div>
+            </section>
+
+            <section class="form-card">
+              <h2>Thông tin liên hệ hiển thị</h2>
+              <div class="toggle-grid">
+                <label><input type="checkbox" data-bind="contactVisibility.dob" /> Ngày sinh</label>
+                <label><input type="checkbox" data-bind="contactVisibility.nationality" /> Quốc tịch</label>
+                <label><input type="checkbox" data-bind="contactVisibility.email" /> Email</label>
+                <label><input type="checkbox" data-bind="contactVisibility.phone" /> Điện thoại</label>
+                <label><input type="checkbox" data-bind="contactVisibility.website" /> Website</label>
+                <label><input type="checkbox" data-bind="contactVisibility.address" /> Địa chỉ</label>
+              </div>
+            </section>
+
+            <section class="form-card">
+              <div class="card-header">
+                <h2>Kinh nghiệm làm việc</h2>
+                <button type="button" class="btn btn-small add-item" data-list="experience">+ Thêm mục</button>
+              </div>
+              <p class="helper-text">Sắp xếp mục bằng nút ↑ ↓ trong từng thẻ.</p>
+              <div id="experience-editor" class="dynamic-list"></div>
+            </section>
+
+            <section class="form-card">
+              <div class="card-header">
+                <h2>Học vấn</h2>
+                <button type="button" class="btn btn-small add-item" data-list="education">+ Thêm mục</button>
+              </div>
+              <div id="education-editor" class="dynamic-list"></div>
+            </section>
+
+            <section class="form-card">
+              <div class="card-header">
+                <h2>Dự án</h2>
+                <button type="button" class="btn btn-small add-item" data-list="projects">+ Thêm mục</button>
+              </div>
+              <div id="projects-editor" class="dynamic-list"></div>
+            </section>
+
+            <section class="form-card">
+              <div class="card-header">
+                <h2>Các kỹ năng</h2>
+                <button type="button" class="btn btn-small add-item" data-list="skills">+ Thêm mục</button>
+              </div>
+              <div id="skills-editor" class="dynamic-list"></div>
+            </section>
+
+            <section class="form-card">
+              <div class="card-header">
+                <h2>Ngôn ngữ</h2>
+                <button type="button" class="btn btn-small add-item" data-list="languages">+ Thêm mục</button>
+              </div>
+              <div id="languages-editor" class="dynamic-list"></div>
+            </section>
+
+            <section class="form-card">
+              <div class="card-header">
+                <h2>Giải thưởng</h2>
+                <button type="button" class="btn btn-small add-item" data-list="awards">+ Thêm mục</button>
+              </div>
+              <p class="helper-text">Giải thưởng điền riêng Tháng và Năm để hiển thị đúng mẫu.</p>
+              <div id="awards-editor" class="dynamic-list"></div>
+            </section>
+
+            <section class="form-card">
+              <div class="card-header">
+                <h2>Mục bổ sung (tự tạo)</h2>
+                <button type="button" class="btn btn-small add-item" data-list="customSections">+ Thêm mục</button>
+              </div>
+              <div id="custom-sections-editor" class="dynamic-list"></div>
+            </section>
+
+            <section class="form-card">
+              <div class="card-header">
+                <h2>Chứng chỉ</h2>
+                <button type="button" class="btn btn-small add-item" data-list="certifications">
+                  + Thêm mục
+                </button>
+              </div>
+              <div id="certifications-editor" class="dynamic-list"></div>
+            </section>
+          </form>
+        </aside>
+
+        <section class="preview-panel">
+          <div class="paper-a4 layout-left profile-vi" id="cv-preview">
+            <aside class="cv-sidebar">
+              <div class="identity">
+                <h2 id="preview-name"></h2>
+                <p id="preview-headline"></p>
+              </div>
+
+              <div class="photo-wrap" id="block-photo">
+                <img id="preview-photo" alt="Ảnh đại diện" />
+              </div>
+
+              <div class="sidebar-block" id="block-personal">
+                <h3 id="title-personal">Thông tin cá nhân</h3>
+                <ul id="preview-contact"></ul>
+              </div>
+
+              <div class="sidebar-block" id="block-skills">
+                <h3 id="title-skills">Các kỹ năng</h3>
+                <ul id="preview-skills"></ul>
+              </div>
+
+              <div class="sidebar-block" id="block-awards">
+                <h3 id="title-awards">Giải thưởng</h3>
+                <div id="preview-awards-sidebar" class="awards-list"></div>
+              </div>
+
+              <div class="sidebar-block" id="block-languages">
+                <h3 id="title-languages">Ngôn ngữ</h3>
+                <ul id="preview-languages"></ul>
+              </div>
+            </aside>
+
+            <div class="cv-main">
+              <section class="main-block" id="block-summary">
+                <h3 id="title-summary">Mục tiêu nghề nghiệp</h3>
+                <div id="preview-summary" class="summary-content"></div>
+              </section>
+
+              <section class="main-block" id="block-education">
+                <h3 id="title-education">Học vấn</h3>
+                <div id="preview-education"></div>
+              </section>
+
+              <section class="main-block" id="block-experience">
+                <h3 id="title-experience">Kinh nghiệm làm việc</h3>
+                <div id="preview-experience"></div>
+              </section>
+
+              <section class="main-block" id="block-projects">
+                <h3 id="title-projects">Dự án</h3>
+                <div id="preview-projects"></div>
+              </section>
+
+              <section class="main-block" id="block-custom-sections">
+                <h3 id="title-custom">Mục bổ sung</h3>
+                <div id="preview-custom-sections"></div>
+              </section>
+
+              <section class="main-block" id="block-certifications">
+                <h3 id="title-certifications">Chứng chỉ</h3>
+                <div id="preview-certifications"></div>
+              </section>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script><script src="editor-ux.js"></script>
+  </body>
+</html>
