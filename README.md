@@ -1,5 +1,17 @@
 # CV Builder Pro
 
+## Website Và Repository
+
+- Repository: https://github.com/LeTPhu/Profile-CV
+- Website GitHub Pages: https://letphu.github.io/Profile-CV/
+- Công cụ chỉnh sửa nằm tại thư mục gốc, mở `index.html` trên máy.
+- Website dành cho người xem nằm trong `github-public-cv/`. Chỉ thư mục này được xuất bản lên GitHub Pages.
+- Hiện dữ liệu công khai là CV minh họa. Để dùng hồ sơ thật, xuất cả Việt + Anh từ Builder và thay `github-public-cv/data/cv-public.json`.
+
+Website là HTML/CSS/JavaScript tĩnh, không cần máy chủ ứng dụng hoặc cơ sở dữ liệu.
+Mỗi lần đẩy thay đổi trong `github-public-cv/` lên nhánh `main`, workflow `Publish CV website` kiểm tra mã và cập nhật GitHub Pages.
+Xem hướng dẫn cập nhật và gắn link vào profile tại [github-public-cv/README.md](github-public-cv/README.md).
+
 Cong cu tao CV 2 cot hien dai, ho tro 2 ho so rieng biet:
 
 - CV Tieng Viet (`vi`)

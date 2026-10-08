@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GitHub Public CV</title>
+    <meta name="theme-color" content="#214f42" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <meta
       name="description"
       content="Trang CV công khai trên GitHub Pages, hỗ trợ CV tiếng Việt và English CV từ một file JSON."
@@ -18,10 +20,11 @@
     <link rel="stylesheet" href="refinements.css" />
   </head>
   <body>
+    <a class="skip-link" href="#cv-preview">Đến nội dung CV</a>
     <div class="site-shell">
       <header class="site-header">
         <div>
-          <p class="eyebrow">GitHub Public CV</p>
+          <p class="eyebrow">CV / PROFILE</p>
           <h1 id="page-title">Hồ sơ CV công khai</h1>
           <p id="page-subtitle">Đọc dữ liệu từ `data/cv-public.json` hoặc nhập file JSON từ máy.</p>
         </div>
@@ -38,10 +41,19 @@
           </label>
           <button type="button" class="btn" id="use-repo-data">Bản đã công bố</button></div></details>
           <button type="button" class="btn btn-primary" id="print-cv">In / Xuất PDF</button>
+          <button type="button" class="btn" id="share-cv">Sao chép liên kết</button>
         </div>
       </header>
 
       <p class="status" id="status-text" role="status" aria-live="polite">Đang tải dữ liệu...</p>
+      <p id="demo-notice" class="demo-notice" hidden></p>
+      <div class="share-result" id="share-result" hidden>
+        <label for="share-url" id="share-url-label">Liên kết trang công khai</label>
+        <input id="share-url" type="url" readonly />
+      </div>
+      <p id="share-status" class="status" role="status" aria-live="polite"></p>
+      <nav id="section-nav" class="section-nav" aria-label="Các mục trong CV"></nav>
+      <noscript><p class="demo-notice">Vui lòng bật JavaScript để xem CV song ngữ và tải nội dung.</p></noscript>
 
       <main class="preview-wrap">
         <article class="paper-a4 layout-left profile-vi" id="cv-preview">
@@ -109,8 +121,13 @@
           </div>
         </article>
       </main>
+      <footer class="site-footer">
+        <span id="footer-copy">CV song ngữ · Bản in A4</span>
+        <a href="https://github.com/LeTPhu/Profile-CV" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </footer>
     </div>
 
     <script src="app.js"></script>
+    <script src="website.js"></script>
   </body>
 </html>

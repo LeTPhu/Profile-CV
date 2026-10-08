@@ -1,0 +1,49 @@
+name: Publish CV website
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'github-public-cv/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Check website JavaScript and data
+        run: |
+          node --check github-public-cv/app.js
+          node --check github-public-cv/website.js
+          node -e "const fs = require('fs'); const cv = JSON.parse(fs.readFileSync('github-public-cv/data/cv-public.json', 'utf8').replace(/^\uFEFF/, '')); if (!cv.documents?.vi || !cv.documents?.en) throw new Error('Both CV languages are required');"
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Prepare public website
+        run: |
+          mkdir -p _site
+          cp github-public-cv/index.html github-public-cv/app.js github-public-cv/website.js github-public-cv/styles.css github-public-cv/refinements.css _site/
+          cp -R github-public-cv/data github-public-cv/assets _site/
+          touch _site/.nojekyll
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+      - name: Deploy website
+        id: deployment
+        uses: actions/deploy-pages@v4

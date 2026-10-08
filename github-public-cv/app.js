@@ -502,6 +502,7 @@ function renderAll() {
   renderHeader();
   renderLangSwitch();
   renderPreview();
+  if (typeof renderWebsiteSummary === "function") renderWebsiteSummary();
 }
 
 function renderHeader() {

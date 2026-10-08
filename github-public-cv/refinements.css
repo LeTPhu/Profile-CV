@@ -24,6 +24,22 @@ body { background: radial-gradient(ellipse at 85% 0%, #dfede3, transparent 45%),
 .sidebar-block li, .sidebar-block small, .award-date, .award-title, .entry-meta { font-size: inherit; }
 .sidebar-block h3, .main-block h3, .paper-a4.profile-en .sidebar-block h3, .paper-a4.profile-en .main-block h3, .paper-a4.profile-en .identity h2 { color: var(--accent); }
 .paper-a4.profile-en .cv-sidebar { background: var(--sidebar); }
+.skip-link { position: absolute; top: -80px; left: 16px; z-index: 20; padding: 12px 18px; background: white; color: #214f42; border-radius: 8px; }
+.skip-link:focus { top: 12px; }
+[hidden] { display: none !important; }
+.demo-notice { border-left: 3px solid #b58c45; border-radius: 0 10px 10px 0; padding: 12px 16px; background: #f4ebd9; color: #674d27; font-size: 12px; line-height: 1.8; }
+.section-nav { display: flex; flex-wrap: wrap; gap: 6px; margin: 20px 0; }
+.section-nav a { border: 1px solid #d2ded3; border-radius: 99px; padding: 8px 13px; font-size: 11px; color: #214f42; text-decoration: none; background: #ffffff70; }
+.section-nav a:hover { background: #fff; border-color: #214f42; }
+.sidebar-block, .main-block { scroll-margin-top: 20px; }
+.site-footer { display: flex; justify-content: space-between; gap: 20px; padding-top: 24px; font-size: 12px; color: #52695e; }
+.site-footer a { color: #214f42; }
+.share-result input { width: 100%; max-width: 520px; font: inherit; font-size: 12px; padding: 10px; border: 1px solid #d2ded3; border-radius: 8px; background: white; color: #214f42; }
+.share-result label { display: block; font-size: 12px; margin-bottom: 6px; }
+#share-status:empty { display: none; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
 @media screen and (max-width: 860px) {
   .site-shell { padding: 22px 12px; }
   .header-actions { justify-content: flex-start; gap: 6px; }
@@ -33,6 +49,7 @@ body { background: radial-gradient(ellipse at 85% 0%, #dfede3, transparent 45%),
   .tools-content { right: auto; left: -80px; max-width: calc(100vw - 32px); }
 }
 @media print {
+  .section-nav, .site-footer, .demo-notice, .share-result, #share-status, .skip-link { display: none !important; }
   .site-shell { max-width: none; padding: 0; }
   .preview-wrap { padding: 0; border: 0; }
   .paper-a4 { box-shadow: none; }

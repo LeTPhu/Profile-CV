@@ -1,5 +1,42 @@
 # GitHub Public CV
 
+## Website Của Bạn
+
+- Mã nguồn: https://github.com/LeTPhu/Profile-CV
+- Website: https://letphu.github.io/Profile-CV/
+- Tiếng Việt: https://letphu.github.io/Profile-CV/?lang=vi
+- English: https://letphu.github.io/Profile-CV/?lang=en
+
+Đây là website tĩnh, không cần đăng nhập để xem. Có điều hướng giữa các mục, nút sao chép link theo ngôn ngữ, giao diện điện thoại và bản in A4.
+
+Dữ liệu hiện là minh họa, chưa phải CV thật của chủ sở hữu. Trang sẽ hiện thông báo mẫu khi tên trùng dữ liệu minh họa.
+
+## Cập Nhật Hồ Sơ Thật
+
+1. Chỉnh hai CV trong công cụ tại thư mục gốc.
+2. Chọn **Xuất cả Việt + Anh**.
+3. Thay nội dung `github-public-cv/data/cv-public.json` bằng JSON vừa xuất.
+4. Commit và push lên `main`. Website tự cập nhật qua workflow **Publish CV website**.
+
+Nhập JSON bằng nút xem thử trên website chỉ thay đổi nội dung trên thiết bị đang xem. Link chia sẻ luôn mở dữ liệu đã công bố trong repository.
+Nếu dùng ảnh cục bộ, đặt ảnh trong `assets/` và dùng đường dẫn `./assets/ten-anh.jpg` trong JSON; ảnh base64 từ Builder cũng được hỗ trợ.
+
+## Gắn Vào Profile GitHub
+
+Trong **Edit profile**, điền ô **Website** bằng `https://letphu.github.io/Profile-CV/`.
+Bạn có thể ghim repository **Profile-CV** vào profile.
+Nếu có README profile, thêm liên kết sau:
+
+```markdown
+[Xem CV của tôi](https://letphu.github.io/Profile-CV/?lang=vi) · [English CV](https://letphu.github.io/Profile-CV/?lang=en)
+```
+
+## Cách Xuất Bản Hiện Tại
+
+Workflow tại `.github/workflows/pages.yml` chỉ đóng gói HTML, CSS, JavaScript, `data/` và `assets/` của website.
+Builder và tài liệu vẫn có trong repository, nhưng không được xuất bản vào website.
+Thiết lập Pages dùng **GitHub Actions**. Có thể chạy lại bằng **Actions → Publish CV website → Run workflow**.
+
 Cong cu nay dung de hien thi CV cong khai tren GitHub Pages, su dung du lieu JSON xuat ra tu `CV Builder Pro`.
 
 ## Muc tieu
@@ -47,8 +84,8 @@ Ghi chu:
 
 1. Dat thu muc `github-public-cv` ben trong repo.
 2. Vao `Settings` -> `Pages`.
-3. Chon branch va folder la `/github-public-cv` (neu UI ho tro), hoac
-4. Tao workflow Pages de publish dung thu muc nay.
+3. Chon source la `GitHub Actions`.
+4. Dung workflow `.github/workflows/pages.yml` de publish dung thu muc nay. Branch publishing chi ho tro root hoac /docs, khong chon truc tiep /github-public-cv.
 
 ## Tuy bien nhanh
 

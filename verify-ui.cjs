@@ -6,6 +6,13 @@ module.exports = async (page, baseURL = 'http://127.0.0.1:8765') => {
   check('English deep link', await page.locator('#title-summary').textContent() === 'Career Objective');
   await page.getByRole('button', {name:'Tiếng Việt', exact:true}).click();
   check('Vietnamese accents', await page.locator('#title-personal').textContent() === 'Thông tin cá nhân');
+  check('Sample website is clearly labelled', await page.locator('#demo-notice').isVisible());
+  check('Website section navigation matches visible CV', await page.locator('#section-nav a').count() === await page.locator('.sidebar-block:visible, .main-block:visible').count());
+  await page.evaluate(() => {
+    Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async () => { throw new Error('Clipboard blocked'); } } });
+  });
+  await page.getByRole('button', {name:'Sao chép liên kết', exact:true}).click();
+  check('Sharing works with blocked clipboard', await page.locator('#share-url').isVisible() && (await page.locator('#share-url').inputValue()).includes('lang=vi'));
   await page.setViewportSize({width:390,height:844});
   await page.getByRole('button', {name:'English CV', exact:true}).click();
   check('Mobile no horizontal overflow', await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
