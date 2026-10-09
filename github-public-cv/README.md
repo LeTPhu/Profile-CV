@@ -1,6 +1,6 @@
 # Website Cá Nhân Lê Tấn Phú
 
-Website tĩnh sử dụng dữ liệu từ **Le_Tan_Phu_CV_2026.pdf**, cập nhật ngày **09/10/2026**. Nội dung tiếng Anh là bản dịch từ CV tiếng Việt, không bổ sung kinh nghiệm hoặc chứng chỉ.
+Website tĩnh sử dụng dữ liệu từ **Le_Tan_Phu_CV_2026.pdf** và các ảnh giấy khen/chứng nhận do chủ hồ sơ cung cấp, cập nhật ngày **09/10/2026**. Nội dung tiếng Anh được dịch từ các nguồn này; không tự bổ sung kinh nghiệm hoặc chứng chỉ không có minh chứng.
 
 ## Các Đường Dẫn
 
