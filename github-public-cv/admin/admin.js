@@ -131,15 +131,15 @@
     urls = new Map(),
     media = new Map(),
     retainedDraft,
+    draftClock = 0,
     lastActivity = 0,
     timer,
     previewTimer,
     draftTimer,
     db;
+  ui = navigator.language.startsWith("en") ? "en" : "vi";
   try {
-    ui =
-      localStorage.getItem("portfolio.admin.language") ||
-      (navigator.language.startsWith("en") ? "en" : "vi");
+    ui = localStorage.getItem("portfolio.admin.language") || ui;
   } catch {
     /* Storage may be blocked. */
   }
@@ -253,14 +253,10 @@
   }
   async function saveDraft(explicit = true) {
     if (!data) return;
+    const draft = captureDraft();
+    retainedDraft = draft;
     try {
-      const used = new Set(M.images(data).map((x) => x.src));
-      await draftOperation("put", {
-        data: M.clone(data),
-        sha,
-        saved: new Date().toISOString(),
-        media: [...media.values()].filter((x) => used.has(x.path)),
-      });
+      await draftOperation("put", draft);
       if (explicit) notice(msg("saved"));
     } catch {
       notice(
@@ -271,6 +267,30 @@
         true,
       );
     }
+  }
+  function captureDraft() {
+    const used = new Set(M.images(data).map((x) => x.src));
+    // Keep ordering stable even when multiple saves happen in one millisecond.
+    draftClock = Math.max(Date.now(), draftClock + 1);
+    return {
+      data: M.clone(data),
+      sha,
+      saved: new Date(draftClock).toISOString(),
+      media: [...media.values()].filter((x) => used.has(x.path)),
+    };
+  }
+  async function latestDraft() {
+    const time = (draft) => Date.parse(draft?.saved || "") || 0;
+    let stored;
+    try {
+      stored = await draftOperation("get");
+    } catch (error) {
+      if (!retainedDraft) throw error;
+    }
+    draftClock = Math.max(draftClock, time(stored), time(retainedDraft));
+    if (!stored) return retainedDraft;
+    if (!retainedDraft) return stored;
+    return time(stored) > time(retainedDraft) ? stored : retainedDraft;
   }
   async function confirm(title, text) {
     if ($("confirm-dialog").open) return false;
@@ -309,8 +329,7 @@
     clearTimeout(timer);
     clearTimeout(draftTimer);
     api.logout();
-    if (data && dirty)
-      retainedDraft = { data: M.clone(data), sha, media: [...media.values()] };
+    if (data && dirty) retainedDraft = captureDraft();
     user = "";
     lastActivity = 0;
     $("workspace").hidden = true;
@@ -350,11 +369,7 @@
         normalized = M.normalize(session.data),
         errors = M.validate(normalized);
       if (errors.length) throw new Error(errors.slice(0, 6).join("\n"));
-      const retained =
-        data && dirty
-          ? { data: M.clone(data), sha, media: [...media.values()] }
-          : retainedDraft;
-      if (retained) retainedDraft = retained;
+      if (data && dirty) retainedDraft = captureDraft();
       data = normalized;
       sha = session.sha;
       user = session.login;
@@ -370,19 +385,17 @@
       notice("");
       translate();
       activity();
-      let draft = retained;
-      if (!draft) {
-        try {
-          draft = await draftOperation("get");
-        } catch {
-          notice(
-            L(
-              "Lưu nháp tự động không khả dụng. Bạn vẫn có thể sửa, xuất bản và sao lưu file.",
-              "Automatic drafts are unavailable. Editing, publishing and file backups still work.",
-            ),
-            true,
-          );
-        }
+      let draft;
+      try {
+        draft = await latestDraft();
+      } catch {
+        notice(
+          L(
+            "Lưu nháp tự động không khả dụng. Bạn vẫn có thể sửa, xuất bản và sao lưu file.",
+            "Automatic drafts are unavailable. Editing, publishing and file backups still work.",
+          ),
+          true,
+        );
       }
       if (draft && JSON.stringify(draft.data) !== JSON.stringify(data))
         notice(
@@ -1171,7 +1184,7 @@
   $("save-draft").onclick = () => saveDraft();
   $("restore-draft").onclick = async () => {
     try {
-      const draft = retainedDraft || (await draftOperation("get"));
+      const draft = await latestDraft();
       if (!draft)
         throw new Error(
           L(

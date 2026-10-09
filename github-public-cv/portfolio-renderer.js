@@ -456,14 +456,15 @@
         prefix = basePath(lang, project);
       const index = data.projects.findIndex((p) => p.id === project.id);
       const home = prefix + (lang === "en" ? "en/" : "./");
-      const gallery = project.gallery.length
-        ? project.gallery
+      const galleryImages = project.gallery.filter((image) => image.src);
+      const gallery = galleryImages.length
+        ? galleryImages
             .map(
               (image, i) =>
-                `<figure>${media(image, lang, prefix, "gallery", l.galleryNote, String(i + 1).padStart(2, "0"))}<figcaption>${esc(t(image.caption || image.alt, lang))}</figcaption></figure>`,
+                `<figure>${media(image, lang, prefix, "gallery", l.galleryNote, String(i + 1).padStart(2, "0"))}<figcaption>${esc(t(image.caption, lang) || t(image.alt, lang))}</figcaption></figure>`,
             )
             .join("")
-        : `<figure>${media(null, lang, prefix, "gallery", l.imageOne, "01")}<figcaption>${esc(l.galleryNote)}</figcaption></figure><figure>${media(null, lang, prefix, "gallery", l.imageTwo, "02")}<figcaption>${esc(l.galleryNote)}</figcaption></figure>`;
+        : "";
       const related = data.projects
         .filter((p) => p.id !== project.id)
         .slice(0, 3);
@@ -473,14 +474,14 @@
       <div class="project-meta"><span>${l[project.category]} / 0${index + 1}</span><span>${esc(t(project.period, lang))}</span></div>
       <h1>${esc(project.name)}<span class="name-period">.</span></h1><p class="project-subheading">${esc(t(project.title, lang))}</p><p class="project-lead">${esc(t(project.summary, lang))}</p>
       <div class="project-hero-actions"><span class="project-context">${esc(t(project.context, lang))}</span>${project.repository ? `<a class="button button-outline" href="${esc(project.repository)}" target="_blank" rel="noopener noreferrer">${esc(l.repo)} ↗</a>` : ""}</div>
-      <figure class="project-cover">${media(project.image, lang, prefix, "cover", l.cover, String(index + 1).padStart(2, "0"))}<figcaption>${esc(l.galleryNote)}</figcaption></figure>
+      <figure class="project-cover${project.image.src ? "" : " project-cover--illustration"}">${media(project.image, lang, prefix, "cover", l.cover, String(index + 1).padStart(2, "0"))}${project.image.src ? `<figcaption>${esc(t(project.image.alt, lang))}</figcaption>` : ""}</figure>
     </section>
     <section class="container project-information">
       <div class="project-details"><p class="section-eyebrow">01 / ${esc(l.overview)}</p><h2>${esc(l.scope)}</h2><ul class="contribution-list">${htmlList(t(project.points, lang))}</ul><div class="result-box"><p class="small-label">${esc(l.recorded)}</p><p>${esc(t(project.result, lang))}</p></div></div>
       <aside class="project-stack"><h2>${esc(l.technologies)}</h2>${tagList(project.technologies, lang)}<a class="text-link" href="${prefix + data.profile.pdf}" download>${esc(l.pdf)} ↓</a></aside>
     </section>
-    <section class="section container project-gallery"><p class="section-eyebrow">02 / ${esc(l.gallery)}</p><h2>${esc(l.gallery)}</h2><div class="gallery-grid">${gallery}</div></section>
-    <section class="section related-section"><div class="container">${sectionHeading("03", l.next, l.selected)}<div class="related-grid">${related.map((p) => projectCard(p, data.projects.indexOf(p), lang, prefix, true)).join("")}</div></div></section>
+    ${gallery ? `<section class="section container project-gallery"><p class="section-eyebrow">02 / ${esc(l.gallery)}</p><h2>${esc(l.gallery)}</h2><div class="gallery-grid${galleryImages.length === 1 ? " gallery-grid--single" : ""}">${gallery}</div></section>` : ""}
+    ${related.length ? `<section class="section related-section"><div class="container">${sectionHeading(gallery ? "03" : "02", l.next, l.selected)}<div class="related-grid">${related.map((p) => projectCard(p, data.projects.indexOf(p), lang, prefix, true)).join("")}</div></div></section>` : ""}
   </main>${footer(lang, project)}`;
     }
 
@@ -542,9 +543,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="${prefix}portfolio.css?v=20261009-2" />
+  <link rel="stylesheet" href="${prefix}portfolio.css?v=20261009-3" />
   <script type="application/ld+json">${JSON.stringify(schema).replace(/</g, "\\u003c")}</script>
-  <script src="${prefix}portfolio.js?v=20261009-2" defer></script>
+  <script src="${prefix}portfolio.js?v=20261009-3" defer></script>
 </head>
 <body data-page="${project ? "project" : "home"}" data-language="${lang}">${body}</body>
 </html>\n`;

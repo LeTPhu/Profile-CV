@@ -30,6 +30,8 @@ if (filters) {
   filters.addEventListener("click", event => {
     const button = event.target.closest("[data-filter]");
     if (!button) return;
+    const grid = document.querySelector(".project-grid");
+    grid.classList.toggle("is-filtered", button.dataset.filter !== "all");
     filters.querySelectorAll("button").forEach(item => item.setAttribute("aria-pressed", String(item === button)));
     let count = 0;
     document.querySelectorAll(".project-grid .project-card").forEach(card => {

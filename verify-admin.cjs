@@ -158,6 +158,71 @@ module.exports = async (browser, baseURL) => {
     "Owner-only API authentication, no persisted token, independent languages and undo/redo",
   );
 
+  await page.locator("#logout").click();
+  await confirm();
+  await page.locator("#login-panel").waitFor({ state: "visible" });
+  await login();
+  await page.locator("#workspace").waitFor({ state: "visible" });
+  await page.locator("#restore-draft").click();
+  await confirm();
+  await page.waitForFunction(
+    () =>
+      document.querySelector('[data-path="profile.summary.vi"]').value ===
+      "Nội dung tiếng Việt kiểm thử có dấu.",
+  );
+  await page
+    .locator('[data-path="profile.summary.vi"]')
+    .fill("Bản nháp mới nhất đã lưu.");
+  await page.locator("#save-draft").click();
+  await page.locator("#status").filter({ hasText: "Đã lưu nháp" }).waitFor();
+  await page.locator("#restore-draft").click();
+  await confirm();
+  await page.waitForFunction(
+    () =>
+      document.querySelector('[data-path="profile.summary.vi"]').value ===
+      "Bản nháp mới nhất đã lưu.",
+  );
+  assert.equal(
+    await page.locator('[data-path="profile.summary.en"]').inputValue(),
+    originalEnglish,
+  );
+  // A newer persisted draft must also win over an older in-memory snapshot.
+  await page.evaluate(async () => {
+    const request = indexedDB.open("portfolio-owner-drafts", 1);
+    const db = await new Promise(
+      (resolve) => (request.onsuccess = () => resolve(request.result)),
+    );
+    await new Promise((resolve, reject) => {
+      const tx = db.transaction("drafts", "readwrite"),
+        store = tx.objectStore("drafts"),
+        q = store.get("owner");
+      q.onsuccess = () => {
+        const draft = q.result;
+        draft.saved = new Date(Date.now() + 1000).toISOString();
+        draft.data.profile.summary.vi = "Bản nháp lưu trữ mới hơn.";
+        store.put(draft, "owner");
+      };
+      tx.oncomplete = resolve;
+      tx.onerror = () => reject(tx.error);
+    });
+    db.close();
+  });
+  await page.locator("#restore-draft").click();
+  await confirm();
+  await page.waitForFunction(
+    () =>
+      document.querySelector('[data-path="profile.summary.vi"]').value ===
+      "Bản nháp lưu trữ mới hơn.",
+  );
+  await page
+    .locator('[data-path="profile.summary.vi"]')
+    .fill("Nội dung tiếng Việt kiểm thử có dấu.");
+  await page.locator("#save-draft").click();
+  await page.locator("#status").filter({ hasText: "Đã lưu nháp" }).waitFor();
+  results.push(
+    "Newest draft wins across signout/signin, memory and IndexedDB; English remains intact",
+  );
+
   await goTab("Mục tự thêm");
   await page.locator(".add-button").click();
   await page.locator('[data-path="customSections.0.id"]').fill("writing");

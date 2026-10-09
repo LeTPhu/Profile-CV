@@ -281,6 +281,7 @@ const defaultState = {
 };
 
 let state = normalizeAppState(defaultState);
+let automaticLanguage = true;
 
 init();
 
@@ -375,6 +376,7 @@ async function loadFromRepo() {
     const parsed = await response.json();
     validatePayload(parsed);
     if (!ingestData(parsed)) throw new Error("invalid data structure");
+    automaticLanguage = parsed.autoLanguage !== false;
     setStatus(getUiCopy().loaded);
     return true;
   } catch {
@@ -427,13 +429,39 @@ function applyDocumentToActive(docPayload) {
 function applyLangFromQuery() {
   const params = new URLSearchParams(window.location.search);
   const lang = params.get("lang");
-  if (lang === "vi" || lang === "en") state.activeDoc = lang;
+  if (lang === "vi" || lang === "en") {
+    state.activeDoc = lang;
+    rememberLanguage(lang);
+    return;
+  }
+  let saved;
+  try {
+    saved = localStorage.getItem("portfolio.language");
+  } catch {
+    /* Language detection still works without storage. */
+  }
+  if (saved === "vi" || saved === "en") state.activeDoc = saved;
+  else if (automaticLanguage) {
+    const preferred = (navigator.languages || [navigator.language])
+      .map(value => value.toLowerCase().split("-")[0])
+      .find(value => value === "vi" || value === "en");
+    if (preferred) state.activeDoc = preferred;
+  }
+}
+
+function rememberLanguage(lang) {
+  try {
+    localStorage.setItem("portfolio.language", lang);
+  } catch {
+    /* Explicit URL choice is the storage fallback. */
+  }
 }
 
 function updateUrlLang(lang) {
   const url = new URL(window.location.href);
   url.searchParams.set("lang", lang);
   window.history.replaceState({}, "", url.toString());
+  rememberLanguage(lang);
 }
 
 function getUiCopy() {

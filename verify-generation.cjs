@@ -67,6 +67,7 @@ module.exports = () => {
   assert.ok(vi.includes("Góc chia sẻ"));
   assert.ok(en.includes("Writing"));
   assert.ok(vi.includes('name="portfolio-auto-language" content="off"'));
+  assert.equal(cv.autoLanguage, false);
   assert.equal(
     cv.documents.vi.customSections[0].details,
     "Nội dung mới có dấu.\nÝ một",

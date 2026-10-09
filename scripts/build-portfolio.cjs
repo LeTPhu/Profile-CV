@@ -105,7 +105,11 @@ function write(relative, content) {
 }
 
 function buildCvData() {
-  const output = { activeDoc: "vi", documents: {} };
+  const output = {
+    activeDoc: "vi",
+    autoLanguage: data.settings.autoLanguage,
+    documents: {},
+  };
   const old = JSON.parse(
     fs.readFileSync(path.join(site, "data/cv-public.json"), "utf8"),
   );

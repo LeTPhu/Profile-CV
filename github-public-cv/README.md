@@ -13,6 +13,8 @@ Website tĩnh sử dụng dữ liệu từ **Le_Tan_Phu_CV_2026.pdf** và các �
 
 Trang chủ có giới thiệu, học vấn, 7 dự án/nghiên cứu, 2 kinh nghiệm, kỹ năng, công cụ, 6 thành tích, thư viện 5 giấy khen/chứng nhận và liên hệ. Mỗi dự án có một trang chi tiết riêng cho từng ngôn ngữ. Giao diện dùng Be Vietnam Pro, tông xanh rừng/kem và điểm nhấn vàng cho tư liệu.
 
+Bố cục thu gọn khoảng cách giữa các phần, khung minh họa và thẻ dự án; tên dài được xuống dòng thay vì bị cắt hoặc tràn màn hình. Khi lọc dự án, các thẻ tự lấp đầy số cột còn lại. Trang chi tiết chỉ hiện thư viện khi có ảnh thật; các ô thêm ảnh vẫn giữ đầy đủ trong trang quản trị. Ảnh trong thư viện hiển thị nguyên khung, không cắt nội dung chứng nhận hoặc sơ đồ.
+
 ## Nơi Chỉnh Nội Dung
 
 ### Chỉnh Trực Tiếp Trên Website
@@ -32,7 +34,7 @@ Mã truy cập chỉ giữ trong bộ nhớ của tab, không được ghi vào 
 ### Bản Nháp Và Sao Lưu
 
 - Bản nháp tự lưu sau khi thay đổi, trên **trình duyệt và thiết bị hiện tại** bằng IndexedDB; ảnh mới giữ nguyên byte gốc. Nếu trình duyệt chặn lưu hoặc hết dung lượng, giao diện báo lỗi và yêu cầu sao lưu file.
-- **Lưu nháp** không xuất bản. **Khôi phục nháp** cần xác nhận; nháp giữ mốc GitHub ban đầu để không ghi đè bản mới hơn.
+- **Lưu nháp** không xuất bản. **Khôi phục nháp** cần xác nhận và chọn bản mới nhất giữa bộ nhớ của tab và IndexedDB, kể cả sau khi đăng xuất/đăng nhập lại; nháp giữ mốc GitHub ban đầu để không ghi đè bản mới hơn. Bản trong bộ nhớ chỉ tồn tại khi tab còn mở; hãy xuất sao lưu nếu trình duyệt không cho lưu nháp.
 - **Sao lưu** xuất JSON UTF-8 chứa cả Việt/Anh và ảnh mới chưa xuất bản. Ảnh đã có trong repository được tham chiếu theo đường dẫn, không tải lại toàn bộ thư viện vào bản sao lưu. File không chứa mã truy cập. Không coi đây là bản sao đầy đủ độc lập của toàn bộ repository; để sao lưu toàn bộ cả ảnh cũ, tải repository riêng.
 - **Nhập bản sao lưu** chấp nhận bản `portfolio-studio-backup` hoặc file `portfolio.json` đầy đủ, không nhận file CV một ngôn ngữ. Dữ liệu sai, thiếu ngôn ngữ, đường dẫn không an toàn hoặc ảnh giả bị từ chối trước khi thay nội dung hiện tại. Hoàn tác/làm lại giữ tối đa 40 thao tác.
 - Khi repository thay đổi từ lúc đăng nhập, xuất bản sẽ dừng, không ép ghi đè. Sao lưu nháp, đăng xuất và đăng nhập lại để tải bản mới. Đối chiếu các nội dung mới rồi nhập/áp dụng nháp một cách chủ động; không có tự động gộp thay đổi.
@@ -42,6 +44,8 @@ Mã truy cập chỉ giữ trong bộ nhớ của tab, không được ghi vào 
 ### Ngôn Ngữ Cho Người Xem
 
 Website có HTML Việt/Anh dựng sẵn. Lần đầu vào trang Việt, trình duyệt ưu tiên tiếng Anh sẽ tự chuyển sang bản English tương ứng, giữ nguyên đường dẫn dự án, tham số và vị trí đang xem. Trình duyệt tiếng Việt tiếp tục dùng tiếng Việt; ngôn ngữ khác không khớp Việt/Anh sẽ giữ trang hiện tại. Khách có thể chọn **VI/EN**, lựa chọn được lưu nếu trình duyệt cho phép; `?lang=vi` hoặc `?lang=en` có ưu tiên cao nhất và vẫn hoạt động khi chặn lưu trữ. Truy cập trực tiếp đường dẫn `/en/` thể hiện lựa chọn đọc English. Không tự dịch nội dung người quản trị mới nhập: cần điền rõ cả hai cột.
+
+CV A4 tại `/cv.html` dùng cùng lựa chọn VI/EN với website, nhận diện ngôn ngữ trình duyệt khi mở trực tiếp và tôn trọng thiết lập bật/tắt tự chọn ngôn ngữ. Nút in và tiêu đề CV đổi theo ngôn ngữ đang xem. PDF gốc do chủ hồ sơ cung cấp vẫn giữ nguyên; để xuất bản A4 tiếng Anh, chọn English CV rồi In / Lưu PDF.
 
 Các file hỗ trợ quản trị là `admin/`, `portfolio-model.js` (kiểm tra dữ liệu), `portfolio-renderer.js` (mẫu hiển thị dùng chung), `language.js` (chọn ngôn ngữ). Trình xem trước dùng iframe không cho chạy script. Kiểm thử tổng hợp: `node verify-all.cjs`; các ca xuất bản trong `verify-admin.cjs` sử dụng GitHub mô phỏng, không ghi nội dung kiểm thử lên repository thật.
 

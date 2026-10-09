@@ -8,6 +8,7 @@ const runPortfolioChecks = require('./verify-portfolio.cjs');
 const runAdminChecks = require('./verify-admin.cjs');
 const runLanguageChecks = require('./verify-language.cjs');
 const runGenerationChecks = require('./verify-generation.cjs');
+const runCompactChecks = require('./verify-compact.cjs');
 const { createServer } = require('./scripts/serve.cjs');
 const root = __dirname;
 
@@ -66,6 +67,7 @@ async function verifyLongPdf(page, baseURL) {
     console.log(`PASS ${await verifyLongPdf(pdfPage, baseURL)}`);
     console.log(`PASS Portfolio: ${(await runPortfolioChecks(browser, baseURL)).join('; ')}`);
     console.log(`PASS Language: ${await runLanguageChecks(browser, baseURL)}`);
+    console.log(`PASS Compact: ${await runCompactChecks(browser, baseURL)}`);
     console.log(`PASS Admin: ${(await runAdminChecks(browser, baseURL)).join('; ')}`);
   } finally {
     await browser.close();
