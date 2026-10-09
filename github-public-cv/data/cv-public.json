@@ -3,16 +3,16 @@
   "documents": {
     "vi": {
       "profile": {
-        "fullName": "Nguyễn Văn A",
-        "headline": "AI Engineer",
-        "dob": "01/01/2000",
-        "nationality": "Việt Nam",
-        "email": "example@email.com",
-        "phone": "+84 900 000 000",
-        "website": "linkedin.com/in/your-profile",
-        "address": "Hồ Chí Minh, Việt Nam",
-        "summary": "Tìm kiếm vai trò AI Engineer để phát triển sản phẩm ứng dụng Machine Learning.\nĐóng góp giải pháp đạt hiệu quả kinh doanh đo lường được.",
-        "photo": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=640&q=80"
+        "fullName": "Lê Tấn Phú",
+        "headline": "Định hướng AI Engineer | AI Agent & LLM Systems",
+        "dob": "",
+        "nationality": "",
+        "email": "letanphu2906@gmail.com",
+        "phone": "0974 613 051",
+        "website": "https://github.com/LeTPhu",
+        "address": "Hóc Môn, TP. Hồ Chí Minh",
+        "summary": "Tốt nghiệp Công nghệ thông tin - Trí tuệ nhân tạo tại Đại học Nguyễn Tất Thành. Tôi quan tâm đến AI Agent/LLM, AI ứng dụng và phát triển hệ thống web có kiểm thử.",
+        "photo": "./assets/avatar-placeholder.svg"
       },
       "theme": {
         "accent": "#1d7c73",
@@ -32,7 +32,7 @@
         "photoBorder": 3
       },
       "visibility": {
-        "photo": true,
+        "photo": false,
         "personal": true,
         "skills": true,
         "languages": true,
@@ -41,12 +41,12 @@
         "education": true,
         "experience": true,
         "projects": true,
-        "customSections": true,
-        "certifications": true
+        "customSections": false,
+        "certifications": false
       },
       "contactVisibility": {
-        "dob": true,
-        "nationality": true,
+        "dob": false,
+        "nationality": false,
         "email": true,
         "phone": true,
         "website": true,
@@ -54,88 +54,147 @@
       },
       "experience": [
         {
-          "role": "AI Intern",
-          "company": "ABC Tech",
+          "role": "Nhân viên Đào tạo, Truyền thông & Tuyển sinh",
+          "company": "Trường Trung cấp Quốc tế Sài Gòn (SGI)",
+          "period": "06/2025 - 01/2026",
+          "location": "",
+          "details": "Chuẩn hóa, số hóa và kiểm tra dữ liệu hồ sơ; hỗ trợ vận hành tuyển sinh, thanh quyết toán và xử lý dữ liệu bằng Excel.\nBiên soạn giáo án, trực tiếp giảng dạy và điều phối học liệu."
+        },
+        {
+          "role": "Thực tập sinh AI",
+          "company": "365 Ecosystem JSC (365 EJSC)",
           "period": "09/2024 - 10/2024",
-          "location": "Hồ Chí Minh",
-          "details": "Tham gia dự án gợi ý dữ liệu lớn.\nHỗ trợ xây pipeline ETL và quản trị chất lượng dữ liệu.\nBáo cáo kết quả theo tuần cho team."
+          "location": "",
+          "details": "Tham gia hệ thống gợi ý, xử lý dữ liệu/ETL và thử nghiệm các mô hình ML/DL trên dữ liệu doanh nghiệp.\nThực hành quy trình MLOps/DevOps; tổng hợp và trình bày kết quả dự án."
         }
       ],
       "education": [
         {
-          "school": "Nguyen Tat Thanh University",
-          "degree": "Công nghệ thông tin - Trí tuệ nhân tạo",
-          "period": "09/2021 - 02/2025",
-          "details": "GPA: 3.75 - Xuất sắc"
+          "school": "Đại học Nguyễn Tất Thành",
+          "degree": "Cử nhân Công nghệ thông tin - Trí tuệ nhân tạo",
+          "period": "2021 - 2025",
+          "details": "Tốt nghiệp loại Xuất sắc - GPA 3.75/4.00"
         }
       ],
       "projects": [
         {
-          "name": "Ecommerce FiveStars",
-          "role": "Trưởng nhóm",
-          "period": "02/2023 - 03/2023",
-          "details": "Xây dựng dashboard đánh giá hiệu quả các mô hình.\nTối ưu metric và theo dõi chất lượng sản phẩm."
-        }
-      ],
-      "customSections": [
+          "name": "AIOCRM - CRM đa kênh & vận hành doanh nghiệp",
+          "role": "Dự án cá nhân",
+          "period": "2026 - nay",
+          "details": "Phát triển và kiểm thử các phân hệ khách hàng, Social Inbox, Work Hub và sales pipeline.\nTriển khai các nghiệp vụ hóa đơn/VietQR, KPI, Facebook Ops và nghiệp vụ trường học.\nSử dụng Vue 3, TypeScript, Node.js/Fastify, Prisma, PostgreSQL, Socket.IO, Redis/BullMQ, MinIO/S3 và Docker.\nMốc QA ghi trong CV: 03/10/2026. Repository ghi nhận 4/4 CI jobs PASS, matrix 416 PASS và Product Surface A-F strict 24/24 PASS."
+        },
         {
-          "title": "Hoạt động",
-          "details": "Tình nguyện viên cho CLB kỹ thuật.\nTổ chức workshop chia sẻ về AI ứng dụng."
+          "name": "OpenClaw + 9router - Môi trường AI Agent đa nhà cung cấp",
+          "role": "Thực hành kỹ thuật / hạ tầng cá nhân",
+          "period": "2026 - nay",
+          "details": "Thiết lập OpenClaw trên VPS Ubuntu và sử dụng 9router để điều phối agent, model và provider.\nThử nghiệm DeepSeek, GPT/OpenAI và Kiro/xKiro qua API tương thích OpenAI/Anthropic.\nGhi nhận và xử lý vấn đề tool calling, khác biệt schema, timeout, rate limit và lỗi upstream.\nPhạm vi được ghi nhận là thực hành kỹ thuật và hạ tầng cá nhân."
+        },
+        {
+          "name": "Sound Event Detection - Nhận diện sự kiện âm thanh",
+          "role": "Đề tài học thuật - NTTU",
+          "period": "05/2026",
+          "details": "Khảo sát Log-Mel, CRNN, DESED/DCASE và ATST-SED; đối chiếu inference thử nghiệm với benchmark đã công bố.\nThử nghiệm CNN-Transformer/ATST-SED trên Google Colab; đọc event timeline theo onset/offset.\nSo sánh thêm CRNN+BEATs, AST-SED và PaSST; tìm hiểu CLAP/open-vocabulary như hướng mở rộng.\nTách rõ kết quả tự chạy với số liệu tham khảo từ paper/repository.\nNghiên cứu học thuật; CV không công bố một điểm benchmark tổng hợp cho dự án."
+        },
+        {
+          "name": "QA-TIGER Robustness - Độ bền vững trong Multimodal VQA",
+          "role": "Nghiên cứu học thuật",
+          "period": "09/2026",
+          "details": "Khảo sát độ bền vững khi thiếu modality với modality dropout, knowledge distillation, quality gate và missing tokens.\nTrong thiết lập đánh giá đã ghi nhận, Missing Visual tăng từ 51.57% lên 65.38%.\nCV ghi nhận mức tăng +13.80 điểm phần trăm trong thiết lập đánh giá nêu trên; số liệu không được trình bày như một kết quả tổng quát cho mọi benchmark."
+        },
+        {
+          "name": "AI Helpdesk - AEGONA - Prototype hệ thống hỗ trợ doanh nghiệp",
+          "role": "Xây dựng Ứng dụng Hệ thống thông tin doanh nghiệp",
+          "period": "05/2026",
+          "details": "Hiện thực prototype FastAPI + SQLModel + SQLite cho ticket, asset, SLA và RBAC.\nMô-đun hỗ trợ phân loại ở mức rule-based để gợi ý nhóm ticket.\nBáo cáo ghi nhận 13 test case chức năng cho các luồng lõi trong phạm vi prototype.\n13 test case chức năng được ghi nhận trong báo cáo của prototype."
+        },
+        {
+          "name": "OCR-RAG Chatbot - Hỏi đáp văn bản hành chính tiếng Việt",
+          "role": "Dự án AI ứng dụng",
+          "period": "09/2024 - 12/2024",
+          "details": "Kết hợp PaddleOCR, VietOCR và RAG-LLM để trích xuất, truy vấn và hỏi đáp nội dung văn bản hành chính tiếng Việt.\nPhạm vi ứng dụng: văn bản hành chính tiếng Việt."
+        },
+        {
+          "name": "Violence Detection - Phát hiện & cảnh báo bạo lực thời gian thực",
+          "role": "Trưởng nhóm 4 thành viên",
+          "period": "05/2024 - 07/2024",
+          "details": "Trưởng nhóm 4 thành viên; sử dụng MobileNetV2 + Bi-LSTM để trích xuất đặc trưng và mô hình hóa phụ thuộc thời gian trong video.\nDự án gắn với Giải Ba Cuộc thi AI NTTU 2024 và các thành tích DSC UIT 2024 ghi trong CV.\nGiải Ba Cuộc thi AI NTTU 2024; Top 5 chung kết, Giải Khuyến khích và Top 5 sản phẩm phổ biến nhất tại DSC UIT 2024."
         }
       ],
       "skills": [
         {
-          "name": "Python",
-          "level": "Advanced",
-          "details": "FastAPI, Pandas, Numpy"
+          "name": "AI / ML",
+          "level": "",
+          "details": "Python\nPyTorch\nTensorFlow / Keras\nscikit-learn\nComputer Vision\nNLP\nRAG\nTransformers\nMultimodal Learning\nSound Event Detection"
         },
         {
-          "name": "Machine Learning",
-          "level": "Advanced",
-          "details": "Model training, evaluation, deployment"
+          "name": "AI Agent / LLM",
+          "level": "",
+          "details": "OpenClaw\n9router\nMulti-provider APIs\nOpenAI / Anthropic schemas\nTool Workflows\nAPI Debugging"
+        },
+        {
+          "name": "Full-stack",
+          "level": "",
+          "details": "Vue 3\nTypeScript\nNode.js / Fastify\nFastAPI\nPrisma\nREST\nSocket.IO"
+        },
+        {
+          "name": "Data / DevOps / QA",
+          "level": "",
+          "details": "PostgreSQL\nSQLite\nMS SQL Server\nDocker\nGit / GitHub\nLinux / VPS\nWSL2\nGitHub Actions\nPlaywright\nVitest"
         }
       ],
       "languages": [
         {
-          "name": "Tiếng Việt",
-          "level": "Bản ngữ"
-        },
-        {
           "name": "Tiếng Anh",
-          "level": "IELTS 7.0"
-        }
-      ],
-      "certifications": [
-        {
-          "title": "Basic IT Application",
-          "year": "2020"
+          "level": "Đọc tài liệu kỹ thuật và giao tiếp cơ bản."
         }
       ],
       "awards": [
         {
+          "month": "",
+          "year": "2025",
+          "title": "Tốt nghiệp loại Xuất sắc - GPA 3.75/4.00 - Đại học Nguyễn Tất Thành."
+        },
+        {
+          "month": "",
+          "year": "2021 - 2025",
+          "title": "Học bổng khuyến khích học tập - Nhận học bổng trong 4/4 năm đại học."
+        },
+        {
           "month": "11",
           "year": "2024",
-          "title": "Top 5 Data Science Challenge"
+          "title": "DSC UIT 2024 - Top 5 chung kết, Giải Khuyến khích và Top 5 sản phẩm phổ biến nhất."
         },
         {
           "month": "07",
           "year": "2024",
-          "title": "Third Prize AI Contest"
+          "title": "Giải Ba Cuộc thi AI 2024 - Khoa Công nghệ thông tin - Đại học Nguyễn Tất Thành."
+        },
+        {
+          "month": "04",
+          "year": "2023",
+          "title": "Giải Nhất Cuộc thi AI 2023 - Đại học Nguyễn Tất Thành."
+        },
+        {
+          "month": "03",
+          "year": "2023",
+          "title": "Giải Nhất Cuộc thi Kỹ thuật Phần mềm 2023 - Đại học Nguyễn Tất Thành."
         }
-      ]
+      ],
+      "customSections": [],
+      "certifications": []
     },
     "en": {
       "profile": {
-        "fullName": "Nguyễn Văn A",
-        "headline": "AI Engineer",
-        "dob": "Jan 01, 2000",
-        "nationality": "Vietnamese",
-        "email": "example@email.com",
-        "phone": "+84 900 000 000",
-        "website": "linkedin.com/in/your-profile",
-        "address": "Ho Chi Minh City, Vietnam",
-        "summary": "Seeking an AI Engineer role to build production-ready Machine Learning solutions.\nFocused on measurable business impact and reliable deployment.",
-        "photo": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=640&q=80"
+        "fullName": "Lê Tấn Phú",
+        "headline": "Aspiring AI Engineer | AI Agent & LLM Systems",
+        "dob": "",
+        "nationality": "",
+        "email": "letanphu2906@gmail.com",
+        "phone": "0974 613 051",
+        "website": "https://github.com/LeTPhu",
+        "address": "Hoc Mon, Ho Chi Minh City",
+        "summary": "An Information Technology graduate specializing in Artificial Intelligence at Nguyen Tat Thanh University. My interests span AI agents, LLM systems, applied AI and tested web applications.",
+        "photo": "./assets/avatar-placeholder.svg"
       },
       "theme": {
         "accent": "#1f4e79",
@@ -155,7 +214,7 @@
         "photoBorder": 3
       },
       "visibility": {
-        "photo": true,
+        "photo": false,
         "personal": true,
         "skills": true,
         "languages": true,
@@ -164,12 +223,12 @@
         "education": true,
         "experience": true,
         "projects": true,
-        "customSections": true,
-        "certifications": true
+        "customSections": false,
+        "certifications": false
       },
       "contactVisibility": {
-        "dob": true,
-        "nationality": true,
+        "dob": false,
+        "nationality": false,
         "email": true,
         "phone": true,
         "website": true,
@@ -177,75 +236,134 @@
       },
       "experience": [
         {
+          "role": "Training, Communications & Admissions Staff",
+          "company": "Saigon International Vocational School (SGI)",
+          "period": "06/2025 - 01/2026",
+          "location": "",
+          "details": "Standardized, digitized and checked records; supported admissions operations, payment settlement and Excel-based data processing.\nPrepared lesson plans, taught classes and coordinated learning materials."
+        },
+        {
           "role": "AI Intern",
-          "company": "ABC Tech",
-          "period": "Sep 2024 - Oct 2024",
-          "location": "Ho Chi Minh City",
-          "details": "Contributed to a recommendation system project.\nBuilt ETL support scripts and data quality checks.\nReported weekly progress to product and engineering teams."
+          "company": "365 Ecosystem JSC (365 EJSC)",
+          "period": "09/2024 - 10/2024",
+          "location": "",
+          "details": "Contributed to recommendation systems, data processing and ETL, and ML/DL experiments on enterprise data.\nPracticed MLOps/DevOps workflows; consolidated and presented project results."
         }
       ],
       "education": [
         {
           "school": "Nguyen Tat Thanh University",
-          "degree": "BSc in Computer Science - Artificial Intelligence",
-          "period": "Sep 2021 - Feb 2025",
-          "details": "GPA: 3.75 - Excellent"
+          "degree": "Bachelor of Information Technology - Artificial Intelligence",
+          "period": "2021 - 2025",
+          "details": "Graduated with Excellent classification - GPA 3.75/4.00"
         }
       ],
       "projects": [
         {
-          "name": "Ecommerce FiveStars",
-          "role": "Team Lead",
-          "period": "Feb 2023 - Mar 2023",
-          "details": "Built an analytics dashboard for model quality.\nDefined metrics and improved release confidence."
-        }
-      ],
-      "customSections": [
+          "name": "AIOCRM - Multichannel CRM & business operations",
+          "role": "Personal project",
+          "period": "2026 - present",
+          "details": "Developed and tested customer, Social Inbox, Work Hub and sales pipeline modules.\nImplemented invoice/VietQR, KPI, Facebook Ops and school-related workflows.\nUsed Vue 3, TypeScript, Node.js/Fastify, Prisma, PostgreSQL, Socket.IO, Redis/BullMQ, MinIO/S3 and Docker.\nQA checkpoint recorded in the CV: 3 October 2026. The repository recorded 4/4 passing CI jobs, a matrix of 416 PASS and Product Surface A-F strict 24/24 PASS."
+        },
         {
-          "title": "Activities",
-          "details": "Volunteer at technical student club.\nOrganized an internal AI workshop."
+          "name": "OpenClaw + 9router - Multi-provider AI agent environment",
+          "role": "Technical practice / personal infrastructure",
+          "period": "2026 - present",
+          "details": "Set up OpenClaw on Ubuntu VPS and used 9router to route agents, models and providers.\nExperimented with DeepSeek, GPT/OpenAI and Kiro/xKiro through OpenAI/Anthropic-compatible APIs.\nRecorded and addressed tool calling, schema differences, timeouts, rate limits and upstream errors.\nThe recorded scope is technical practice and personal infrastructure."
+        },
+        {
+          "name": "Sound Event Detection - Audio event detection research",
+          "role": "Academic project - NTTU",
+          "period": "05/2026",
+          "details": "Studied Log-Mel, CRNN, DESED/DCASE and ATST-SED, comparing experimental inference with published benchmarks.\nExperimented with CNN-Transformer/ATST-SED on Google Colab and read onset/offset event timelines.\nCompared CRNN+BEATs, AST-SED and PaSST; explored CLAP/open-vocabulary as a possible extension.\nSeparated self-run results from reference figures in papers and repositories.\nAcademic research; the CV does not report an overall benchmark score for this project."
+        },
+        {
+          "name": "QA-TIGER Robustness - Robustness in multimodal VQA",
+          "role": "Academic research",
+          "period": "09/2026",
+          "details": "Studied robustness with missing modalities using modality dropout, knowledge distillation, quality gates and missing tokens.\nIn the recorded evaluation setup, Missing Visual increased from 51.57% to 65.38%.\nThe CV records an increase of +13.80 percentage points in that evaluation setup; these figures are not presented as a general result across benchmarks."
+        },
+        {
+          "name": "AI Helpdesk - AEGONA - Enterprise support system prototype",
+          "role": "Enterprise Information Systems application project",
+          "period": "05/2026",
+          "details": "Implemented a FastAPI + SQLModel + SQLite prototype for tickets, assets, SLA and RBAC.\nUsed a rule-based classification module to suggest ticket categories.\nThe report records 13 functional test cases for core flows within the prototype scope.\n13 functional test cases recorded in the prototype report."
+        },
+        {
+          "name": "OCR-RAG Chatbot - Vietnamese administrative document Q&A",
+          "role": "Applied AI project",
+          "period": "09/2024 - 12/2024",
+          "details": "Combined PaddleOCR, VietOCR and RAG-LLM to extract, retrieve and answer questions about Vietnamese administrative documents.\nApplication scope: Vietnamese administrative documents."
+        },
+        {
+          "name": "Violence Detection - Real-time violence detection & alerts",
+          "role": "Team lead - four members",
+          "period": "05/2024 - 07/2024",
+          "details": "Led a four-member team; used MobileNetV2 + Bi-LSTM for feature extraction and temporal modeling in video.\nThe project is associated with Third Prize in NTTU AI Competition 2024 and the DSC UIT 2024 achievements recorded in the CV.\nThird Prize in NTTU AI Competition 2024; Top 5 finalists, Consolation Prize and Top 5 most popular products at DSC UIT 2024."
         }
       ],
       "skills": [
         {
-          "name": "Python",
-          "level": "Advanced",
-          "details": "FastAPI, Pandas, Numpy"
+          "name": "AI / ML",
+          "level": "",
+          "details": "Python\nPyTorch\nTensorFlow / Keras\nscikit-learn\nComputer Vision\nNLP\nRAG\nTransformers\nMultimodal Learning\nSound Event Detection"
         },
         {
-          "name": "Machine Learning",
-          "level": "Advanced",
-          "details": "Training, eval, deployment"
+          "name": "AI Agent / LLM",
+          "level": "",
+          "details": "OpenClaw\n9router\nMulti-provider APIs\nOpenAI / Anthropic schemas\nTool Workflows\nAPI Debugging"
+        },
+        {
+          "name": "Full-stack",
+          "level": "",
+          "details": "Vue 3\nTypeScript\nNode.js / Fastify\nFastAPI\nPrisma\nREST\nSocket.IO"
+        },
+        {
+          "name": "Data / DevOps / QA",
+          "level": "",
+          "details": "PostgreSQL\nSQLite\nMS SQL Server\nDocker\nGit / GitHub\nLinux / VPS\nWSL2\nGitHub Actions\nPlaywright\nVitest"
         }
       ],
       "languages": [
         {
-          "name": "Vietnamese",
-          "level": "Native"
-        },
-        {
           "name": "English",
-          "level": "IELTS 7.0"
-        }
-      ],
-      "certifications": [
-        {
-          "title": "Basic IT Application",
-          "year": "2020"
+          "level": "Technical documentation reading and basic communication."
         }
       ],
       "awards": [
         {
+          "month": "",
+          "year": "2025",
+          "title": "Excellent graduation classification - GPA 3.75/4.00 - Nguyen Tat Thanh University."
+        },
+        {
+          "month": "",
+          "year": "2021 - 2025",
+          "title": "Academic encouragement scholarships - Awarded scholarships in all four university years."
+        },
+        {
           "month": "11",
           "year": "2024",
-          "title": "Top 5 Data Science Challenge"
+          "title": "DSC UIT 2024 - Top 5 finalists, Consolation Prize and Top 5 most popular products."
         },
         {
           "month": "07",
           "year": "2024",
-          "title": "Third Prize AI Contest"
+          "title": "Third Prize - AI Competition 2024 - Faculty of Information Technology - Nguyen Tat Thanh University."
+        },
+        {
+          "month": "04",
+          "year": "2023",
+          "title": "First Prize - AI Competition 2023 - Nguyen Tat Thanh University."
+        },
+        {
+          "month": "03",
+          "year": "2023",
+          "title": "First Prize - Software Engineering Competition 2023 - Nguyen Tat Thanh University."
         }
-      ]
+      ],
+      "customSections": [],
+      "certifications": []
     }
   }
 }

@@ -1,133 +1,206 @@
 <!doctype html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GitHub Public CV</title>
-    <meta name="theme-color" content="#214f42" />
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-    <meta
-      name="description"
-      content="Trang CV công khai trên GitHub Pages, hỗ trợ CV tiếng Việt và English CV từ một file JSON."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="refinements.css" />
-  </head>
-  <body>
-    <a class="skip-link" href="#cv-preview">Đến nội dung CV</a>
-    <div class="site-shell">
-      <header class="site-header">
-        <div>
-          <p class="eyebrow">CV / PROFILE</p>
-          <h1 id="page-title">Hồ sơ CV công khai</h1>
-          <p id="page-subtitle">Đọc dữ liệu từ `data/cv-public.json` hoặc nhập file JSON từ máy.</p>
-        </div>
-
-        <div class="header-actions">
-          <div class="lang-switch" aria-label="Ngôn ngữ CV">
-            <button type="button" class="lang-btn active" data-lang="vi">Tiếng Việt</button>
-            <button type="button" class="lang-btn" data-lang="en">English CV</button>
-          </div>
-
-          <details class="preview-tools"><summary id="tools-label">Công cụ xem thử</summary><div class="tools-content"><p id="tools-hint">Nhập JSON chỉ để xem thử trên máy này. Dữ liệu công khai nằm trong data/cv-public.json.</p><label class="btn file-btn">
-            <span id="import-label">Xem thử JSON</span>
-            <input type="file" id="import-json" accept=".json,application/json" />
-          </label>
-          <button type="button" class="btn" id="use-repo-data">Bản đã công bố</button></div></details>
-          <button type="button" class="btn btn-primary" id="print-cv">In / Xuất PDF</button>
-          <button type="button" class="btn" id="share-cv">Sao chép liên kết</button>
-        </div>
-      </header>
-
-      <p class="status" id="status-text" role="status" aria-live="polite">Đang tải dữ liệu...</p>
-      <p id="demo-notice" class="demo-notice" hidden></p>
-      <div class="share-result" id="share-result" hidden>
-        <label for="share-url" id="share-url-label">Liên kết trang công khai</label>
-        <input id="share-url" type="url" readonly />
-      </div>
-      <p id="share-status" class="status" role="status" aria-live="polite"></p>
-      <nav id="section-nav" class="section-nav" aria-label="Các mục trong CV"></nav>
-      <noscript><p class="demo-notice">Vui lòng bật JavaScript để xem CV song ngữ và tải nội dung.</p></noscript>
-
-      <main class="preview-wrap">
-        <article class="paper-a4 layout-left profile-vi" id="cv-preview">
-          <aside class="cv-sidebar">
-            <div class="identity">
-              <h2 id="preview-name"></h2>
-              <p id="preview-headline"></p>
-            </div>
-
-            <div class="photo-wrap" id="block-photo">
-              <img id="preview-photo" alt="Ảnh đại diện" />
-            </div>
-
-            <div class="sidebar-block" id="block-personal">
-              <h3 id="title-personal">Thông tin cá nhân</h3>
-              <ul id="preview-contact"></ul>
-            </div>
-
-            <div class="sidebar-block" id="block-skills">
-              <h3 id="title-skills">Kỹ năng</h3>
-              <ul id="preview-skills"></ul>
-            </div>
-
-            <div class="sidebar-block" id="block-awards">
-              <h3 id="title-awards">Giải thưởng</h3>
-              <div class="awards-list" id="preview-awards-sidebar"></div>
-            </div>
-
-            <div class="sidebar-block" id="block-languages">
-              <h3 id="title-languages">Ngôn ngữ</h3>
-              <ul id="preview-languages"></ul>
-            </div>
-          </aside>
-
-          <div class="cv-main">
-            <section class="main-block" id="block-summary">
-              <h3 id="title-summary">Mục tiêu nghề nghiệp</h3>
-              <div id="preview-summary" class="summary-content"></div>
-            </section>
-
-            <section class="main-block" id="block-education">
-              <h3 id="title-education">Học vấn</h3>
-              <div id="preview-education"></div>
-            </section>
-
-            <section class="main-block" id="block-experience">
-              <h3 id="title-experience">Kinh nghiệm làm việc</h3>
-              <div id="preview-experience"></div>
-            </section>
-
-            <section class="main-block" id="block-projects">
-              <h3 id="title-projects">Dự án</h3>
-              <div id="preview-projects"></div>
-            </section>
-
-            <section class="main-block" id="block-custom-sections">
-              <h3 id="title-custom">Mục bổ sung</h3>
-              <div id="preview-custom-sections"></div>
-            </section>
-
-            <section class="main-block" id="block-certifications">
-              <h3 id="title-certifications">Chứng chỉ</h3>
-              <div id="preview-certifications"></div>
-            </section>
-          </div>
-        </article>
-      </main>
-      <footer class="site-footer">
-        <span id="footer-copy">CV song ngữ · Bản in A4</span>
-        <a href="https://github.com/LeTPhu/Profile-CV" target="_blank" rel="noopener noreferrer">GitHub</a>
-      </footer>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lê Tấn Phú | AI Agent &amp; LLM Systems</title>
+  <meta name="description" content="Tốt nghiệp Công nghệ thông tin - Trí tuệ nhân tạo tại Đại học Nguyễn Tất Thành. Tôi quan tâm đến AI Agent/LLM, AI ứng dụng và phát triển hệ thống web có kiểm thử." />
+  <meta name="theme-color" content="#173d32" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Lê Tấn Phú | AI Agent &amp; LLM Systems" />
+  <meta property="og:description" content="Tốt nghiệp Công nghệ thông tin - Trí tuệ nhân tạo tại Đại học Nguyễn Tất Thành. Tôi quan tâm đến AI Agent/LLM, AI ứng dụng và phát triển hệ thống web có kiểm thử." />
+  <meta property="og:url" content="https://letphu.github.io/Profile-CV/" />
+  <meta property="og:locale" content="vi_VN" />
+  <link rel="canonical" href="https://letphu.github.io/Profile-CV/" />
+  <link rel="alternate" hreflang="vi" href="https://letphu.github.io/Profile-CV/" />
+  <link rel="alternate" hreflang="en" href="https://letphu.github.io/Profile-CV/en/" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="portfolio.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","mainEntity":{"@type":"Person","name":"Lê Tấn Phú","url":"https://letphu.github.io/Profile-CV/","sameAs":["https://github.com/LeTPhu"],"alumniOf":{"@type":"CollegeOrUniversity","name":"Nguyen Tat Thanh University"},"knowsAbout":["AI / ML","AI Agent / LLM","Full-stack","Data / DevOps / QA"]}}</script>
+  <script src="portfolio.js" defer></script>
+</head>
+<body data-page="home" data-language="vi"><a class="skip-link" href="#main">Đến nội dung</a>
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a class="brand" href="./" aria-label="Trang chủ"><span class="brand-mark">P.</span><span>Lê Tấn Phú<span class="brand-sub">AI / ENGINEERING</span></span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-open-label="Mở menu" data-close-label="Đóng menu"><span class="menu-icon" aria-hidden="true"></span><span data-menu-label>Mở menu</span></button>
+      <nav id="main-nav" class="main-nav" aria-label="Điều hướng chính">
+        <a href="#about">Giới thiệu</a><a href="#projects">Dự án</a><a href="#experience">Hành trình</a><a href="#skills">Kỹ năng</a><a href="#awards">Thành tích</a>
+        <a class="nav-contact" href="#contact">Liên hệ <span aria-hidden="true">↗</span></a>
+      </nav>
+      <a class="language-link" href="en/index.html" lang="en" hreflang="en" aria-label="Read in English">EN <span aria-hidden="true">↗</span></a>
     </div>
+  </header>
+  <main id="main">
+    <section class="hero container" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <p class="hero-eyebrow"><span class="status-dot" aria-hidden="true"></span>Định hướng AI Engineer</p>
+        <h1 id="hero-title">Lê Tấn Phú<span class="name-period">.</span></h1>
+        <p class="hero-focus">AI Agent.<br /><span>LLM Systems.</span></p>
+        <p class="hero-summary">Tốt nghiệp Công nghệ thông tin - Trí tuệ nhân tạo tại Đại học Nguyễn Tất Thành. Tôi quan tâm đến AI Agent/LLM, AI ứng dụng và phát triển hệ thống web có kiểm thử.</p>
+        <div class="hero-actions"><a class="button button-primary" href="#projects">Khám phá dự án <span aria-hidden="true">↗</span></a><a class="button button-outline" href="assets/cv/Le_Tan_Phu_CV_2026.pdf" download>Tải CV PDF <span aria-hidden="true">↓</span></a></div>
+        <p class="hero-location"><span aria-hidden="true">⌖</span> Hóc Môn, TP. Hồ Chí Minh <span class="location-divider">/</span> <a href="https://github.com/LeTPhu" target="_blank" rel="noopener noreferrer">@LeTPhu ↗</a></p>
+      </div>
+      <figure class="hero-portrait"><div class="media media--portrait" data-media>
 
-    <script src="app.js"></script>
-    <script src="website.js"></script>
-  </body>
+    <div class="media-placeholder">
+      <span class="media-index" aria-hidden="true">PERSONAL / 01</span>
+      <div class="media-mark" aria-hidden="true">LP</div>
+      <span class="media-label">Không gian dành cho ảnh chân dung</span>
+    </div>
+  </div>
+        <figcaption><span>Lê Tấn Phú / Hồ sơ cá nhân</span><span aria-hidden="true">PROFILE / 2026</span></figcaption>
+        <div class="portrait-tag" aria-hidden="true">AI / ML<br /><strong>BUILD. TEST. LEARN.</strong></div>
+      </figure>
+    </section>
+    <div class="stats container" aria-label="Thông tin nổi bật">
+      <div><strong>3.75/4.00</strong><span>GPA · Tốt nghiệp loại Xuất sắc</span></div>
+      <div><strong>07</strong><span>dự án & nghiên cứu</span></div>
+      <div><strong>4 / 4</strong><span>năm nhận học bổng</span></div>
+    </div>
+    <section id="about" class="section container about-section" aria-labelledby="about-heading">
+      <div class="section-heading"><p class="section-eyebrow"><span>01</span> Giới thiệu</p><h2 id="about-heading">Từ nền tảng AI đến hệ thống có kiểm thử.</h2></div>
+      <div class="about-grid"><div class="about-copy"><p>Từ kinh nghiệm thực tập AI đến công việc đào tạo và vận hành dữ liệu, tôi đã tham gia xử lý dữ liệu/ETL, thử nghiệm mô hình ML/DL, chuẩn hóa hồ sơ và tổ chức học liệu.</p><p>Các dự án gần đây tập trung vào hệ thống CRM đa kênh, môi trường agent đa nhà cung cấp và nghiên cứu AI đa phương thức. Tôi chú trọng kiểm thử, ghi nhận kết quả và phân biệt số liệu thực nghiệm với benchmark tham khảo.</p><a class="text-link" href="cv.html?lang=vi">Xem CV A4 ↗</a></div>
+      <article class="education-card"><p class="small-label">Học vấn / 2021 - 2025</p><h3>Đại học Nguyễn Tất Thành</h3><p>Cử nhân Công nghệ thông tin - Trí tuệ nhân tạo</p><div class="education-bottom"><strong>3.75/4.00</strong><span>Tốt nghiệp loại Xuất sắc</span></div></article></div>
+    </section>
+    <section id="projects" class="section projects-section" aria-labelledby="projects-heading"><div class="container">
+      <div class="section-heading"><p class="section-eyebrow"><span>02</span> Dự án &amp; nghiên cứu</p><h2 id="projects-heading">Những hệ thống tôi xây dựng, những câu hỏi tôi tìm hiểu.</h2><p class="section-description">Từ AI ứng dụng đến hệ thống web và nghiên cứu học thuật. Chọn một dự án để xem phạm vi, công nghệ và kết quả ghi nhận.</p></div>
+      <div class="project-toolbar"><div class="project-filters" role="group" aria-label="Lọc dự án" hidden>
+      <button type="button" data-filter="all" aria-pressed="true">Tất cả</button><button type="button" data-filter="engineering" aria-pressed="false">Hệ thống & web</button><button type="button" data-filter="research" aria-pressed="false">Nghiên cứu</button><button type="button" data-filter="ai" aria-pressed="false">AI ứng dụng</button></div><p id="filter-count" class="filter-count" role="status" aria-live="polite" data-result-label="dự án đang hiển thị">7 dự án đang hiển thị</p></div>
+      <div class="project-grid"><article class="project-card category-engineering" data-category="engineering">
+    <a class="project-image-link" href="projects/aiocrm.html" aria-label="Xem chi tiết: AIOCRM"><div class="media media--project" data-media>
+
+    <div class="media-placeholder">
+      <span class="media-index" aria-hidden="true">PROJECT / 01</span>
+      <div class="media-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+      <span class="media-label">Không gian dành cho ảnh dự án</span>
+    </div>
+  </div></a>
+    <div class="project-body">
+      <div class="project-meta"><span>Hệ thống & web</span><span>2026 - nay</span></div>
+      <h3><a href="projects/aiocrm.html">AIOCRM <span aria-hidden="true">↗</span></a></h3>
+      <p class="project-title">CRM đa kênh &amp; vận hành doanh nghiệp</p>
+      <p class="project-summary">Hệ thống CRM kết nối khách hàng, Social Inbox, công việc và nghiệp vụ doanh nghiệp/trường học.</p><ul class="tags" aria-label="Công nghệ và công cụ"><li>Vue 3</li><li>TypeScript</li><li>Fastify</li><li>Prisma</li></ul>
+      <a class="text-link" href="projects/aiocrm.html">Xem chi tiết <span aria-hidden="true">↗</span></a>
+    </div>
+  </article><article class="project-card category-engineering" data-category="engineering">
+    <a class="project-image-link" href="projects/openclaw-9router.html" aria-label="Xem chi tiết: OpenClaw + 9router"><div class="media media--project" data-media>
+
+    <div class="media-placeholder">
+      <span class="media-index" aria-hidden="true">PROJECT / 02</span>
+      <div class="media-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+      <span class="media-label">Không gian dành cho ảnh dự án</span>
+    </div>
+  </div></a>
+    <div class="project-body">
+      <div class="project-meta"><span>Hệ thống & web</span><span>2026 - nay</span></div>
+      <h3><a href="projects/openclaw-9router.html">OpenClaw + 9router <span aria-hidden="true">↗</span></a></h3>
+      <p class="project-title">Môi trường AI Agent đa nhà cung cấp</p>
+      <p class="project-summary">Thực hành thiết lập môi trường agent trên VPS Ubuntu và điều phối model/provider trong cùng luồng làm việc.</p><ul class="tags" aria-label="Công nghệ và công cụ"><li>OpenClaw</li><li>9router</li><li>Ubuntu / VPS</li><li>Multi-provider APIs</li></ul>
+      <a class="text-link" href="projects/openclaw-9router.html">Xem chi tiết <span aria-hidden="true">↗</span></a>
+    </div>
+  </article><article class="project-card category-research" data-category="research">
+    <a class="project-image-link" href="projects/sound-event-detection.html" aria-label="Xem chi tiết: Sound Event Detection"><div class="media media--project" data-media>
+
+    <div class="media-placeholder">
+      <span class="media-index" aria-hidden="true">PROJECT / 03</span>
+      <div class="media-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+      <span class="media-label">Không gian dành cho ảnh dự án</span>
+    </div>
+  </div></a>
+    <div class="project-body">
+      <div class="project-meta"><span>Nghiên cứu</span><span>05/2026</span></div>
+      <h3><a href="projects/sound-event-detection.html">Sound Event Detection <span aria-hidden="true">↗</span></a></h3>
+      <p class="project-title">Nhận diện sự kiện âm thanh</p>
+      <p class="project-summary">Khảo sát mô hình nhận diện sự kiện âm thanh, đối chiếu inference thử nghiệm với benchmark đã công bố.</p><ul class="tags" aria-label="Công nghệ và công cụ"><li>Log-Mel</li><li>CRNN</li><li>ATST-SED</li><li>Google Colab</li></ul>
+      <a class="text-link" href="projects/sound-event-detection.html">Xem chi tiết <span aria-hidden="true">↗</span></a>
+    </div>
+  </article><article class="project-card category-research" data-category="research">
+    <a class="project-image-link" href="projects/qa-tiger.html" aria-label="Xem chi tiết: QA-TIGER Robustness"><div class="media media--project" data-media>
+
+    <div class="media-placeholder">
+      <span class="media-index" aria-hidden="true">PROJECT / 04</span>
+      <div class="media-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+      <span class="media-label">Không gian dành cho ảnh dự án</span>
+    </div>
+  </div></a>
+    <div class="project-body">
+      <div class="project-meta"><span>Nghiên cứu</span><span>09/2026</span></div>
+      <h3><a href="projects/qa-tiger.html">QA-TIGER Robustness <span aria-hidden="true">↗</span></a></h3>
+      <p class="project-title">Độ bền vững trong Multimodal VQA</p>
+      <p class="project-summary">Khảo sát độ bền vững khi thiếu modality, kết hợp modality dropout, knowledge distillation và quality gate.</p><ul class="tags" aria-label="Công nghệ và công cụ"><li>Multimodal VQA</li><li>Modality Dropout</li><li>Knowledge Distillation</li><li>Quality Gate</li></ul>
+      <a class="text-link" href="projects/qa-tiger.html">Xem chi tiết <span aria-hidden="true">↗</span></a>
+    </div>
+  </article><article class="project-card category-engineering" data-category="engineering">
+    <a class="project-image-link" href="projects/ai-helpdesk.html" aria-label="Xem chi tiết: AI Helpdesk - AEGONA"><div class="media media--project" data-media>
+
+    <div class="media-placeholder">
+      <span class="media-index" aria-hidden="true">PROJECT / 05</span>
+      <div class="media-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+      <span class="media-label">Không gian dành cho ảnh dự án</span>
+    </div>
+  </div></a>
+    <div class="project-body">
+      <div class="project-meta"><span>Hệ thống & web</span><span>05/2026</span></div>
+      <h3><a href="projects/ai-helpdesk.html">AI Helpdesk - AEGONA <span aria-hidden="true">↗</span></a></h3>
+      <p class="project-title">Prototype hệ thống hỗ trợ doanh nghiệp</p>
+      <p class="project-summary">Prototype quản lý ticket, asset, SLA và RBAC; gợi ý nhóm ticket bằng mô-đun phân loại rule-based.</p><ul class="tags" aria-label="Công nghệ và công cụ"><li>FastAPI</li><li>SQLModel</li><li>SQLite</li><li>RBAC</li></ul>
+      <a class="text-link" href="projects/ai-helpdesk.html">Xem chi tiết <span aria-hidden="true">↗</span></a>
+    </div>
+  </article><article class="project-card category-ai" data-category="ai">
+    <a class="project-image-link" href="projects/ocr-rag.html" aria-label="Xem chi tiết: OCR-RAG Chatbot"><div class="media media--project" data-media>
+
+    <div class="media-placeholder">
+      <span class="media-index" aria-hidden="true">PROJECT / 06</span>
+      <div class="media-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+      <span class="media-label">Không gian dành cho ảnh dự án</span>
+    </div>
+  </div></a>
+    <div class="project-body">
+      <div class="project-meta"><span>AI ứng dụng</span><span>09/2024 - 12/2024</span></div>
+      <h3><a href="projects/ocr-rag.html">OCR-RAG Chatbot <span aria-hidden="true">↗</span></a></h3>
+      <p class="project-title">Hỏi đáp văn bản hành chính tiếng Việt</p>
+      <p class="project-summary">Kết hợp OCR và RAG-LLM để trích xuất, truy vấn và hỏi đáp nội dung văn bản hành chính.</p><ul class="tags" aria-label="Công nghệ và công cụ"><li>PaddleOCR</li><li>VietOCR</li><li>RAG</li><li>LLM</li></ul>
+      <a class="text-link" href="projects/ocr-rag.html">Xem chi tiết <span aria-hidden="true">↗</span></a>
+    </div>
+  </article><article class="project-card category-ai" data-category="ai">
+    <a class="project-image-link" href="projects/violence-detection.html" aria-label="Xem chi tiết: Violence Detection"><div class="media media--project" data-media>
+
+    <div class="media-placeholder">
+      <span class="media-index" aria-hidden="true">PROJECT / 07</span>
+      <div class="media-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+      <span class="media-label">Không gian dành cho ảnh dự án</span>
+    </div>
+  </div></a>
+    <div class="project-body">
+      <div class="project-meta"><span>AI ứng dụng</span><span>05/2024 - 07/2024</span></div>
+      <h3><a href="projects/violence-detection.html">Violence Detection <span aria-hidden="true">↗</span></a></h3>
+      <p class="project-title">Phát hiện &amp; cảnh báo bạo lực thời gian thực</p>
+      <p class="project-summary">Dự án nhóm 4 thành viên dùng MobileNetV2 và Bi-LSTM để khai thác đặc trưng không gian, thời gian trong video.</p><ul class="tags" aria-label="Công nghệ và công cụ"><li>MobileNetV2</li><li>Bi-LSTM</li><li>Computer Vision</li><li>Video</li></ul>
+      <a class="text-link" href="projects/violence-detection.html">Xem chi tiết <span aria-hidden="true">↗</span></a>
+    </div>
+  </article></div>
+      <p id="no-projects" hidden>Chưa có dự án trong nhóm này.</p>
+    </div></section>
+    <section id="experience" class="section container" aria-labelledby="experience-heading">
+      <div class="section-heading"><p class="section-eyebrow"><span>03</span> Hành trình</p><h2 id="experience-heading">Học hỏi qua từng trải nghiệm.</h2></div>
+      <div class="timeline"><article class="timeline-entry"><div class="timeline-date"><span class="timeline-point" aria-hidden="true"></span><span>06/2025 - 01/2026</span><small>01</small></div><div class="timeline-content"><h3>Nhân viên Đào tạo, Truyền thông &amp; Tuyển sinh</h3><p class="timeline-company">Trường Trung cấp Quốc tế Sài Gòn (SGI)</p><ul><li>Chuẩn hóa, số hóa và kiểm tra dữ liệu hồ sơ; hỗ trợ vận hành tuyển sinh, thanh quyết toán và xử lý dữ liệu bằng Excel.</li><li>Biên soạn giáo án, trực tiếp giảng dạy và điều phối học liệu.</li></ul></div></article><article class="timeline-entry"><div class="timeline-date"><span class="timeline-point" aria-hidden="true"></span><span>09/2024 - 10/2024</span><small>02</small></div><div class="timeline-content"><h3>Thực tập sinh AI</h3><p class="timeline-company">365 Ecosystem JSC (365 EJSC)</p><ul><li>Tham gia hệ thống gợi ý, xử lý dữ liệu/ETL và thử nghiệm các mô hình ML/DL trên dữ liệu doanh nghiệp.</li><li>Thực hành quy trình MLOps/DevOps; tổng hợp và trình bày kết quả dự án.</li></ul></div></article></div>
+    </section>
+    <section id="skills" class="section skills-section" aria-labelledby="skills-heading"><div class="container">
+      <div class="section-heading"><p class="section-eyebrow"><span>04</span> Kỹ năng</p><h2 id="skills-heading">Công nghệ tôi làm việc cùng.</h2></div>
+      <div class="skills-grid"><article class="skill-card"><span class="skill-number">01</span><h3>AI / ML</h3><p>Mô hình học máy, xử lý ngôn ngữ, thị giác và âm thanh.</p><ul class="tags" aria-label="Công nghệ và công cụ"><li>Python</li><li>PyTorch</li><li>TensorFlow / Keras</li><li>scikit-learn</li><li>Computer Vision</li><li>NLP</li><li>RAG</li><li>Transformers</li><li>Multimodal Learning</li><li>Sound Event Detection</li></ul></article><article class="skill-card"><span class="skill-number">02</span><h3>AI Agent / LLM</h3><p>Luồng công cụ, điều phối provider và xử lý API.</p><ul class="tags" aria-label="Công nghệ và công cụ"><li>OpenClaw</li><li>9router</li><li>Multi-provider APIs</li><li>OpenAI / Anthropic schemas</li><li>Tool Workflows</li><li>API Debugging</li></ul></article><article class="skill-card"><span class="skill-number">03</span><h3>Full-stack</h3><p>Giao diện web, dịch vụ backend và kết nối thời gian thực.</p><ul class="tags" aria-label="Công nghệ và công cụ"><li>Vue 3</li><li>TypeScript</li><li>Node.js / Fastify</li><li>FastAPI</li><li>Prisma</li><li>REST</li><li>Socket.IO</li></ul></article><article class="skill-card"><span class="skill-number">04</span><h3>Data / DevOps / QA</h3><p>Dữ liệu, môi trường triển khai và kiểm thử hệ thống.</p><ul class="tags" aria-label="Công nghệ và công cụ"><li>PostgreSQL</li><li>SQLite</li><li>MS SQL Server</li><li>Docker</li><li>Git / GitHub</li><li>Linux / VPS</li><li>WSL2</li><li>GitHub Actions</li><li>Playwright</li><li>Vitest</li></ul></article></div>
+      <div class="toolbox"><h3>Công cụ & môi trường</h3><ul class="tags" aria-label="Công nghệ và công cụ"><li>VS Code</li><li>Git / GitHub</li><li>Docker</li><li>Linux / VPS</li><li>WSL2</li><li>Google Colab</li><li>GitHub Actions</li><li>Playwright / Vitest</li><li>API Debugging</li><li>Experiment / Benchmark Provenance</li></ul><p class="language-note"><strong>Tiếng Anh:</strong> Đọc tài liệu kỹ thuật và giao tiếp cơ bản.</p></div>
+    </div></section>
+    <section id="awards" class="section container awards-section" aria-labelledby="awards-heading">
+      <div class="section-heading"><p class="section-eyebrow"><span>05</span> Thành tích</p><h2 id="awards-heading">Những cột mốc đáng nhớ.</h2></div>
+      <div class="awards-list"><article class="award-item"><span class="award-number">01</span><div><h3>Tốt nghiệp loại Xuất sắc</h3><p>GPA 3.75/4.00 - Đại học Nguyễn Tất Thành.</p></div><time>2025</time></article><article class="award-item"><span class="award-number">02</span><div><h3>Học bổng khuyến khích học tập</h3><p>Nhận học bổng trong 4/4 năm đại học.</p></div><time>2021 - 2025</time></article><article class="award-item"><span class="award-number">03</span><div><h3>DSC UIT 2024</h3><p>Top 5 chung kết, Giải Khuyến khích và Top 5 sản phẩm phổ biến nhất.</p></div><time>11/2024</time></article><article class="award-item"><span class="award-number">04</span><div><h3>Giải Ba Cuộc thi AI 2024</h3><p>Khoa Công nghệ thông tin - Đại học Nguyễn Tất Thành.</p></div><time>07/2024</time></article><article class="award-item"><span class="award-number">05</span><div><h3>Giải Nhất Cuộc thi AI 2023</h3><p>Đại học Nguyễn Tất Thành.</p></div><time>04/2023</time></article><article class="award-item"><span class="award-number">06</span><div><h3>Giải Nhất Cuộc thi Kỹ thuật Phần mềm 2023</h3><p>Đại học Nguyễn Tất Thành.</p></div><time>03/2023</time></article></div>
+    </section>
+    <section id="contact" class="section contact-section" aria-labelledby="contact-heading"><div class="container contact-grid">
+      <div><div class="section-heading"><p class="section-eyebrow"><span>06</span> Liên hệ</p><h2 id="contact-heading">Bắt đầu một cuộc trò chuyện.</h2></div><p class="contact-intro">Bạn muốn trao đổi về AI ứng dụng, agent/LLM hoặc phát triển hệ thống web? Có thể liên hệ với tôi qua email hoặc GitHub.</p><a class="button button-light" href="mailto:letanphu2906@gmail.com">Gửi email <span aria-hidden="true">↗</span></a></div>
+      <div class="contact-details" aria-label="Thông tin liên hệ"><a class="contact-email" href="mailto:letanphu2906@gmail.com">letanphu2906@gmail.com <span aria-hidden="true">↗</span></a><a href="tel:+84974613051">0974 613 051</a><a href="https://github.com/LeTPhu" target="_blank" rel="noopener noreferrer">github.com/LeTPhu ↗</a><span>Hóc Môn, TP. Hồ Chí Minh</span><button type="button" id="copy-email" data-email="letanphu2906@gmail.com" data-copied="Đã sao chép email." data-fallback="Chọn email bên dưới để sao chép." hidden>Sao chép email</button><p id="copy-status" role="status" aria-live="polite"></p><input id="copy-email-value" type="text" readonly value="letanphu2906@gmail.com" aria-label="Email" hidden /></div>
+    </div></section>
+  </main><footer class="footer container"><div><a class="footer-brand" href="./">Lê Tấn Phú<span aria-hidden="true">.</span></a><p>AI ứng dụng. Hệ thống có kiểm thử.</p></div><div class="footer-right"><a href="https://github.com/LeTPhu" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="assets/cv/Le_Tan_Phu_CV_2026.pdf" download>Tải CV PDF ↓</a><small>Cập nhật: 09/10/2026 · Hồ sơ cập nhật từ CV 2026</small></div></footer></body>
 </html>

@@ -1,102 +1,135 @@
-# GitHub Public CV
+# Website Cá Nhân Lê Tấn Phú
 
-## Website Của Bạn
+Website tĩnh sử dụng dữ liệu từ **Le_Tan_Phu_CV_2026.pdf**, cập nhật ngày **09/10/2026**. Nội dung tiếng Anh là bản dịch từ CV tiếng Việt, không bổ sung kinh nghiệm hoặc chứng chỉ.
 
+## Các Đường Dẫn
+
+- Trang cá nhân: https://letphu.github.io/Profile-CV/
+- English: https://letphu.github.io/Profile-CV/en/
+- CV A4: https://letphu.github.io/Profile-CV/cv.html
+- PDF gốc: https://letphu.github.io/Profile-CV/assets/cv/Le_Tan_Phu_CV_2026.pdf
 - Mã nguồn: https://github.com/LeTPhu/Profile-CV
-- Website: https://letphu.github.io/Profile-CV/
-- Tiếng Việt: https://letphu.github.io/Profile-CV/?lang=vi
-- English: https://letphu.github.io/Profile-CV/?lang=en
 
-Đây là website tĩnh, không cần đăng nhập để xem. Có điều hướng giữa các mục, nút sao chép link theo ngôn ngữ, giao diện điện thoại và bản in A4.
+Trang chủ có giới thiệu, học vấn, 7 dự án/nghiên cứu, 2 kinh nghiệm, kỹ năng, công cụ, 6 thành tích và liên hệ. Mỗi dự án có một trang chi tiết riêng cho từng ngôn ngữ.
 
-Dữ liệu hiện là minh họa, chưa phải CV thật của chủ sở hữu. Trang sẽ hiện thông báo mẫu khi tên trùng dữ liệu minh họa.
+## Nơi Chỉnh Nội Dung
 
-## Cập Nhật Hồ Sơ Thật
+Nguồn dữ liệu chính là **data/portfolio.json**. Các trường có `vi` và `en` là nội dung Việt/Anh độc lập.
 
-1. Chỉnh hai CV trong công cụ tại thư mục gốc.
-2. Chọn **Xuất cả Việt + Anh**.
-3. Thay nội dung `github-public-cv/data/cv-public.json` bằng JSON vừa xuất.
-4. Commit và push lên `main`. Website tự cập nhật qua workflow **Publish CV website**.
+| Trường | Nội dung |
+| --- | --- |
+| `profile` | Tên, định hướng, giới thiệu, email, điện thoại, địa chỉ, GitHub, ảnh và PDF |
+| `education` | Trường, bằng cấp, thời gian, GPA và xếp loại |
+| `experience` | Vai trò, đơn vị, thời gian và các ý mô tả |
+| `skills`, `tools`, `english` | Kỹ năng, công cụ và khả năng tiếng Anh |
+| `awards` | Thời gian, tên thành tích và mô tả |
+| `projects` | Mô tả, đóng góp, kết quả ghi nhận, công nghệ, ảnh và repository |
+| `updated` | Ngày cập nhật dạng YYYY-MM-DD |
+| `siteUrl` | Đường dẫn gốc của website; dùng cho SEO và sitemap |
 
-Nhập JSON bằng nút xem thử trên website chỉ thay đổi nội dung trên thiết bị đang xem. Link chia sẻ luôn mở dữ liệu đã công bố trong repository.
-Nếu dùng ảnh cục bộ, đặt ảnh trong `assets/` và dùng đường dẫn `./assets/ten-anh.jpg` trong JSON; ảnh base64 từ Builder cũng được hỗ trợ.
+Sau khi chỉnh, chạy từ thư mục gốc của repository:
+
+```powershell
+node scripts/build-portfolio.cjs
+```
+
+Lệnh này tạo lại trang chủ Việt/Anh, các trang dự án, sitemap và `data/cv-public.json` cho CV A4. Không sửa trực tiếp HTML đã sinh vì lần dựng tiếp theo sẽ ghi đè. Nội dung CV A4 cũng được sinh từ `portfolio.json`; các thiết lập `theme` của CV được giữ lại.
+
+## Thêm Ảnh Chân Dung
+
+1. Đặt ảnh thật trong `github-public-cv/assets/photos/`, ví dụ `portrait.webp`.
+2. Trong `data/portfolio.json`, cập nhật `profile.photo` như ví dụ.
+3. Chạy lệnh dựng website phía trên và kiểm tra trên máy.
+
+```json
+{
+  "src": "assets/photos/portrait.webp",
+  "position": "50% 45%",
+  "alt": {
+    "vi": "Ảnh chân dung Lê Tấn Phú",
+    "en": "Portrait of Le Tan Phu"
+  }
+}
+```
+
+Ảnh chân dung có khung tỷ lệ **4:5**. Nên dùng ảnh tối thiểu 800 × 1000 px, ưu tiên WebP/JPEG. `position` điều chỉnh vị trí cắt ảnh; tăng/giảm giá trị thứ hai để đưa khuôn mặt lên/xuống trong khung. Để `src` rỗng nếu muốn tiếp tục giữ khung chờ ảnh.
+
+## Thêm Ảnh Dự Án
+
+1. Đặt ảnh trong `github-public-cv/assets/projects/`. Có thể tạo thư mục theo dự án, ví dụ `assets/projects/aiocrm/`.
+2. Tìm dự án trong `projects` bằng `id`, chẳng hạn `aiocrm`.
+3. Cập nhật `image` để thay ảnh bìa. Thêm nhiều ảnh vào `gallery` để hiển thị trên trang chi tiết.
+
+```json
+{
+  "image": {
+    "src": "assets/projects/aiocrm/overview.webp",
+    "alt": {
+      "vi": "Màn hình tổng quan AIOCRM",
+      "en": "AIOCRM overview screen"
+    }
+  },
+  "gallery": [
+    {
+      "src": "assets/projects/aiocrm/inbox.webp",
+      "position": "50% 50%",
+      "alt": {
+        "vi": "Giao diện Social Inbox của AIOCRM",
+        "en": "AIOCRM Social Inbox interface"
+      },
+      "caption": {
+        "vi": "Social Inbox - xử lý trao đổi với khách hàng.",
+        "en": "Social Inbox - managing customer conversations."
+      }
+    }
+  ]
+}
+```
+
+Ảnh bìa dùng ở cả card dự án và trang chi tiết. Card có tỷ lệ **16:10**, bìa trang chi tiết **21:9** trên máy tính và **4:3** trên điện thoại; nên đặt nội dung quan trọng gần tâm ảnh. Gallery dùng tỷ lệ **16:10**. Khuyến nghị ảnh rộng từ 1600 px, nén dung lượng trước khi đưa lên website.
+
+Tên file cần khớp chính xác chữ hoa/thường để tải đúng trên GitHub Pages. Đường dẫn bắt đầu bằng `assets/`, không bắt đầu bằng `/` hoặc `../`. Lệnh dựng báo lỗi nếu ảnh được khai báo nhưng chưa tồn tại. Nếu ảnh lỗi khi tải, trình duyệt sẽ trở về khung chờ ảnh.
+
+## Thêm Dự Án Mới
+
+Sao chép một mục trong `projects`, đặt `id` duy nhất bằng chữ thường, số và dấu gạch ngang. Cập nhật cả `vi` và `en`, công nghệ, ảnh và mô tả.
+
+Các nhóm hỗ trợ là `engineering` (hệ thống/web), `research` (nghiên cứu) và `ai` (AI ứng dụng). `repository` chỉ điền đường dẫn GitHub công khai phù hợp; để rỗng nếu chưa có link. Website không tạo nút repository giả.
+
+## Xem Thử Và Xuất Bản
+
+```powershell
+node scripts/build-portfolio.cjs
+node scripts/serve.cjs
+```
+
+Mở **http://127.0.0.1:8775/github-public-cv/**. Node chỉ cần cho việc dựng/xem thử; website đã sinh chạy hoàn toàn tĩnh.
+
+Commit và push lên `main` để workflow **Publish CV website** dựng lại và xuất bản. Workflow chỉ đóng gói trang công khai, các trang ngôn ngữ/dự án và tài nguyên liên quan. Builder, script dựng, tài liệu và kết quả kiểm thử không xuất hiện trên website.
+
+Thiết lập GitHub Pages dùng **GitHub Actions**. Có thể chạy lại trong **Actions → Publish CV website → Run workflow**.
+
+## Dữ Liệu Và Phạm Vi
+
+CV PDF gốc được giữ nguyên. Các số liệu AIOCRM là mốc QA **03/10/2026** ghi trong CV, không phải trạng thái CI cập nhật trực tiếp.
+
+QA-TIGER ghi nhận Missing Visual từ **51.57%** đến **65.38%**. CV ghi **+13.80 điểm phần trăm**; phép trừ hai số đã làm tròn cho kết quả 13.81. Website giữ số +13.80 dưới dạng số liệu được CV ghi nhận và không diễn giải thành kết quả chung cho mọi benchmark.
+
+Repository AI-HanhChinh đang rỗng tại thời điểm kiểm tra nên chưa gắn thành link mã nguồn OCR-RAG. Các dự án khác chưa xác định được repository công khai cũng để trống link. Link Violence-Detection dẫn tới repository công khai đã tồn tại.
+
+Nhập JSON trên trang CV A4 chỉ để xem thử trên thiết bị. Nó không cập nhật nội dung trang cá nhân hoặc xuất bản dữ liệu lên GitHub.
+
+## Chất Lượng Và Tham Khảo
+
+Chạy `node verify-all.cjs` khi máy đã có Playwright để kiểm tra Builder, CV A4 và portfolio. Bộ kiểm tra gồm hai ngôn ngữ, đường dẫn các trang, PDF, bộ lọc, menu bàn phím, màn hình 320-1440 px, lỗi clipboard/ảnh và khả năng đọc khi không có JavaScript hoặc font Google.
+
+Cấu trúc trang và mô tả ảnh tham khảo hướng dẫn [W3C về cấu trúc trang](https://www.w3.org/WAI/tutorials/page-structure/) và [W3C về ảnh](https://www.w3.org/WAI/tutorials/images/). Chuyển động tôn trọng [prefers-reduced-motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion).
 
 ## Gắn Vào Profile GitHub
 
-Trong **Edit profile**, điền ô **Website** bằng `https://letphu.github.io/Profile-CV/`.
-Bạn có thể ghim repository **Profile-CV** vào profile.
-Nếu có README profile, thêm liên kết sau:
+Trong **Edit profile**, điền ô **Website** bằng `https://letphu.github.io/Profile-CV/`. Có thể ghim repository **Profile-CV** hoặc thêm link vào README profile:
 
 ```markdown
-[Xem CV của tôi](https://letphu.github.io/Profile-CV/?lang=vi) · [English CV](https://letphu.github.io/Profile-CV/?lang=en)
+[Website cá nhân](https://letphu.github.io/Profile-CV/) · [English](https://letphu.github.io/Profile-CV/en/) · [CV PDF](https://letphu.github.io/Profile-CV/assets/cv/Le_Tan_Phu_CV_2026.pdf)
 ```
-
-## Cách Xuất Bản Hiện Tại
-
-Workflow tại `.github/workflows/pages.yml` chỉ đóng gói HTML, CSS, JavaScript, `data/` và `assets/` của website.
-Builder và tài liệu vẫn có trong repository, nhưng không được xuất bản vào website.
-Thiết lập Pages dùng **GitHub Actions**. Có thể chạy lại bằng **Actions → Publish CV website → Run workflow**.
-
-Cong cu nay dung de hien thi CV cong khai tren GitHub Pages, su dung du lieu JSON xuat ra tu `CV Builder Pro`.
-
-## Muc tieu
-
-- Hien thi CV theo mau 2 cot, in A4.
-- Ho tro 2 bo du lieu rieng: `vi` va `en`.
-- Chuyen doi ngon ngu ngay tren trang.
-- Nhan file JSON tai trinh duyet de test nhanh truoc khi deploy.
-
-## Cau truc thu muc
-
-- `index.html`: giao dien public CV
-- `styles.css`: style cho man hinh va print A4
-- `app.js`: logic render + load JSON + switch VI/EN
-- `data/cv-public.json`: du lieu CV mac dinh duoc repo phuc vu
-
-## Cach cap nhat du lieu CV tu tool chinh
-
-1. Mo tool `CV Builder Pro` trong thu muc goc.
-2. Bam `Xuat ca Viet + Anh` de xuat file JSON day du 2 CV.
-3. Doi ten file vua xuat thanh `cv-public.json`.
-4. Ghi de file vao `github-public-cv/data/cv-public.json`.
-5. Reload trang public de kiem tra.
-
-Ghi chu:
-- Neu chi nhap 1 CV (single doc), app public se cap nhat vao ngon ngu dang chon (`vi` hoac `en`) va giu nguyen ngon ngu con lai.
-- Neu nhap JSON co `documents.vi` va `documents.en`, app se cap nhat dong thoi ca 2 CV.
-
-## Deploy len GitHub Pages
-
-### Cach 1: Repo rieng cho CV public (de quan ly)
-
-1. Tao repo moi, vi du: `yourname-public-cv`.
-2. Copy toan bo file trong thu muc `github-public-cv` vao repo moi (de o root).
-3. Push len GitHub.
-4. Vao `Settings` -> `Pages`.
-5. Chon:
-   - `Source`: `Deploy from a branch`
-   - `Branch`: `main`
-   - `Folder`: `/ (root)`
-6. Luu lai. Sau 1-2 phut, trang se co URL dang:
-   - `https://<username>.github.io/<repo-name>/`
-
-### Cach 2: Dat trong mot repo lon hien co
-
-1. Dat thu muc `github-public-cv` ben trong repo.
-2. Vao `Settings` -> `Pages`.
-3. Chon source la `GitHub Actions`.
-4. Dung workflow `.github/workflows/pages.yml` de publish dung thu muc nay. Branch publishing chi ho tro root hoac /docs, khong chon truc tiep /github-public-cv.
-
-## Tuy bien nhanh
-
-- Doi font: sua `theme.fontPreset` trong JSON (`be_vietnam` hoac `roboto`).
-- Doi bo cuc: `theme.layout` = `left`, `right`, hoac `stacked`.
-- Doi ti le sidebar: `theme.sidebarWidth` (22-48).
-- Doi khoang cach 2 cot giai thuong: `theme.awardColumnGap`.
-- Bat/tat section: sua object `visibility`.
-
-## In / xuat PDF
-
-- Bam nut `In / Xuat PDF` tren trang.
-- App dung print-style A4, giu bo cuc va mau nen gan nhat voi giao dien hien thi.
 

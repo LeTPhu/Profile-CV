@@ -1,5 +1,10 @@
 function renderWebsiteSummary() {
   const en = state.activeDoc === "en";
+  const home = document.getElementById("back-home");
+  if (home) {
+    home.href = en ? "./en/" : "./";
+    home.textContent = en ? "← Personal website" : "← Trang cá nhân";
+  }
   document.getElementById("share-result").hidden = true;
   text("share-status", "");
   const profile = getActiveDoc().profile;

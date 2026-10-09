@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'github-public-cv/**'
+      - 'scripts/build-portfolio.cjs'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
 
@@ -31,14 +32,16 @@ jobs:
         run: |
           node --check github-public-cv/app.js
           node --check github-public-cv/website.js
+          node --check github-public-cv/portfolio.js
+          node scripts/build-portfolio.cjs
           node -e "const fs = require('fs'); const cv = JSON.parse(fs.readFileSync('github-public-cv/data/cv-public.json', 'utf8').replace(/^\uFEFF/, '')); if (!cv.documents?.vi || !cv.documents?.en) throw new Error('Both CV languages are required');"
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Prepare public website
         run: |
           mkdir -p _site
-          cp github-public-cv/index.html github-public-cv/app.js github-public-cv/website.js github-public-cv/styles.css github-public-cv/refinements.css _site/
-          cp -R github-public-cv/data github-public-cv/assets _site/
+          cp github-public-cv/index.html github-public-cv/cv.html github-public-cv/404.html github-public-cv/app.js github-public-cv/website.js github-public-cv/styles.css github-public-cv/refinements.css github-public-cv/portfolio.css github-public-cv/portfolio.js github-public-cv/robots.txt github-public-cv/sitemap.xml _site/
+          cp -R github-public-cv/data github-public-cv/assets github-public-cv/en github-public-cv/projects _site/
           touch _site/.nojekyll
       - name: Upload website
         uses: actions/upload-pages-artifact@v4

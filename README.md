@@ -6,7 +6,9 @@
 - Website GitHub Pages: https://letphu.github.io/Profile-CV/
 - Công cụ chỉnh sửa nằm tại thư mục gốc, mở `index.html` trên máy.
 - Website dành cho người xem nằm trong `github-public-cv/`. Chỉ thư mục này được xuất bản lên GitHub Pages.
-- Hiện dữ liệu công khai là CV minh họa. Để dùng hồ sơ thật, xuất cả Việt + Anh từ Builder và thay `github-public-cv/data/cv-public.json`.
+- Website đã dùng dữ liệu thật từ `Le_Tan_Phu_CV_2026.pdf`; dữ liệu nguồn ở `github-public-cv/data/portfolio.json`.
+- Trang cá nhân có hai phiên bản HTML Việt/Anh và trang chi tiết cho từng dự án. CV A4 nằm tại `github-public-cv/cv.html`.
+- Thêm ảnh hoặc cập nhật nội dung theo hướng dẫn trong `github-public-cv/README.md`, rồi chạy `node scripts/build-portfolio.cjs`.
 
 Website là HTML/CSS/JavaScript tĩnh, không cần máy chủ ứng dụng hoặc cơ sở dữ liệu.
 Mỗi lần đẩy thay đổi trong `github-public-cv/` lên nhánh `main`, workflow `Publish CV website` kiểm tra mã và cập nhật GitHub Pages.
@@ -75,7 +77,7 @@ Da them thu muc moi:
 
 - `github-public-cv/`
 
-Thu muc nay la mot tool read-only de public CV tren GitHub Pages, co huong dan day du trong:
+Thu muc nay chua website ca nhan, cac trang du an va trang CV A4, co huong dan day du trong:
 
 - `github-public-cv/README.md`
 

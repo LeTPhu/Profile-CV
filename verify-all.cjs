@@ -1,46 +1,16 @@
 const fs = require('fs');
-const http = require('http');
 const path = require('path');
 const { chromium } = require('playwright');
 
 const runUiChecks = require('./verify-ui.cjs');
 const runFailureChecks = require('./verify-failures.cjs');
+const runPortfolioChecks = require('./verify-portfolio.cjs');
+const { createServer } = require('./scripts/serve.cjs');
 const root = __dirname;
-
-const mimeTypes = {
-  '.css': 'text/css; charset=utf-8',
-  '.html': 'text/html; charset=utf-8',
-  '.js': 'text/javascript; charset=utf-8',
-  '.json': 'application/json; charset=utf-8',
-  '.png': 'image/png',
-  '.jpg': 'image/jpeg',
-  '.jpeg': 'image/jpeg',
-  '.svg': 'image/svg+xml',
-  '.webp': 'image/webp',
-};
 
 function startServer() {
   return new Promise((resolve, reject) => {
-    const server = http.createServer((request, response) => {
-      try {
-        const url = new URL(request.url, 'http://127.0.0.1');
-        let relative = decodeURIComponent(url.pathname).replace(/^\/+/, '');
-        let filePath = path.resolve(root, relative || 'index.html');
-        if (!filePath.startsWith(path.resolve(root))) {
-          response.writeHead(403).end('Forbidden');
-          return;
-        }
-        if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) filePath = path.join(filePath, 'index.html');
-        if (!fs.existsSync(filePath)) {
-          response.writeHead(404).end('Not found');
-          return;
-        }
-        response.writeHead(200, { 'Content-Type': mimeTypes[path.extname(filePath).toLowerCase()] || 'application/octet-stream' });
-        fs.createReadStream(filePath).pipe(response);
-      } catch (error) {
-        response.writeHead(500).end(error.message);
-      }
-    });
+    const server = createServer();
     server.on('error', reject);
     server.listen(0, '127.0.0.1', () => resolve(server));
   });
@@ -90,6 +60,7 @@ async function verifyLongPdf(page, baseURL) {
     console.log(await runFailureChecks(failurePage, baseURL));
     const pdfPage = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
     console.log(`PASS ${await verifyLongPdf(pdfPage, baseURL)}`);
+    console.log(`PASS Portfolio: ${(await runPortfolioChecks(browser, baseURL)).join('; ')}`);
   } finally {
     await browser.close();
     await new Promise((resolve) => server.close(resolve));

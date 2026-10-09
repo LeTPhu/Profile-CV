@@ -1,4 +1,5 @@
 :root { --bg: #f4f2ec; --ink: #203b35; --line: #dce3db; }
+.text-back { display: inline-block; color: #214f42; font-size: 12px; text-decoration: none; margin-bottom: 26px; }
 body { background: radial-gradient(ellipse at 85% 0%, #dfede3, transparent 45%), #f4f2ec; }
 .site-shell { max-width: 1200px; margin: auto; padding: 42px 32px 64px; }
 .site-header { align-items: center; padding-bottom: 26px; border-bottom: 1px solid #d2ded3; margin-bottom: 18px; }
@@ -49,6 +50,7 @@ body { background: radial-gradient(ellipse at 85% 0%, #dfede3, transparent 45%),
   .tools-content { right: auto; left: -80px; max-width: calc(100vw - 32px); }
 }
 @media print {
+  .text-back { display: none !important; }
   .section-nav, .site-footer, .demo-notice, .share-result, #share-status, .skip-link { display: none !important; }
   .site-shell { max-width: none; padding: 0; }
   .preview-wrap { padding: 0; border: 0; }

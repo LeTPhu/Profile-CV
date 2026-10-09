@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub Public CV</title>
+    <meta name="theme-color" content="#214f42" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <meta
+      name="description"
+      content="Trang CV công khai trên GitHub Pages, hỗ trợ CV tiếng Việt và English CV từ một file JSON."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="refinements.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#cv-preview">Đến nội dung CV</a>
+    <div class="site-shell">
+      <a id="back-home" class="text-back" href="./">← Trang cá nhân</a>
+      <header class="site-header">
+        <div>
+          <p class="eyebrow">CV / PROFILE</p>
+          <h1 id="page-title">Hồ sơ CV công khai</h1>
+          <p id="page-subtitle">Đọc dữ liệu từ `data/cv-public.json` hoặc nhập file JSON từ máy.</p>
+        </div>
+
+        <div class="header-actions">
+          <div class="lang-switch" aria-label="Ngôn ngữ CV">
+            <button type="button" class="lang-btn active" data-lang="vi">Tiếng Việt</button>
+            <button type="button" class="lang-btn" data-lang="en">English CV</button>
+          </div>
+
+          <details class="preview-tools"><summary id="tools-label">Công cụ xem thử</summary><div class="tools-content"><p id="tools-hint">Nhập JSON chỉ để xem thử trên máy này. Dữ liệu công khai nằm trong data/cv-public.json.</p><label class="btn file-btn">
+            <span id="import-label">Xem thử JSON</span>
+            <input type="file" id="import-json" accept=".json,application/json" />
+          </label>
+          <button type="button" class="btn" id="use-repo-data">Bản đã công bố</button></div></details>
+          <button type="button" class="btn btn-primary" id="print-cv">In / Xuất PDF</button>
+          <button type="button" class="btn" id="share-cv">Sao chép liên kết</button>
+        </div>
+      </header>
+
+      <p class="status" id="status-text" role="status" aria-live="polite">Đang tải dữ liệu...</p>
+      <p id="demo-notice" class="demo-notice" hidden></p>
+      <div class="share-result" id="share-result" hidden>
+        <label for="share-url" id="share-url-label">Liên kết trang công khai</label>
+        <input id="share-url" type="url" readonly />
+      </div>
+      <p id="share-status" class="status" role="status" aria-live="polite"></p>
+      <nav id="section-nav" class="section-nav" aria-label="Các mục trong CV"></nav>
+      <noscript><p class="demo-notice">Vui lòng bật JavaScript để xem CV song ngữ và tải nội dung.</p></noscript>
+
+      <main class="preview-wrap">
+        <article class="paper-a4 layout-left profile-vi" id="cv-preview">
+          <aside class="cv-sidebar">
+            <div class="identity">
+              <h2 id="preview-name"></h2>
+              <p id="preview-headline"></p>
+            </div>
+
+            <div class="photo-wrap" id="block-photo">
+              <img id="preview-photo" alt="Ảnh đại diện" />
+            </div>
+
+            <div class="sidebar-block" id="block-personal">
+              <h3 id="title-personal">Thông tin cá nhân</h3>
+              <ul id="preview-contact"></ul>
+            </div>
+
+            <div class="sidebar-block" id="block-skills">
+              <h3 id="title-skills">Kỹ năng</h3>
+              <ul id="preview-skills"></ul>
+            </div>
+
+            <div class="sidebar-block" id="block-awards">
+              <h3 id="title-awards">Giải thưởng</h3>
+              <div class="awards-list" id="preview-awards-sidebar"></div>
+            </div>
+
+            <div class="sidebar-block" id="block-languages">
+              <h3 id="title-languages">Ngôn ngữ</h3>
+              <ul id="preview-languages"></ul>
+            </div>
+          </aside>
+
+          <div class="cv-main">
+            <section class="main-block" id="block-summary">
+              <h3 id="title-summary">Mục tiêu nghề nghiệp</h3>
+              <div id="preview-summary" class="summary-content"></div>
+            </section>
+
+            <section class="main-block" id="block-education">
+              <h3 id="title-education">Học vấn</h3>
+              <div id="preview-education"></div>
+            </section>
+
+            <section class="main-block" id="block-experience">
+              <h3 id="title-experience">Kinh nghiệm làm việc</h3>
+              <div id="preview-experience"></div>
+            </section>
+
+            <section class="main-block" id="block-projects">
+              <h3 id="title-projects">Dự án</h3>
+              <div id="preview-projects"></div>
+            </section>
+
+            <section class="main-block" id="block-custom-sections">
+              <h3 id="title-custom">Mục bổ sung</h3>
+              <div id="preview-custom-sections"></div>
+            </section>
+
+            <section class="main-block" id="block-certifications">
+              <h3 id="title-certifications">Chứng chỉ</h3>
+              <div id="preview-certifications"></div>
+            </section>
+          </div>
+        </article>
+      </main>
+      <footer class="site-footer">
+        <span id="footer-copy">CV song ngữ · Bản in A4</span>
+        <a href="https://github.com/LeTPhu/Profile-CV" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </footer>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="website.js"></script>
+  </body>
+</html>

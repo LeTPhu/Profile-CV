@@ -1,12 +1,12 @@
 module.exports = async (page, baseURL = 'http://127.0.0.1:8765') => {
   const results = [];
   const check = (name, ok) => { if (!ok) throw new Error(name); results.push(name); };
-  await page.goto(`${baseURL}/github-public-cv/?lang=en`);
+  await page.goto(`${baseURL}/github-public-cv/cv.html?lang=en`);
   await page.waitForFunction(() => !document.getElementById('print-cv').disabled);
-  check('English deep link', await page.locator('#title-summary').textContent() === 'Career Objective');
+  check('English deep link', await page.locator('#title-summary').textContent() === 'Professional Profile');
   await page.getByRole('button', {name:'Tiếng Việt', exact:true}).click();
   check('Vietnamese accents', await page.locator('#title-personal').textContent() === 'Thông tin cá nhân');
-  check('Sample website is clearly labelled', await page.locator('#demo-notice').isVisible());
+  check('Actual CV replaces sample data', await page.locator('#preview-name').textContent() === 'Lê Tấn Phú' && !(await page.locator('#demo-notice').isVisible()));
   check('Website section navigation matches visible CV', await page.locator('#section-nav a').count() === await page.locator('.sidebar-block:visible, .main-block:visible').count());
   await page.evaluate(() => {
     Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async () => { throw new Error('Clipboard blocked'); } } });
