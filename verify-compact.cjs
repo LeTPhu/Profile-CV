@@ -17,6 +17,70 @@ module.exports = async (browser, baseURL) => {
   });
   const page = await context.newPage();
   const url = baseURL + "/github-public-cv/";
+  for (const lang of ["vi", "en"]) {
+    await page.goto(url + (lang === "en" ? "en/" : "") + "?lang=" + lang);
+    await page.evaluate(() => document.fonts.ready);
+    for (const width of [320, 390, 768, 1024, 1440]) {
+      await page.setViewportSize({ width, height: 900 });
+      const typography = await page.evaluate(() => {
+        const size = (selector) =>
+          parseFloat(
+            getComputedStyle(document.querySelector(selector)).fontSize,
+          );
+        return {
+          summary: size(".hero-summary"),
+          about: size(".about-copy p"),
+          card: size(".project-summary"),
+          skill: size(".skill-card p"),
+          award: size(".award-item p"),
+          certificate: size(".certificate-body > p"),
+          label: size(".project-meta"),
+          tags: size(".tags li"),
+          link: size(".project-body .text-link"),
+          heading: size(".section-heading h2"),
+          family: getComputedStyle(document.body).fontFamily,
+          overflow: document.documentElement.scrollWidth > innerWidth,
+        };
+      });
+      assert.equal(
+        typography.overflow,
+        false,
+        `${lang} typography overflow at ${width}`,
+      );
+      assert.match(typography.family, /Be Vietnam Pro/);
+      for (const field of ["summary", "about"])
+        assert.ok(
+          typography[field] >= (width <= 640 ? 16 : 17),
+          `${field}: larger reading size at ${width}`,
+        );
+      for (const field of ["card", "skill", "award", "certificate"])
+        assert.ok(
+          typography[field] >= (width <= 640 ? 15 : 16),
+          `${field}: legible card text at ${width}`,
+        );
+      assert.ok(
+        typography.label >= 12 &&
+          typography.tags >= 12 &&
+          typography.link >= 14 &&
+          typography.heading >= 30,
+        "Readable labels, links and headings",
+      );
+    }
+    await page.setViewportSize({ width: 1024, height: 900 });
+    await page.locator(".menu-toggle").click();
+    assert.equal(
+      await page.locator(".menu-toggle").getAttribute("aria-expanded"),
+      "true",
+    );
+    await page.setViewportSize({ width: 1200, height: 900 });
+    await page.waitForFunction(
+      () => !document.body.classList.contains("menu-open"),
+    );
+    assert.equal(
+      await page.locator(".menu-toggle").getAttribute("aria-expanded"),
+      "false",
+    );
+  }
   for (const name of [
     "Lê Tấn Phú - Kỹ sư Trí tuệ nhân tạo",
     "Profile".repeat(15),
@@ -146,5 +210,5 @@ module.exports = async (browser, baseURL) => {
     "contain",
   );
   await context.close();
-  return "Long bilingual names at five widths, compact sections/covers, full-width filtered cards, no empty galleries/related section and uncropped real gallery images";
+  return "Larger bilingual reading sizes and responsive menu, long names at five widths, compact sections/covers, full-width filtered cards, no empty galleries/related section and uncropped real gallery images";
 };

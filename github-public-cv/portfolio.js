@@ -22,7 +22,7 @@ document.addEventListener("keydown", event => {
     toggle.focus();
   }
 });
-window.matchMedia("(min-width: 901px)").addEventListener("change", closeMenu);
+window.matchMedia("(min-width: 1101px)").addEventListener("change", closeMenu);
 
 const filters = document.querySelector(".project-filters");
 if (filters) {
