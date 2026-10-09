@@ -10,7 +10,7 @@ Website tĩnh sử dụng dữ liệu từ **Le_Tan_Phu_CV_2026.pdf**, cập nh�
 - PDF gốc: https://letphu.github.io/Profile-CV/assets/cv/Le_Tan_Phu_CV_2026.pdf
 - Mã nguồn: https://github.com/LeTPhu/Profile-CV
 
-Trang chủ có giới thiệu, học vấn, 7 dự án/nghiên cứu, 2 kinh nghiệm, kỹ năng, công cụ, 6 thành tích và liên hệ. Mỗi dự án có một trang chi tiết riêng cho từng ngôn ngữ.
+Trang chủ có giới thiệu, học vấn, 7 dự án/nghiên cứu, 2 kinh nghiệm, kỹ năng, công cụ, 6 thành tích, thư viện 5 giấy khen/chứng nhận và liên hệ. Mỗi dự án có một trang chi tiết riêng cho từng ngôn ngữ. Giao diện dùng Be Vietnam Pro, tông xanh rừng/kem và điểm nhấn vàng cho tư liệu.
 
 ## Nơi Chỉnh Nội Dung
 
@@ -23,6 +23,7 @@ Nguồn dữ liệu chính là **data/portfolio.json**. Các trường có `vi` 
 | `experience` | Vai trò, đơn vị, thời gian và các ý mô tả |
 | `skills`, `tools`, `english` | Kỹ năng, công cụ và khả năng tiếng Anh |
 | `awards` | Thời gian, tên thành tích và mô tả |
+| `certificates` | Ảnh minh chứng, tên, đơn vị cấp, ngày cấp, phân loại và mô tả Việt/Anh |
 | `projects` | Mô tả, đóng góp, kết quả ghi nhận, công nghệ, ảnh và repository |
 | `updated` | Ngày cập nhật dạng YYYY-MM-DD |
 | `siteUrl` | Đường dẫn gốc của website; dùng cho SEO và sitemap |
@@ -96,6 +97,48 @@ Sao chép một mục trong `projects`, đặt `id` duy nhất bằng chữ thư
 
 Các nhóm hỗ trợ là `engineering` (hệ thống/web), `research` (nghiên cứu) và `ai` (AI ứng dụng). `repository` chỉ điền đường dẫn GitHub công khai phù hợp; để rỗng nếu chưa có link. Website không tạo nút repository giả.
 
+## Giấy Khen Và Chứng Nhận
+
+Thư viện tại `#certificates` chứa 5 tư liệu có tên **Lê Tấn Phú**, chọn từ thư mục giấy khen của chủ hồ sơ. Các ảnh được sao chép nguyên bản, không sửa chữ, ngày tháng, con dấu hoặc chữ ký. Khung ảnh dùng chế độ hiển thị trọn ảnh; không cắt giấy. Ảnh lớn chỉ được yêu cầu khi gần khu vực tư liệu hoặc khi mở xem.
+
+| Ảnh nguồn | Ảnh công khai | Tư liệu |
+| --- | --- | --- |
+| `1690384143145.jpg` | `assets/certificates/ai-first-prize.jpg` | Giấy khen Giải Nhất AI, ngày cấp 05/07/2023 |
+| `1690383645144.jpg` | `assets/certificates/software-first-prize.jpg` | Giấy khen Giải Nhất Kỹ thuật phần mềm, ngày cấp 31/05/2023 |
+| `1690384143157.jpg` | `assets/certificates/software-participation.jpg` | Chứng nhận tham gia Kỹ thuật phần mềm, 28/04/2023 |
+| `1690384143165.jpg` | `assets/certificates/ai-participation.jpg` | Chứng nhận tham gia AI, 25/05/2023 |
+| `1690384143173.jpg` | `assets/certificates/solve-problems-to-lead.jpg` | Chứng nhận talkshow SAC, 29/03/2023 |
+
+Chọn bản trắng đen thẳng, rõ của giấy khen Kỹ thuật phần mềm thay vì ảnh màu chụp nghiêng. Không đưa thêm các bản trùng, ảnh bìa bằng THPT, bằng THPT có ngày sinh/số hiệu bằng, chứng nhận nghề phổ thông có thông tin cá nhân, hoặc bản HEIC lên repository. Thư mục nguồn không bị thay đổi.
+
+Theo xác nhận của chủ hồ sơ, **giữ nguyên mốc thành tích trong CV**: AI 04/2023, Kỹ thuật phần mềm 03/2023. Ngày cấp giấy được ghi riêng, không dùng để thay thế mốc CV. Giấy khen Kỹ thuật phần mềm in năm cuộc thi 2022; ảnh được giữ nguyên, không suy diễn hoặc tự sửa nội dung trên giấy. Các thành tích 2024, học bổng và tốt nghiệp chưa có ảnh tương ứng trong thư mục này, nên không gắn minh chứng sai hoặc tạo giấy tờ giả.
+
+Thêm tư liệu mới:
+
+1. Đặt ảnh đã kiểm tra thông tin cá nhân vào `assets/certificates/`.
+2. Thêm một mục trong `certificates`, với `id` duy nhất và tên file chính xác.
+3. Điền cả hai ngôn ngữ; `issued` là ngày cấp trên giấy, dạng YYYY-MM-DD.
+4. Điền kích thước thực của ảnh ở `width`/`height`, rồi chạy lệnh dựng website.
+
+```json
+{
+  "id": "new-certificate",
+  "category": "participation",
+  "issued": "2026-10-09",
+  "src": "assets/certificates/new-certificate.jpg",
+  "width": 2400,
+  "height": 1700,
+  "title": { "vi": "Tên chứng nhận", "en": "Certificate title" },
+  "issuer": { "vi": "Đơn vị cấp", "en": "Issuing organisation" },
+  "description": { "vi": "Mô tả đúng nội dung trên giấy.", "en": "An accurate description of the document." },
+  "alt": { "vi": "Mô tả ảnh, tên người nhận và nội dung chứng nhận.", "en": "Describe the image, recipient and certificate content." }
+}
+```
+
+`category` nhận `award` (giấy khen) hoặc `participation` (chứng nhận tham gia). Để nối một thành tích với tư liệu, thêm `certificate` vào mục tương ứng trong `awards`, với giá trị là `id` của tư liệu. Bộ dựng kiểm tra ID trùng, file thiếu, đường dẫn ra ngoài `assets/`, ngày cấp không hợp lệ và bản dịch thiếu.
+
+Chọn ảnh để mở cửa sổ xem. Có thể chuyển ảnh bằng hai nút hoặc phím mũi tên, phóng to để đọc chữ, mở/tải ảnh gốc và đóng bằng Escape. Khi đang phóng to, phím mũi tên không chuyển ảnh ngoài ý muốn. Cửa sổ giữ điều hướng Tab bên trong và trả vị trí bàn phím về nút vừa mở khi đóng. Bộ lọc tư liệu độc lập với bộ lọc dự án. Không có JavaScript vẫn xem được nội dung và mở được ảnh gốc.
+
 ## Xem Thử Và Xuất Bản
 
 ```powershell
@@ -121,9 +164,11 @@ Nhập JSON trên trang CV A4 chỉ để xem thử trên thiết bị. Nó khô
 
 ## Chất Lượng Và Tham Khảo
 
-Chạy `node verify-all.cjs` khi máy đã có Playwright để kiểm tra Builder, CV A4 và portfolio. Bộ kiểm tra gồm hai ngôn ngữ, đường dẫn các trang, PDF, bộ lọc, menu bàn phím, màn hình 320-1440 px, lỗi clipboard/ảnh và khả năng đọc khi không có JavaScript hoặc font Google.
+Chạy `node verify-all.cjs` khi máy đã có Playwright để kiểm tra Builder, CV A4 và portfolio. Bộ kiểm tra gồm hai ngôn ngữ, đường dẫn các trang, PDF, bộ lọc, menu bàn phím, màn hình 320-1440 px, lỗi clipboard/ảnh và khả năng đọc khi không có JavaScript hoặc font Google. Thư viện minh chứng được kiểm tra thêm kích thước ảnh gốc, ảnh không tràn khung, ngày CV không bị thay đổi, vòng điều hướng Tab, chuyển ảnh theo nhóm lọc, phóng to, tải ảnh và khả năng phục hồi sau lỗi ảnh.
 
 Cấu trúc trang và mô tả ảnh tham khảo hướng dẫn [W3C về cấu trúc trang](https://www.w3.org/WAI/tutorials/page-structure/) và [W3C về ảnh](https://www.w3.org/WAI/tutorials/images/). Chuyển động tôn trọng [prefers-reduced-motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion).
+
+Cửa sổ xem ảnh tham khảo [W3C Modal Dialog Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) và [MDN về dialog](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog). Việc trì hoãn tải ảnh ngoài màn hình tham khảo [web.dev về native lazy loading](https://web.dev/articles/browser-level-image-lazy-loading). Các minh họa mạng/nút trong dự án là đồ họa trang trí, được ghi rõ là minh họa lĩnh vực, không phải ảnh chụp một sản phẩm đã triển khai.
 
 ## Gắn Vào Profile GitHub
 

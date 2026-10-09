@@ -32,6 +32,15 @@ const labels = {
     noResult: "Chưa có dự án trong nhóm này.", resultCount: "dự án đang hiển thị", copy: "Sao chép email",
     copied: "Đã sao chép email.", copyFallback: "Chọn email bên dưới để sao chép.", footer: "AI ứng dụng. Hệ thống có kiểm thử.",
     photoCaption: "Lê Tấn Phú / Hồ sơ cá nhân", overview: "Tổng quan dự án", projectLabel: "Dự án", lastUpdate: "Cập nhật",
+    motto: "Học hỏi. Xây dựng. Kiểm chứng.", disciplines: "AI ứng dụng / Phát triển hệ thống / Nghiên cứu",
+    archive: "Thư viện minh chứng", archiveTitle: "Những nỗ lực được ghi nhận.",
+    archiveIntro: "Giấy khen và chứng nhận từ các cuộc thi, hoạt động học tập. Chọn một ảnh để xem rõ toàn bộ nội dung.",
+    award: "Giấy khen", participation: "Chứng nhận tham gia", issued: "Ngày cấp", evidence: "Xem minh chứng",
+    viewImage: "Xem ảnh lớn", originalImage: "Mở ảnh gốc", downloadImage: "Tải ảnh gốc", closeViewer: "Đóng ảnh",
+    previousImage: "Ảnh trước", nextImage: "Ảnh tiếp theo", zoom: "Phóng to / thu nhỏ", imageLoading: "Đang tải ảnh…",
+    imageError: "Chưa tải được ảnh. Bạn có thể thử mở ảnh gốc.", documentCount: "tư liệu đang hiển thị",
+    proofCount: "giấy khen & chứng nhận", illustration: "Minh họa lĩnh vực · Có thể thêm ảnh dự án",
+    cvMilestones: "Các cột mốc trong CV", archiveHint: "Ảnh tư liệu được giữ nguyên, không chỉnh sửa nội dung.",
   },
   en: {
     about: "About", projects: "Projects", experience: "Journey", skills: "Skills", awards: "Achievements", contact: "Contact",
@@ -53,6 +62,15 @@ const labels = {
     noResult: "No projects in this category yet.", resultCount: "projects shown", copy: "Copy email",
     copied: "Email copied.", copyFallback: "Select the email below to copy it.", footer: "Applied AI. Tested systems.",
     photoCaption: "Le Tan Phu / Personal profile", overview: "Project overview", projectLabel: "Project", lastUpdate: "Updated",
+    motto: "Learn. Build. Validate.", disciplines: "Applied AI / Systems development / Research",
+    archive: "Evidence archive", archiveTitle: "Effort, recognised.",
+    archiveIntro: "Awards and participation certificates from competitions and learning activities. Select an image to read the full document.",
+    award: "Award", participation: "Participation", issued: "Issued", evidence: "View evidence",
+    viewImage: "View larger image", originalImage: "Open original", downloadImage: "Download original", closeViewer: "Close image",
+    previousImage: "Previous image", nextImage: "Next image", zoom: "Zoom in / out", imageLoading: "Loading image…",
+    imageError: "The image could not load. Try opening the original.", documentCount: "documents shown",
+    proofCount: "awards & certificates", illustration: "Field illustration · Space for project imagery",
+    cvMilestones: "Milestones from the CV", archiveHint: "Document images retain their original content.",
   }
 };
 
@@ -68,7 +86,21 @@ function validate() {
     }
     if (project.repository && !/^https:\/\/github\.com\//.test(project.repository)) throw new Error("Invalid repository URL");
   }
-  const images = [data.profile.photo, ...data.projects.flatMap(project => [project.image, ...project.gallery])];
+  const certificateIds = new Set();
+  for (const certificate of data.certificates || []) {
+    if (!/^[a-z0-9-]+$/.test(certificate.id) || certificateIds.has(certificate.id)) throw new Error("Invalid or duplicate certificate id");
+    certificateIds.add(certificate.id);
+    if (!["award", "participation"].includes(certificate.category)) throw new Error("Invalid certificate category");
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(certificate.issued) || !Number.isFinite(Date.parse(certificate.issued)) || new Date(certificate.issued).toISOString().slice(0, 10) !== certificate.issued) throw new Error("Invalid certificate issue date");
+    if (!(certificate.width > 0 && certificate.height > 0) || !certificate.src) throw new Error("Certificate needs an image and dimensions");
+    for (const lang of languages) {
+      if (![certificate.title, certificate.issuer, certificate.description].every(field => field?.[lang])) throw new Error("Missing certificate translation");
+    }
+  }
+  for (const award of data.awards) {
+    if (award.certificate && !certificateIds.has(award.certificate)) throw new Error("Unknown award evidence: " + award.certificate);
+  }
+  const images = [data.profile.photo, ...data.projects.flatMap(project => [project.image, ...project.gallery]), ...(data.certificates || [])];
   for (const image of images) {
     if (!image?.src) continue;
     if (!/^assets\/[a-zA-Z0-9/_.-]+$/.test(image.src) || image.src.split("/").includes("..")) throw new Error("Images must be local files within assets/");
@@ -80,12 +112,15 @@ function validate() {
 
 function media(image, lang, prefix, kind, label, number = "") {
   const hasImage = Boolean(image?.src);
+  const illustrated = ["project", "cover"].includes(kind);
+  const marks = ["CRM", "API", "SED", "VQA", "IT", "OCR", "CV"];
+  const mark = marks[Number(number) - 1] || "AI";
   return `<div class="media media--${kind}${hasImage ? " has-image" : ""}" data-media>
     ${hasImage ? `<img src="${esc(prefix + image.src)}" alt="${esc(t(image.alt, lang))}" ${kind === "portrait" ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async" style="object-position:${esc(image.position || "50% 50%")}" />` : ""}
     <div class="media-placeholder"${hasImage ? " hidden" : ""}>
       <span class="media-index" aria-hidden="true">${kind === "portrait" ? "PERSONAL / 01" : "PROJECT / " + number}</span>
-      <div class="media-mark" aria-hidden="true">${kind === "portrait" ? esc(data.profile.initials) : '<span></span><span></span><span></span>'}</div>
-      <span class="media-label">${esc(label)}</span>
+      <div class="media-mark${illustrated ? " field-illustration" : ""}" aria-hidden="true">${kind === "portrait" ? esc(data.profile.initials) : illustrated ? `<svg viewBox="0 0 400 220" fill="none"><path d="M65 65H140L200 110L260 65H335M65 155H140L200 110L260 155H335" stroke="currentColor" stroke-width="1.2"/><circle cx="200" cy="110" r="67" stroke="currentColor" stroke-dasharray="3 7"/><circle cx="200" cy="110" r="43" fill="currentColor" fill-opacity=".08" stroke="currentColor"/><rect x="30" y="45" width="70" height="40" rx="8" fill="currentColor" fill-opacity=".06" stroke="currentColor"/><rect x="30" y="135" width="70" height="40" rx="8" fill="currentColor" fill-opacity=".06" stroke="currentColor"/><rect x="300" y="45" width="70" height="40" rx="8" fill="currentColor" fill-opacity=".06" stroke="currentColor"/><rect x="300" y="135" width="70" height="40" rx="8" fill="currentColor" fill-opacity=".06" stroke="currentColor"/><path d="M48 60H81M48 69H69M48 150H75M48 159H81M318 60H351M318 69H339M318 150H345M318 159H351" stroke="currentColor" opacity=".45"/><text x="200" y="117" text-anchor="middle" fill="currentColor" font-size="21" font-family="Roboto, sans-serif" font-weight="500">${mark}</text></svg>` : '<span></span><span></span><span></span>'}</div>
+      <span class="media-label">${esc(illustrated ? labels[lang].illustration : label)}</span>
     </div>
   </div>`;
 }
@@ -135,15 +170,45 @@ function projectCard(project, index, lang, prefix, compact = false) {
   </article>`;
 }
 
+function certificateGallery(lang, prefix) {
+  const l = labels[lang];
+  if (!data.certificates?.length) return "";
+  return `<div id="certificates" class="certificate-archive">
+    <div class="archive-heading"><div><p class="section-eyebrow">${l.archive} / ${String(data.certificates.length).padStart(2, "0")}</p><h3>${l.archiveTitle}</h3><p>${l.archiveIntro}</p></div><span class="archive-seal" aria-hidden="true">LP<span>EVIDENCE / ARCHIVE</span></span></div>
+    <div class="certificate-toolbar"><div class="certificate-filters" role="group" aria-label="${l.archive}" hidden>${["all", "award", "participation"].map(filter => `<button type="button" data-certificate-filter="${filter}" aria-pressed="${filter === "all"}">${l[filter]}</button>`).join("")}</div><p id="certificate-count" role="status" data-result-label="${l.documentCount}">${data.certificates.length} ${l.documentCount}</p></div>
+    <div class="certificate-grid">${data.certificates.map((certificate, index) => {
+      const issued = new Intl.DateTimeFormat(lang === "vi" ? "vi-VN" : "en-GB", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }).format(new Date(certificate.issued));
+      return `<article class="certificate-card" id="certificate-${certificate.id}" data-certificate-category="${certificate.category}">
+        <a class="certificate-image" href="${esc(prefix + certificate.src)}" target="_blank" rel="noopener noreferrer" data-certificate="${certificate.id}" data-title="${esc(t(certificate.title, lang))}" data-description="${esc(t(certificate.description, lang))}" data-issuer="${esc(t(certificate.issuer, lang))}" data-issued="${esc(l.issued + ": " + issued)}" data-alt="${esc(t(certificate.alt, lang))}" aria-label="${esc(l.viewImage + ": " + t(certificate.title, lang))}">
+          <img src="${esc(prefix + certificate.src)}" width="${certificate.width}" height="${certificate.height}" alt="${esc(t(certificate.alt, lang))}" loading="lazy" decoding="async" />
+          <span class="certificate-image-error" hidden>${l.imageError}</span><span class="image-open" aria-hidden="true">${l.viewImage} ↗</span>
+        </a><div class="certificate-body"><div class="certificate-meta"><span>${l[certificate.category]}</span><span aria-hidden="true">${String(index + 1).padStart(2, "0")} / ${String(data.certificates.length).padStart(2, "0")}</span></div><h4>${esc(t(certificate.title, lang))}</h4><p>${esc(t(certificate.description, lang))}</p><div class="certificate-foot"><span>${esc(t(certificate.issuer, lang))}</span><time datetime="${certificate.issued}">${l.issued}: ${issued}</time></div></div>
+      </article>`;
+    }).join("")}</div><p class="archive-note">${l.archiveHint}</p>
+  </div>`;
+}
+
+function certificateDialog(lang) {
+  const l = labels[lang];
+  return `<dialog id="certificate-viewer" class="certificate-viewer" aria-labelledby="viewer-title" data-loading="${l.imageLoading}" data-error="${l.imageError}">
+    <div class="viewer-top"><p class="small-label">${l.archive} <span id="viewer-count" role="status"></span></p><button type="button" class="viewer-close" aria-label="${l.closeViewer}" autofocus>${l.closeViewer} ×</button></div>
+    <div class="viewer-stage"><img id="viewer-image" alt="" hidden /><p id="viewer-status" role="status"></p></div>
+    <div class="viewer-caption"><div><h2 id="viewer-title"></h2><p id="viewer-description"></p><p class="viewer-issuer" id="viewer-issuer"></p></div><div class="viewer-navigation"><button type="button" data-viewer-prev aria-label="${l.previousImage}">←</button><button type="button" data-viewer-zoom aria-pressed="false">${l.zoom}</button><button type="button" data-viewer-next aria-label="${l.nextImage}">→</button></div></div>
+    <div class="viewer-bottom"><span id="viewer-issued"></span><div><a id="viewer-original" target="_blank" rel="noopener noreferrer">${l.originalImage} ↗</a><a id="viewer-download" download>${l.downloadImage} ↓</a></div></div>
+  </dialog>`;
+}
+
 function homePage(lang) {
   const l = labels[lang], prefix = basePath(lang);
   return `${header(lang)}
   <main id="main">
     <section class="hero container" aria-labelledby="hero-title">
       <div class="hero-content">
+        <p class="hero-edition">PERSONAL PORTFOLIO <span>2026 / VI + EN</span></p>
         <p class="hero-eyebrow"><span class="status-dot" aria-hidden="true"></span>${esc(t(data.profile.direction, lang))}</p>
         <h1 id="hero-title">Lê Tấn Phú<span class="name-period">.</span></h1>
         <p class="hero-focus">AI Agent.<br /><span>LLM Systems.</span></p>
+        <p class="hero-motto">${l.motto}</p>
         <p class="hero-summary">${esc(t(data.profile.summary, lang))}</p>
         <div class="hero-actions"><a class="button button-primary" href="#projects">${l.explore} <span aria-hidden="true">↗</span></a><a class="button button-outline" href="${prefix + data.profile.pdf}" download>${l.pdf} <span aria-hidden="true">↓</span></a></div>
         <p class="hero-location"><span aria-hidden="true">⌖</span> ${esc(t(data.profile.location, lang))} <span class="location-divider">/</span> <a href="${esc(data.profile.github)}" target="_blank" rel="noopener noreferrer">@LeTPhu ↗</a></p>
@@ -151,8 +216,10 @@ function homePage(lang) {
       <figure class="hero-portrait">${media(data.profile.photo, lang, prefix, "portrait", l.portrait)}
         <figcaption><span>${l.photoCaption}</span><span aria-hidden="true">PROFILE / 2026</span></figcaption>
         <div class="portrait-tag" aria-hidden="true">AI / ML<br /><strong>BUILD. TEST. LEARN.</strong></div>
+        <a class="portrait-proof" href="#certificates"><span class="proof-star" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M20 2L24 15L38 20L24 25L20 38L16 25L2 20L16 15Z" stroke="currentColor"/><path d="M20 10V30M10 20H30" stroke="currentColor"/></svg></span><span><strong>${String(data.certificates?.length || 0).padStart(2, "0")}</strong><small>${l.proofCount}</small></span><span aria-hidden="true">↗</span></a>
       </figure>
     </section>
+    <div class="discipline-strip container"><span>${l.disciplines}</span><a href="#about">${l.about} <span aria-hidden="true">↓</span></a></div>
     <div class="stats container" aria-label="${lang === "vi" ? "Thông tin nổi bật" : "Profile highlights"}">
       <div><strong>${data.education.gpa}</strong><span>GPA · ${esc(t(data.education.classification, lang))}</span></div>
       <div><strong>${data.projects.length.toString().padStart(2, "0")}</strong><span>${l.projectCount}</span></div>
@@ -181,13 +248,15 @@ function homePage(lang) {
     </div></section>
     <section id="awards" class="section container awards-section" aria-labelledby="awards-heading">
       ${sectionHeading("05", l.awards, l.awardsTitle)}
-      <div class="awards-list">${data.awards.map((award, i) => `<article class="award-item"><span class="award-number">0${i + 1}</span><div><h3>${esc(t(award.title, lang))}</h3><p>${esc(t(award.detail, lang))}</p></div><time>${esc(award.date)}</time></article>`).join("")}</div>
+      <p class="milestones-label small-label">${l.cvMilestones}</p>
+      <div class="awards-list">${data.awards.map((award, i) => `<article class="award-item"><span class="award-number">0${i + 1}</span><div><h3>${esc(t(award.title, lang))}</h3><p>${esc(t(award.detail, lang))}</p>${award.certificate ? `<a class="award-evidence" href="#certificate-${award.certificate}" data-evidence-id="${award.certificate}">${l.evidence} ↗</a>` : ""}</div><time>${esc(award.date)}</time></article>`).join("")}</div>
+      ${certificateGallery(lang, prefix)}
     </section>
     <section id="contact" class="section contact-section" aria-labelledby="contact-heading"><div class="container contact-grid">
       <div>${sectionHeading("06", l.contact, l.contactTitle)}<p class="contact-intro">${l.contactText}</p><a class="button button-light" href="mailto:${esc(data.profile.email)}">${l.email} <span aria-hidden="true">↗</span></a></div>
       <div class="contact-details" aria-label="${l.contactDetails}"><a class="contact-email" href="mailto:${esc(data.profile.email)}">${esc(data.profile.email)} <span aria-hidden="true">↗</span></a><a href="tel:${esc(data.profile.phoneLink)}">${esc(data.profile.phone)}</a><a href="${esc(data.profile.github)}" target="_blank" rel="noopener noreferrer">github.com/LeTPhu ↗</a><span>${esc(t(data.profile.location, lang))}</span><button type="button" id="copy-email" data-email="${esc(data.profile.email)}" data-copied="${l.copied}" data-fallback="${l.copyFallback}" hidden>${l.copy}</button><p id="copy-status" role="status" aria-live="polite"></p><input id="copy-email-value" type="text" readonly value="${esc(data.profile.email)}" aria-label="Email" hidden /></div>
     </div></section>
-  </main>${footer(lang)}`;
+  </main>${footer(lang)}${certificateDialog(lang)}`;
 }
 
 function projectPage(lang, project) {
@@ -238,9 +307,9 @@ function documentHtml(lang, project, body) {
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="${prefix}portfolio.css" />
+  <link rel="stylesheet" href="${prefix}portfolio.css?v=20261009-2" />
   <script type="application/ld+json">${JSON.stringify(schema).replace(/</g, "\\u003c")}</script>
-  <script src="${prefix}portfolio.js" defer></script>
+  <script src="${prefix}portfolio.js?v=20261009-2" defer></script>
 </head>
 <body data-page="${project ? "project" : "home"}" data-language="${lang}">${body}</body>
 </html>\n`;

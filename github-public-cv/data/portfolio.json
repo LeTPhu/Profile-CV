@@ -92,13 +92,55 @@
   ],
   "tools": ["VS Code", "Git / GitHub", "Docker", "Linux / VPS", "WSL2", "Google Colab", "GitHub Actions", "Playwright / Vitest", "API Debugging", "Experiment / Benchmark Provenance"],
   "english": { "vi": "Đọc tài liệu kỹ thuật và giao tiếp cơ bản.", "en": "Technical documentation reading and basic communication." },
+  "certificates": [
+    {
+      "id": "ai-first-prize", "category": "award", "issued": "2023-07-05",
+      "src": "assets/certificates/ai-first-prize.jpg", "width": 3130, "height": 2213,
+      "title": { "vi": "Giải Nhất Cuộc thi AI", "en": "First Prize · AI Competition" },
+      "issuer": { "vi": "Đại học Nguyễn Tất Thành", "en": "Nguyen Tat Thanh University" },
+      "description": { "vi": "Giấy khen cho đề tài xây dựng ứng dụng AI điều khiển Windows bằng tay, do Lê Tấn Phú chủ nhiệm.", "en": "Award for an AI application that controls Windows using hand gestures, led by Le Tan Phu." },
+      "alt": { "vi": "Ảnh màu giấy khen Giải Nhất Cuộc thi Trí tuệ nhân tạo, Khoa CNTT năm 2023, trao cho Lê Tấn Phú.", "en": "Colour photograph of the 2023 Faculty of IT AI Competition first-prize award presented to Le Tan Phu." }
+    },
+    {
+      "id": "software-first-prize", "category": "award", "issued": "2023-05-31",
+      "src": "assets/certificates/software-first-prize.jpg", "width": 3066, "height": 2139,
+      "title": { "vi": "Giải Nhất Kỹ thuật phần mềm", "en": "First Prize · Software Engineering" },
+      "issuer": { "vi": "Đại học Nguyễn Tất Thành", "en": "Nguyen Tat Thanh University" },
+      "description": { "vi": "Giấy khen trao cho Lê Tấn Phú, đội Five Start, trong cuộc thi Kỹ thuật phần mềm của Khoa Công nghệ thông tin.", "en": "Award presented to Le Tan Phu of team Five Start in the Faculty of IT Software Engineering Competition." },
+      "alt": { "vi": "Bản trắng đen giấy khen Giải Nhất Kỹ thuật phần mềm, tên Lê Tấn Phú và đội Five Start; trên giấy ghi cuộc thi năm 2022, ngày cấp 31/05/2023.", "en": "Black-and-white first-prize Software Engineering award naming Le Tan Phu and team Five Start; the document states competition year 2022 and issue date 31 May 2023." }
+    },
+    {
+      "id": "software-participation", "category": "participation", "issued": "2023-04-28",
+      "src": "assets/certificates/software-participation.jpg", "width": 2886, "height": 2041,
+      "title": { "vi": "Cuộc thi Kỹ thuật phần mềm", "en": "Software Engineering Competition" },
+      "issuer": { "vi": "Khoa CNTT · Đại học Nguyễn Tất Thành", "en": "Faculty of IT · Nguyen Tat Thanh University" },
+      "description": { "vi": "Chứng nhận Lê Tấn Phú tham gia Cuộc thi Kỹ thuật Phần mềm năm 2023.", "en": "Certificate of participation in the 2023 Software Engineering Competition, awarded to Le Tan Phu." },
+      "alt": { "vi": "Ảnh chứng nhận tham gia Cuộc thi Kỹ thuật Phần mềm năm 2023, cấp cho Lê Tấn Phú ngày 28/04/2023.", "en": "Participation certificate for the 2023 Software Engineering Competition, issued to Le Tan Phu on 28 April 2023." }
+    },
+    {
+      "id": "ai-participation", "category": "participation", "issued": "2023-05-25",
+      "src": "assets/certificates/ai-participation.jpg", "width": 2455, "height": 1736,
+      "title": { "vi": "Cuộc thi Trí tuệ nhân tạo", "en": "Artificial Intelligence Competition" },
+      "issuer": { "vi": "Khoa CNTT · Đại học Nguyễn Tất Thành", "en": "Faculty of IT · Nguyen Tat Thanh University" },
+      "description": { "vi": "Chứng nhận tích cực tham gia Cuộc thi Trí tuệ nhân tạo của Khoa CNTT năm 2023.", "en": "Certificate recognising active participation in the Faculty of IT Artificial Intelligence Competition in 2023." },
+      "alt": { "vi": "Ảnh chứng nhận tích cực tham gia Cuộc thi Trí tuệ nhân tạo năm 2023 của Lê Tấn Phú, cấp ngày 25/05/2023.", "en": "Certificate for Le Tan Phu's active participation in the 2023 AI Competition, issued on 25 May 2023." }
+    },
+    {
+      "id": "solve-problems-to-lead", "category": "participation", "issued": "2023-03-29",
+      "src": "assets/certificates/solve-problems-to-lead.jpg", "width": 2076, "height": 1467,
+      "title": { "vi": "Solve Problems to Lead", "en": "Solve Problems to Lead" },
+      "issuer": { "vi": "Trung tâm Hỗ trợ học sinh, sinh viên TP.HCM", "en": "HCMC Student Assistance Center (SAC)" },
+      "description": { "vi": "Chứng nhận tham gia talkshow “Cách giải quyết vấn đề để dẫn đầu”, dành cho Lê Tấn Phú.", "en": "Certificate of attendance at the “Solve Problems to Lead” talkshow, awarded to Le Tan Phu." },
+      "alt": { "vi": "Ảnh chứng nhận SAC cấp cho Lê Tấn Phú sau khi tham gia talkshow Solve Problems to Lead ngày 29/03/2023.", "en": "SAC certificate issued to Le Tan Phu for attending the Solve Problems to Lead talkshow on 29 March 2023." }
+    }
+  ],
   "awards": [
     { "date": "2025", "title": { "vi": "Tốt nghiệp loại Xuất sắc", "en": "Excellent graduation classification" }, "detail": { "vi": "GPA 3.75/4.00 - Đại học Nguyễn Tất Thành.", "en": "GPA 3.75/4.00 - Nguyen Tat Thanh University." } },
     { "date": "2021 - 2025", "title": { "vi": "Học bổng khuyến khích học tập", "en": "Academic encouragement scholarships" }, "detail": { "vi": "Nhận học bổng trong 4/4 năm đại học.", "en": "Awarded scholarships in all four university years." } },
     { "date": "11/2024", "title": { "vi": "DSC UIT 2024", "en": "DSC UIT 2024" }, "detail": { "vi": "Top 5 chung kết, Giải Khuyến khích và Top 5 sản phẩm phổ biến nhất.", "en": "Top 5 finalists, Consolation Prize and Top 5 most popular products." } },
     { "date": "07/2024", "title": { "vi": "Giải Ba Cuộc thi AI 2024", "en": "Third Prize - AI Competition 2024" }, "detail": { "vi": "Khoa Công nghệ thông tin - Đại học Nguyễn Tất Thành.", "en": "Faculty of Information Technology - Nguyen Tat Thanh University." } },
-    { "date": "04/2023", "title": { "vi": "Giải Nhất Cuộc thi AI 2023", "en": "First Prize - AI Competition 2023" }, "detail": { "vi": "Đại học Nguyễn Tất Thành.", "en": "Nguyen Tat Thanh University." } },
-    { "date": "03/2023", "title": { "vi": "Giải Nhất Cuộc thi Kỹ thuật Phần mềm 2023", "en": "First Prize - Software Engineering Competition 2023" }, "detail": { "vi": "Đại học Nguyễn Tất Thành.", "en": "Nguyen Tat Thanh University." } }
+    { "date": "04/2023", "certificate": "ai-first-prize", "title": { "vi": "Giải Nhất Cuộc thi AI 2023", "en": "First Prize - AI Competition 2023" }, "detail": { "vi": "Đại học Nguyễn Tất Thành.", "en": "Nguyen Tat Thanh University." } },
+    { "date": "03/2023", "certificate": "software-first-prize", "title": { "vi": "Giải Nhất Cuộc thi Kỹ thuật Phần mềm 2023", "en": "First Prize - Software Engineering Competition 2023" }, "detail": { "vi": "Đại học Nguyễn Tất Thành.", "en": "Nguyen Tat Thanh University." } }
   ],
   "projects": [
     {
