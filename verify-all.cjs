@@ -5,6 +5,9 @@ const { chromium } = require('playwright');
 const runUiChecks = require('./verify-ui.cjs');
 const runFailureChecks = require('./verify-failures.cjs');
 const runPortfolioChecks = require('./verify-portfolio.cjs');
+const runAdminChecks = require('./verify-admin.cjs');
+const runLanguageChecks = require('./verify-language.cjs');
+const runGenerationChecks = require('./verify-generation.cjs');
 const { createServer } = require('./scripts/serve.cjs');
 const root = __dirname;
 
@@ -48,6 +51,7 @@ async function verifyLongPdf(page, baseURL) {
 }
 
 (async () => {
+  console.log(`PASS Generation: ${runGenerationChecks()}`);
   const server = await startServer();
   const address = server.address();
   const baseURL = `http://127.0.0.1:${address.port}`;
@@ -61,6 +65,8 @@ async function verifyLongPdf(page, baseURL) {
     const pdfPage = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
     console.log(`PASS ${await verifyLongPdf(pdfPage, baseURL)}`);
     console.log(`PASS Portfolio: ${(await runPortfolioChecks(browser, baseURL)).join('; ')}`);
+    console.log(`PASS Language: ${await runLanguageChecks(browser, baseURL)}`);
+    console.log(`PASS Admin: ${(await runAdminChecks(browser, baseURL)).join('; ')}`);
   } finally {
     await browser.close();
     await new Promise((resolve) => server.close(resolve));

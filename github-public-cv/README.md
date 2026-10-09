@@ -9,10 +9,41 @@ Website tĩnh sử dụng dữ liệu từ **Le_Tan_Phu_CV_2026.pdf** và các �
 - CV A4: https://letphu.github.io/Profile-CV/cv.html
 - PDF gốc: https://letphu.github.io/Profile-CV/assets/cv/Le_Tan_Phu_CV_2026.pdf
 - Mã nguồn: https://github.com/LeTPhu/Profile-CV
+- Quản trị: https://letphu.github.io/Profile-CV/admin/
 
 Trang chủ có giới thiệu, học vấn, 7 dự án/nghiên cứu, 2 kinh nghiệm, kỹ năng, công cụ, 6 thành tích, thư viện 5 giấy khen/chứng nhận và liên hệ. Mỗi dự án có một trang chi tiết riêng cho từng ngôn ngữ. Giao diện dùng Be Vietnam Pro, tông xanh rừng/kem và điểm nhấn vàng cho tư liệu.
 
 ## Nơi Chỉnh Nội Dung
+
+### Chỉnh Trực Tiếp Trên Website
+
+Mở **Quản trị** ở cuối trang hoặc truy cập `/admin/`. Trang quản trị dành cho tài khoản GitHub **LeTPhu**, không phải dịch vụ đăng ký tài khoản cho khách. GitHub Pages chỉ phục vụ trang tĩnh nên không đặt mật khẩu hoặc khóa bí mật trong mã website.
+
+1. Mở [trang tạo fine-grained personal access token](https://github.com/settings/personal-access-tokens/new).
+2. Chọn Resource owner **LeTPhu**, thời hạn ngắn (ví dụ 7 ngày), Repository access **Only select repositories → Profile-CV**.
+3. Repository permissions: **Contents → Read and write**, **Metadata → Read-only**. Không cần quyền Workflow, Administration hay quyền toàn bộ tài khoản.
+4. Tạo mã và nhập vào ô **Mã truy cập GitHub**. Không nhập mật khẩu GitHub, không chia sẻ mã và không gửi mã trong cuộc trò chuyện.
+5. Sau khi xác thực, chọn nhóm thông tin để sửa. Các ô **TIẾNG VIỆT** và **ENGLISH** độc lập; nội dung dùng chung như tên, công nghệ và liên kết chỉ có một ô.
+6. Dùng **Xem trước** để kiểm tra trang chủ hoặc từng dự án ở cả hai ngôn ngữ. **Bố cục & ngôn ngữ** cho phép đổi thứ tự, ẩn/hiện các khối và bật/tắt chọn ngôn ngữ tự động. **Mục tự thêm** hỗ trợ đoạn văn, gạch đầu dòng và ảnh.
+7. Chọn **Xuất bản lên GitHub**, kiểm tra cảnh báo rồi xác nhận. Ảnh và dữ liệu được lưu cùng một commit; workflow dựng lại trang Việt/Anh và CV A4. Xem liên kết **Theo dõi xuất bản** để biết kết quả. Lưu thành công vào GitHub chưa đồng nghĩa website đã triển khai xong.
+
+Mã truy cập chỉ giữ trong bộ nhớ của tab, không được ghi vào localStorage, sessionStorage, IndexedDB, URL, bản sao lưu hay repository. Phiên kết thúc khi đăng xuất, rời trang hoặc sau 20 phút không hoạt động. GitHub kiểm tra quyền ghi ở phía máy chủ; ẩn giao diện quản trị không phải biện pháp bảo mật. Mã chỉ được gửi đến `api.github.com`. Khi không dùng nữa, thu hồi mã trong GitHub Settings. Đây là đăng nhập bằng **mã truy cập GitHub**, chưa phải OAuth một chạm hay tài khoản email/mật khẩu riêng. Xem [hướng dẫn bảo vệ token của GitHub](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
+
+### Bản Nháp Và Sao Lưu
+
+- Bản nháp tự lưu sau khi thay đổi, trên **trình duyệt và thiết bị hiện tại** bằng IndexedDB; ảnh mới giữ nguyên byte gốc. Nếu trình duyệt chặn lưu hoặc hết dung lượng, giao diện báo lỗi và yêu cầu sao lưu file.
+- **Lưu nháp** không xuất bản. **Khôi phục nháp** cần xác nhận; nháp giữ mốc GitHub ban đầu để không ghi đè bản mới hơn.
+- **Sao lưu** xuất JSON UTF-8 chứa cả Việt/Anh và ảnh mới chưa xuất bản. Ảnh đã có trong repository được tham chiếu theo đường dẫn, không tải lại toàn bộ thư viện vào bản sao lưu. File không chứa mã truy cập. Không coi đây là bản sao đầy đủ độc lập của toàn bộ repository; để sao lưu toàn bộ cả ảnh cũ, tải repository riêng.
+- **Nhập bản sao lưu** chấp nhận bản `portfolio-studio-backup` hoặc file `portfolio.json` đầy đủ, không nhận file CV một ngôn ngữ. Dữ liệu sai, thiếu ngôn ngữ, đường dẫn không an toàn hoặc ảnh giả bị từ chối trước khi thay nội dung hiện tại. Hoàn tác/làm lại giữ tối đa 40 thao tác.
+- Khi repository thay đổi từ lúc đăng nhập, xuất bản sẽ dừng, không ép ghi đè. Sao lưu nháp, đăng xuất và đăng nhập lại để tải bản mới. Đối chiếu các nội dung mới rồi nhập/áp dụng nháp một cách chủ động; không có tự động gộp thay đổi.
+- Chỉ nhận JPG/PNG/WebP, tối đa **8 MB/ảnh**, **40 megapixel/ảnh**, **32 MB ảnh mới/lần xuất bản**; không nhận SVG/HEIC. Ảnh vào `assets/uploads/` với tên ngẫu nhiên; điều chỉnh khung ảnh bằng vị trí CSS, không thay nội dung gốc. File dữ liệu nội dung tối đa 900 KB.
+- Tất cả dữ liệu xuất bản và repository đều công khai. Không tải giấy tờ nhạy cảm, mật khẩu, mã tài khoản hoặc tài liệu của người khác chưa được cho phép. Ẩn/xóa mục chỉ bỏ khỏi giao diện hiện tại, không xóa dữ liệu khỏi GitHub history và không tự xóa file ảnh đã xuất bản.
+
+### Ngôn Ngữ Cho Người Xem
+
+Website có HTML Việt/Anh dựng sẵn. Lần đầu vào trang Việt, trình duyệt ưu tiên tiếng Anh sẽ tự chuyển sang bản English tương ứng, giữ nguyên đường dẫn dự án, tham số và vị trí đang xem. Trình duyệt tiếng Việt tiếp tục dùng tiếng Việt; ngôn ngữ khác không khớp Việt/Anh sẽ giữ trang hiện tại. Khách có thể chọn **VI/EN**, lựa chọn được lưu nếu trình duyệt cho phép; `?lang=vi` hoặc `?lang=en` có ưu tiên cao nhất và vẫn hoạt động khi chặn lưu trữ. Truy cập trực tiếp đường dẫn `/en/` thể hiện lựa chọn đọc English. Không tự dịch nội dung người quản trị mới nhập: cần điền rõ cả hai cột.
+
+Các file hỗ trợ quản trị là `admin/`, `portfolio-model.js` (kiểm tra dữ liệu), `portfolio-renderer.js` (mẫu hiển thị dùng chung), `language.js` (chọn ngôn ngữ). Trình xem trước dùng iframe không cho chạy script. Kiểm thử tổng hợp: `node verify-all.cjs`; các ca xuất bản trong `verify-admin.cjs` sử dụng GitHub mô phỏng, không ghi nội dung kiểm thử lên repository thật.
 
 Nguồn dữ liệu chính là **data/portfolio.json**. Các trường có `vi` và `en` là nội dung Việt/Anh độc lập.
 
@@ -25,6 +56,9 @@ Nguồn dữ liệu chính là **data/portfolio.json**. Các trường có `vi` 
 | `awards` | Thời gian, tên thành tích và mô tả |
 | `certificates` | Ảnh minh chứng, tên, đơn vị cấp, ngày cấp, phân loại và mô tả Việt/Anh |
 | `projects` | Mô tả, đóng góp, kết quả ghi nhận, công nghệ, ảnh và repository |
+| `customSections` | Mục tùy chỉnh song ngữ, đoạn văn, danh sách ý và ảnh |
+| `settings` | Thứ tự/ẩn hiện các khối, ngôn ngữ tự động và thống kê học bổng |
+| `content.vi`, `content.en` | Tiêu đề, lời giới thiệu và nhãn tùy chỉnh riêng từng ngôn ngữ |
 | `updated` | Ngày cập nhật dạng YYYY-MM-DD |
 | `siteUrl` | Đường dẫn gốc của website; dùng cho SEO và sitemap |
 

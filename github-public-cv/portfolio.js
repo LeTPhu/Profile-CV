@@ -1,12 +1,5 @@
 document.documentElement.classList.add("js");
 
-// Preserve previously shared language links while serving prerendered HTML.
-const requestedLanguage = new URLSearchParams(location.search).get("lang");
-if (document.body.dataset.page === "home" && requestedLanguage && requestedLanguage !== document.body.dataset.language) {
-  if (requestedLanguage === "en") location.replace(new URL("en/" + location.hash, location.href));
-  if (requestedLanguage === "vi") location.replace(new URL("../" + location.hash, location.href));
-}
-
 const toggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector("#main-nav");
 function closeMenu() {

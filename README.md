@@ -8,6 +8,8 @@
 - Website dành cho người xem nằm trong `github-public-cv/`. Chỉ thư mục này được xuất bản lên GitHub Pages.
 - Website đã dùng dữ liệu thật từ `Le_Tan_Phu_CV_2026.pdf`; dữ liệu nguồn ở `github-public-cv/data/portfolio.json`.
 - Trang cá nhân có hai phiên bản HTML Việt/Anh và trang chi tiết cho từng dự án. CV A4 nằm tại `github-public-cv/cv.html`.
+- Quản trị nội dung/ảnh trực tiếp tại https://letphu.github.io/Profile-CV/admin/, xác thực bằng mã truy cập GitHub giới hạn cho repository. Hướng dẫn tạo quyền, lưu nháp, sao lưu và xuất bản nằm trong `github-public-cv/README.md`.
+- Website tự chọn English cho trình duyệt ưu tiên tiếng Anh; khách vẫn có thể chọn VI/EN. Nội dung hai ngôn ngữ được chỉnh riêng, không tự dịch nội dung mới nhập.
 - Thêm ảnh hoặc cập nhật nội dung theo hướng dẫn trong `github-public-cv/README.md`, rồi chạy `node scripts/build-portfolio.cjs`.
 
 Website là HTML/CSS/JavaScript tĩnh, không cần máy chủ ứng dụng hoặc cơ sở dữ liệu.

@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="referrer" content="no-referrer" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; connect-src 'self' https://api.github.com; img-src 'self' blob: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; frame-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'"
+    />
+    <title>Quản trị hồ sơ | Portfolio Studio</title>
+    <link rel="icon" href="../assets/favicon.svg" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap"
+    />
+    <link rel="stylesheet" href="admin.css" />
+    <script src="../portfolio-model.js" defer></script>
+    <script src="../portfolio-renderer.js" defer></script>
+    <script src="github.js" defer></script>
+    <script src="admin.js" defer></script>
+  </head>
+  <body>
+    <header class="studio-header">
+      <a class="studio-brand" href="../?lang=vi"
+        ><span>P.</span> Portfolio Studio</a
+      >
+      <div>
+        <a href="../" data-i18n="website">Xem website</a
+        ><button id="ui-language" type="button">English</button
+        ><button id="logout" type="button" hidden data-i18n="logout">
+          Đăng xuất
+        </button>
+      </div>
+    </header>
+    <main>
+      <section id="login-panel" class="login-layout">
+        <div class="login-story">
+          <p class="eyebrow">OWNER SPACE / VI + EN</p>
+          <h1 data-i18n="welcome">Một nơi để kể<br />câu chuyện của bạn.</h1>
+          <p data-i18n="welcomeText">
+            Sửa hồ sơ, thêm ảnh và chăm chút từng dự án. Hai ngôn ngữ riêng
+            biệt, một không gian quản lý rõ ràng.
+          </p>
+          <div class="story-grid">
+            <span>01 / <b data-i18n="content">Nội dung</b></span
+            ><span>02 / <b data-i18n="images">Hình ảnh</b></span
+            ><span>03 / <b>Việt + English</b></span>
+          </div>
+        </div>
+        <div class="login-card">
+          <p class="eyebrow" data-i18n="ownerOnly">
+            Dành riêng cho chủ website
+          </p>
+          <h2 data-i18n="login">Đăng nhập bằng quyền GitHub</h2>
+          <p data-i18n="authHelp">
+            Dùng mã truy cập GitHub giới hạn cho repository Profile-CV. Đây
+            không phải mật khẩu tài khoản GitHub.
+          </p>
+          <form id="login-form">
+            <label for="token" data-i18n="token">Mã truy cập GitHub</label
+            ><input
+              id="token"
+              type="password"
+              autocomplete="off"
+              spellcheck="false"
+              required
+              placeholder="github_pat_…"
+            /><button
+              class="primary"
+              id="login-button"
+              type="submit"
+              data-i18n="connect"
+            >
+              Xác thực & mở trình chỉnh sửa
+            </button>
+          </form>
+          <p class="security-note" data-i18n="tokenNote">
+            Mã chỉ tồn tại trong bộ nhớ của tab này, không lưu vào bản nháp hay
+            mã website. Phiên kết thúc sau 20 phút không hoạt động.
+          </p>
+          <details>
+            <summary data-i18n="setup">Cách lấy quyền truy cập</summary>
+            <ol>
+              <li data-i18n="step1">
+                Mở trang tạo fine-grained token, chọn chủ sở hữu LeTPhu.
+              </li>
+              <li data-i18n="step2">
+                Chỉ chọn repository Profile-CV. Đặt thời hạn ngắn, ví dụ 7 ngày.
+              </li>
+              <li data-i18n="step3">
+                Repository permissions: Contents → Read and write; Metadata →
+                Read-only. Không cần quyền Workflow.
+              </li>
+              <li data-i18n="step4">
+                Tạo mã, nhập vào ô trên. Không chia sẻ mã này cho người khác.
+              </li>
+            </ol>
+            <a
+              href="https://github.com/settings/personal-access-tokens/new"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-i18n="createToken"
+              >Mở trang GitHub tạo mã</a
+            >
+          </details>
+          <p id="login-status" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+      <section id="workspace" hidden>
+        <div class="workspace-top">
+          <div>
+            <p class="eyebrow">PORTFOLIO / OWNER DASHBOARD</p>
+            <h1 data-i18n="workspace">Chăm chút hồ sơ của bạn.</h1>
+            <p id="account"></p>
+          </div>
+          <p class="draft-badge" id="dirty-state" role="status"></p>
+        </div>
+        <div class="action-bar">
+          <button id="undo" type="button" data-i18n="undo">Hoàn tác</button
+          ><button id="redo" type="button" data-i18n="redo">Làm lại</button
+          ><button id="save-draft" type="button" data-i18n="save">
+            Lưu nháp</button
+          ><button id="restore-draft" type="button" data-i18n="restore">
+            Khôi phục nháp</button
+          ><button id="export" type="button" data-i18n="export">Sao lưu</button
+          ><label class="button" for="import" data-i18n="import"
+            >Nhập bản sao lưu</label
+          ><input
+            id="import"
+            type="file"
+            accept=".json,application/json"
+            hidden
+          /><button id="preview" type="button" data-i18n="preview">
+            Xem trước</button
+          ><button
+            id="publish"
+            class="primary"
+            type="button"
+            data-i18n="publish"
+          >
+            Xuất bản lên GitHub
+          </button>
+        </div>
+        <p id="status" class="status-line" role="status" aria-live="polite"></p>
+        <div class="editor-layout">
+          <nav id="editor-nav" aria-label="Nhóm thông tin"></nav>
+          <div class="editor-main">
+            <div class="editor-heading">
+              <div>
+                <p class="eyebrow" data-i18n="bilingual">
+                  VIỆT + ENGLISH / NỘI DUNG ĐỘC LẬP
+                </p>
+                <h2 id="editor-title"></h2>
+              </div>
+              <button id="expand" type="button" data-i18n="expand">
+                Mở / thu gọn tất cả
+              </button>
+            </div>
+            <p class="editor-note" data-i18n="languageNote">
+              Mỗi cột là một ngôn ngữ riêng. Sửa hoặc nhập dữ liệu không xóa nội
+              dung của ngôn ngữ còn lại. Mỗi dòng trong ô danh sách sẽ thành một
+              ý riêng.
+            </p>
+            <div id="editor"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <dialog id="preview-dialog">
+      <div class="dialog-head">
+        <h2 data-i18n="preview">Xem trước</h2>
+        <label
+          ><span data-i18n="language">Ngôn ngữ</span
+          ><select id="preview-language">
+            <option value="vi">Tiếng Việt</option>
+            <option value="en">English</option>
+          </select></label
+        ><label
+          ><span data-i18n="page">Trang</span
+          ><select id="preview-page"></select></label
+        ><button type="button" data-close="preview-dialog" data-i18n="close">
+          Đóng
+        </button>
+      </div>
+      <p data-i18n="previewNote">
+        Bản xem trước dùng cùng mẫu website. Các nút điều hướng bị tắt để bạn
+        không rời trình chỉnh sửa.
+      </p>
+      <iframe
+        id="preview-frame"
+        title="Portfolio preview"
+        sandbox="allow-same-origin"
+        referrerpolicy="no-referrer"
+      ></iframe>
+    </dialog>
+    <dialog id="confirm-dialog">
+      <h2 id="confirm-title"></h2>
+      <p id="confirm-text"></p>
+      <div class="confirm-actions">
+        <button id="confirm-cancel" type="button" data-i18n="cancel">Hủy</button
+        ><button
+          id="confirm-yes"
+          type="button"
+          class="primary"
+          data-i18n="confirm"
+        >
+          Xác nhận
+        </button>
+      </div>
+    </dialog>
+    <noscript
+      >Trang quản trị cần JavaScript. Website công khai vẫn đọc được khi tắt
+      JavaScript.</noscript
+    >
+  </body>
+</html>

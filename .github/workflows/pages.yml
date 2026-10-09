@@ -33,6 +33,11 @@ jobs:
           node --check github-public-cv/app.js
           node --check github-public-cv/website.js
           node --check github-public-cv/portfolio.js
+          node --check github-public-cv/language.js
+          node --check github-public-cv/portfolio-model.js
+          node --check github-public-cv/portfolio-renderer.js
+          node --check github-public-cv/admin/github.js
+          node --check github-public-cv/admin/admin.js
           node scripts/build-portfolio.cjs
           node -e "const fs = require('fs'); const cv = JSON.parse(fs.readFileSync('github-public-cv/data/cv-public.json', 'utf8').replace(/^\uFEFF/, '')); if (!cv.documents?.vi || !cv.documents?.en) throw new Error('Both CV languages are required');"
       - name: Configure Pages
@@ -42,6 +47,8 @@ jobs:
           mkdir -p _site
           cp github-public-cv/index.html github-public-cv/cv.html github-public-cv/404.html github-public-cv/app.js github-public-cv/website.js github-public-cv/styles.css github-public-cv/refinements.css github-public-cv/portfolio.css github-public-cv/portfolio.js github-public-cv/robots.txt github-public-cv/sitemap.xml _site/
           cp -R github-public-cv/data github-public-cv/assets github-public-cv/en github-public-cv/projects _site/
+          cp github-public-cv/language.js github-public-cv/portfolio-model.js github-public-cv/portfolio-renderer.js _site/
+          cp -R github-public-cv/admin _site/
           touch _site/.nojekyll
       - name: Upload website
         uses: actions/upload-pages-artifact@v4

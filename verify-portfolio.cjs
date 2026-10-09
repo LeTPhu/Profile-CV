@@ -5,7 +5,7 @@ const crypto = require("node:crypto");
 
 module.exports = async (browser, baseURL) => {
   const results = [];
-  const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+  const page = await browser.newPage({ locale: "vi-VN", viewport: { width: 1440, height: 1000 } });
   const errors = [];
   page.on("pageerror", error => errors.push(error.message));
   const url = baseURL + "/github-public-cv/";
@@ -140,7 +140,7 @@ module.exports = async (browser, baseURL) => {
   results.push("320-1440px layouts and keyboard-accessible mobile menu");
 
   await page.goto(url + "?lang=en");
-  await page.waitForURL("**/github-public-cv/en/");
+  await page.waitForURL("**/github-public-cv/en/index.html?lang=en");
   assert.equal(await page.locator("html").getAttribute("lang"), "en");
   await page.getByRole("link", { name: "Đọc bằng tiếng Việt", exact: true }).click();
   assert.equal(await page.locator("html").getAttribute("lang"), "vi");
@@ -157,7 +157,7 @@ module.exports = async (browser, baseURL) => {
   await page.getByRole("button", { name: "Close image", exact: true }).click();
   await page.waitForFunction(() => !document.body.classList.contains("viewer-open"));
 
-  const failureContext = await browser.newContext();
+  const failureContext = await browser.newContext({ locale: "vi-VN" });
   const failurePage = await failureContext.newPage();
   await failurePage.route("**/assets/certificates/ai-first-prize.jpg", route => route.abort());
   await failurePage.goto(url);
@@ -170,7 +170,7 @@ module.exports = async (browser, baseURL) => {
   await failureContext.close();
   results.push("English certificate viewer and recovery from failed image requests");
 
-  const imageContext = await browser.newContext();
+  const imageContext = await browser.newContext({ locale: "vi-VN" });
   const imagePage = await imageContext.newPage();
   const html = fs.readFileSync(path.join(__dirname, "github-public-cv/index.html"), "utf8")
     .replace('<div class="media media--portrait" data-media>', '<div class="media media--portrait has-image" data-media><img src="data:image/png;base64,broken" alt="Test portrait" />')
