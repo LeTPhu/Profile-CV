@@ -49,7 +49,7 @@
         ai: "AI ứng dụng",
         detail: "Xem chi tiết",
         cover: "Không gian dành cho ảnh dự án",
-        portrait: "Không gian dành cho ảnh chân dung",
+        portrait: "Học hỏi. Xây dựng. Kiểm chứng.",
         selected: "Dự án & nghiên cứu",
         projectIntro:
           "Những hệ thống tôi xây dựng, những câu hỏi tôi tìm hiểu.",
@@ -112,7 +112,7 @@
         imageError: "Chưa tải được ảnh. Bạn có thể thử mở ảnh gốc.",
         documentCount: "tư liệu đang hiển thị",
         proofCount: "giấy khen & chứng nhận",
-        illustration: "Minh họa lĩnh vực · Có thể thêm ảnh dự án",
+        illustration: "Minh họa ý tưởng",
         cvMilestones: "Các cột mốc trong CV",
         archiveHint: "Ảnh tư liệu được giữ nguyên, không chỉnh sửa nội dung.",
       },
@@ -137,7 +137,7 @@
         ai: "Applied AI",
         detail: "View project",
         cover: "Space for project imagery",
-        portrait: "Space for a portrait photo",
+        portrait: "Learn. Build. Validate.",
         selected: "Projects & research",
         projectIntro: "Systems I build. Questions I explore.",
         projectSub:
@@ -199,7 +199,7 @@
         imageError: "The image could not load. Try opening the original.",
         documentCount: "documents shown",
         proofCount: "awards & certificates",
-        illustration: "Field illustration · Space for project imagery",
+        illustration: "Concept illustration",
         cvMilestones: "Milestones from the CV",
         archiveHint: "Document images retain their original content.",
       },
@@ -223,16 +223,51 @@
       ]),
     ];
     const visible = (id) => !(data.settings?.hiddenSections || []).includes(id);
-    function media(image, lang, prefix, kind, label, number = "") {
+    function projectIllustration(project) {
+      // Concept artwork stays attached to the project when the owner reorders cards.
+      const art = {
+        aiocrm: `<path d="M98 110H302M200 58V164" stroke="currentColor" stroke-opacity=".4"/><rect x="148" y="62" width="104" height="96" rx="22" fill="currentColor" fill-opacity=".12" stroke="currentColor"/><circle cx="200" cy="94" r="12" fill="currentColor"/><path d="M178 133C178 110 222 110 222 133" stroke="currentColor" stroke-width="3"/><rect x="32" y="88" width="66" height="44" rx="12" stroke="currentColor"/><path d="M47 103H82M47 115H70" stroke="currentColor"/><rect x="302" y="88" width="66" height="44" rx="12" stroke="currentColor"/><path d="M319 110L330 120L352 99" stroke="currentColor" stroke-width="2"/><circle cx="200" cy="31" r="14" stroke="currentColor"/><circle cx="200" cy="190" r="14" stroke="currentColor"/>`,
+        "openclaw-9router": `<ellipse cx="200" cy="110" rx="153" ry="61" stroke="currentColor" stroke-opacity=".3" transform="rotate(-18 200 110)"/><ellipse cx="200" cy="110" rx="153" ry="61" stroke="currentColor" stroke-opacity=".3" transform="rotate(18 200 110)"/><path d="M70 55L200 110L330 55M70 165L200 110L330 165" stroke="currentColor" stroke-dasharray="4 6"/><rect x="164" y="74" width="72" height="72" rx="20" fill="currentColor" fill-opacity=".14" stroke="currentColor"/><path d="M183 110H217M200 93V127" stroke="currentColor" stroke-width="3"/>${[
+          [70, 55],
+          [330, 55],
+          [70, 165],
+          [330, 165],
+        ]
+          .map(
+            ([x, y]) =>
+              `<circle cx="${x}" cy="${y}" r="17" fill="var(--art-paper)" stroke="currentColor"/><circle cx="${x}" cy="${y}" r="5" fill="currentColor"/>`,
+          )
+          .join("")}`,
+        "sound-event-detection": `<path d="M28 110H372" stroke="currentColor" stroke-opacity=".25"/>${[22, 40, 28, 67, 105, 58, 142, 86, 44, 118, 164, 94, 54, 126, 70, 38, 24].map((h, i) => `<rect x="${36 + i * 20}" y="${110 - h / 2}" width="8" height="${h}" rx="4" fill="currentColor" opacity="${i % 3 === 0 ? 0.9 : 0.45}"/>`).join("")}<path d="M26 28V18H56M344 18H374V28M26 192V202H56M344 202H374V192" stroke="currentColor" stroke-opacity=".5"/>`,
+        "qa-tiger": `<rect x="45" y="42" width="146" height="126" rx="16" stroke="currentColor" fill="currentColor" fill-opacity=".07"/><circle cx="85" cy="81" r="13" fill="currentColor" fill-opacity=".5"/><path d="M62 149L106 108L134 129L160 95L176 149Z" fill="currentColor" fill-opacity=".18"/><path d="M209 103H233" stroke="currentColor" stroke-width="2"/><path d="M225 95L233 103L225 111" stroke="currentColor" stroke-width="2"/><path d="M265 54H334Q352 54 352 72V127Q352 145 334 145H288L267 165V145H265Q247 145 247 127V72Q247 54 265 54Z" fill="currentColor" fill-opacity=".1" stroke="currentColor"/><path d="M288 86C290 70 318 71 318 86C318 98 302 96 302 110" stroke="currentColor" stroke-width="3"/><circle cx="302" cy="122" r="2.5" fill="currentColor"/>`,
+        "ai-helpdesk": `<rect x="44" y="45" width="195" height="120" rx="18" fill="currentColor" fill-opacity=".07" stroke="currentColor"/><path d="M70 75H199M70 95H171M70 115H137" stroke="currentColor" stroke-opacity=".6"/><path d="M82 165V186L113 165" stroke="currentColor"/><circle cx="282" cy="124" r="58" fill="var(--art-paper)" stroke="currentColor"/><path d="M253 130V116C253 78 311 78 311 116V130M254 117H244V137H257M310 117H320V137H307M310 137C310 154 292 154 283 154" stroke="currentColor" stroke-width="3"/><circle cx="280" cy="154" r="4" fill="currentColor"/>`,
+        "ocr-rag": `<rect x="47" y="36" width="108" height="145" rx="12" stroke="currentColor"/><path d="M68 62H132M68 83H118M68 104H132M68 125H111M68 146H125" stroke="currentColor" stroke-opacity=".6"/><path d="M176 110H214M204 100L214 110L204 120" stroke="currentColor" stroke-width="2"/><rect x="236" y="54" width="111" height="112" rx="18" fill="currentColor" fill-opacity=".1" stroke="currentColor"/><path d="M257 83H326M257 105H309M257 127H320M279 166L261 185V166" stroke="currentColor"/><rect x="37" y="94" width="128" height="27" rx="4" fill="currentColor" fill-opacity=".14"/>`,
+        "violence-detection": `<rect x="43" y="30" width="314" height="160" rx="18" stroke="currentColor" stroke-opacity=".45"/><path d="M68 74V54H94M306 54H332V74M68 146V166H94M306 166H332V146" stroke="currentColor" stroke-width="2"/><circle cx="168" cy="84" r="14" stroke="currentColor" stroke-width="2"/><path d="M168 99V135M168 111L144 125M168 111L190 100M168 135L153 164M168 135L186 164" stroke="currentColor" stroke-width="2"/><rect x="132" y="59" width="69" height="116" rx="8" stroke="currentColor" stroke-dasharray="4 4"/><path d="M238 74H310M238 95H280M238 116H300M238 137H266" stroke="currentColor" stroke-opacity=".4"/>`,
+      };
+      const drawing =
+        (Object.prototype.hasOwnProperty.call(art, project?.id)
+          ? art[project.id]
+          : "") ||
+        `<circle cx="200" cy="110" r="67" stroke="currentColor"/><path d="M110 110H290M200 40V180" stroke="currentColor" stroke-opacity=".5"/><rect x="169" y="79" width="62" height="62" rx="14" fill="currentColor" fill-opacity=".15" stroke="currentColor"/>`;
+      return `<svg viewBox="0 0 400 220" fill="none" aria-hidden="true" focusable="false">${drawing}</svg>`;
+    }
+
+    function media(
+      image,
+      lang,
+      prefix,
+      kind,
+      label,
+      number = "",
+      project = null,
+    ) {
       const hasImage = Boolean(image?.src);
       const illustrated = ["project", "cover"].includes(kind);
-      const marks = ["CRM", "API", "SED", "VQA", "IT", "OCR", "CV"];
-      const mark = marks[Number(number) - 1] || "AI";
       return `<div class="media media--${kind}${hasImage ? " has-image" : ""}" data-media>
     ${hasImage ? `<img src="${esc(prefix + image.src)}" alt="${esc(t(image.alt, lang))}" ${kind === "portrait" ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async" style="object-position:${esc(image.position || "50% 50%")}" />` : ""}
     <div class="media-placeholder"${hasImage ? " hidden" : ""}>
       <span class="media-index" aria-hidden="true">${kind === "portrait" ? "PERSONAL / 01" : "PROJECT / " + number}</span>
-      <div class="media-mark${illustrated ? " field-illustration" : ""}" aria-hidden="true">${kind === "portrait" ? esc(data.profile.initials) : illustrated ? `<svg viewBox="0 0 400 220" fill="none"><path d="M65 65H140L200 110L260 65H335M65 155H140L200 110L260 155H335" stroke="currentColor" stroke-width="1.2"/><circle cx="200" cy="110" r="67" stroke="currentColor" stroke-dasharray="3 7"/><circle cx="200" cy="110" r="43" fill="currentColor" fill-opacity=".08" stroke="currentColor"/><rect x="30" y="45" width="70" height="40" rx="8" fill="currentColor" fill-opacity=".06" stroke="currentColor"/><rect x="30" y="135" width="70" height="40" rx="8" fill="currentColor" fill-opacity=".06" stroke="currentColor"/><rect x="300" y="45" width="70" height="40" rx="8" fill="currentColor" fill-opacity=".06" stroke="currentColor"/><rect x="300" y="135" width="70" height="40" rx="8" fill="currentColor" fill-opacity=".06" stroke="currentColor"/><path d="M48 60H81M48 69H69M48 150H75M48 159H81M318 60H351M318 69H339M318 150H345M318 159H351" stroke="currentColor" opacity=".45"/><text x="200" y="117" text-anchor="middle" fill="currentColor" font-size="21" font-family="Roboto, sans-serif" font-weight="500">${mark}</text></svg>` : "<span></span><span></span><span></span>"}</div>
+      <div class="media-mark${illustrated ? " field-illustration" : ""}" aria-hidden="true">${kind === "portrait" ? esc(data.profile.initials) : illustrated ? projectIllustration(project) : "<span></span><span></span><span></span>"}</div>
       <span class="media-label">${esc(illustrated ? labels[lang].illustration : label)}</span>
     </div>
   </div>`;
@@ -290,7 +325,7 @@
     function projectCard(project, index, lang, prefix, compact = false) {
       const l = labels[lang];
       return `<article class="project-card category-${project.category}" data-category="${project.category}">
-    <a class="project-image-link" href="${prefix + pagePath(lang, project)}" aria-label="${esc(l.detail + ": " + project.name)}">${media(project.image, lang, prefix, "project", l.cover, String(index + 1).padStart(2, "0"))}</a>
+    <a class="project-image-link" href="${prefix + pagePath(lang, project)}" aria-label="${esc(l.detail + ": " + project.name)}">${media(project.image, lang, prefix, "project", l.cover, String(index + 1).padStart(2, "0"), project)}</a>
     <div class="project-body">
       <div class="project-meta"><span>${l[project.category]}</span><span>${esc(t(project.period, lang))}</span></div>
       <h3><a href="${prefix + pagePath(lang, project)}">${esc(project.name)} <span aria-hidden="true">↗</span></a></h3>
@@ -474,7 +509,7 @@
       <div class="project-meta"><span>${l[project.category]} / 0${index + 1}</span><span>${esc(t(project.period, lang))}</span></div>
       <h1>${esc(project.name)}<span class="name-period">.</span></h1><p class="project-subheading">${esc(t(project.title, lang))}</p><p class="project-lead">${esc(t(project.summary, lang))}</p>
       <div class="project-hero-actions"><span class="project-context">${esc(t(project.context, lang))}</span>${project.repository ? `<a class="button button-outline" href="${esc(project.repository)}" target="_blank" rel="noopener noreferrer">${esc(l.repo)} ↗</a>` : ""}</div>
-      <figure class="project-cover${project.image.src ? "" : " project-cover--illustration"}">${media(project.image, lang, prefix, "cover", l.cover, String(index + 1).padStart(2, "0"))}${project.image.src ? `<figcaption>${esc(t(project.image.alt, lang))}</figcaption>` : ""}</figure>
+      <figure class="project-cover${project.image.src ? "" : " project-cover--illustration"}">${media(project.image, lang, prefix, "cover", l.cover, String(index + 1).padStart(2, "0"), project)}${project.image.src ? `<figcaption>${esc(t(project.image.alt, lang))}</figcaption>` : ""}</figure>
     </section>
     <section class="container project-information">
       <div class="project-details"><p class="section-eyebrow">01 / ${esc(l.overview)}</p><h2>${esc(l.scope)}</h2><ul class="contribution-list">${htmlList(t(project.points, lang))}</ul><div class="result-box"><p class="small-label">${esc(l.recorded)}</p><p>${esc(t(project.result, lang))}</p></div></div>
@@ -543,7 +578,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="${prefix}portfolio.css?v=20261009-4" />
+  <link rel="stylesheet" href="${prefix}portfolio.css?v=20261010-1" />
   <script type="application/ld+json">${JSON.stringify(schema).replace(/</g, "\\u003c")}</script>
   <script src="${prefix}portfolio.js?v=20261009-4" defer></script>
 </head>

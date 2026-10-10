@@ -15,6 +15,8 @@ Trang chủ có giới thiệu, học vấn, 7 dự án/nghiên cứu, 2 kinh ng
 
 Bố cục thu gọn khoảng cách giữa các phần, khung minh họa và thẻ dự án; tên dài được xuống dòng thay vì bị cắt hoặc tràn màn hình. Khi lọc dự án, các thẻ tự lấp đầy số cột còn lại. Trang chi tiết chỉ hiện thư viện khi có ảnh thật; các ô thêm ảnh vẫn giữ đầy đủ trong trang quản trị. Ảnh trong thư viện hiển thị nguyên khung, không cắt nội dung chứng nhận hoặc sơ đồ.
 
+Phần dự án dùng hai cột rộng trên máy tính và một cột trên điện thoại, với dự án đầu tiên được làm nổi bật. Bảy dự án hiện có được thiết kế minh họa ý tưởng riêng bằng SVG; hình gắn với mã dự án nên không bị đổi nhầm khi sắp xếp lại. Minh họa là đồ họa trang trí, không phải ảnh chụp sản phẩm hoặc số liệu thực nghiệm. Khi thêm ảnh thật trong Quản trị, ảnh được ưu tiên hiển thị; dự án mới chưa có ảnh dùng minh họa trung tính. Bộ lọc trên điện thoại xếp thành hai hàng cân đối.
+
 Chữ trên website dùng Be Vietnam Pro nhất quán: giới thiệu và nội dung chi tiết 17 px trên máy tính / 16 px trên điện thoại, mô tả thẻ 16 px / 15 px, nhãn quan trọng 12–14 px. Tiêu đề có độ đậm và khoảng cách chữ riêng để dấu tiếng Việt rõ, không tăng đồng loạt mọi thành phần. Kích thước nội dung dùng đơn vị rem; menu chuyển sang dạng thu gọn ở màn hình từ 1100 px trở xuống để giữ chữ dễ đọc. Thiết lập font của công cụ build CV và CV A4 không bị thay đổi.
 
 ## Nơi Chỉnh Nội Dung
