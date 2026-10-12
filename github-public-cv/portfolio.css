@@ -8,8 +8,8 @@
   --gold: #966b2b;
   --font-body: "Be Vietnam Pro", "Roboto", sans-serif;
   --mono: var(--font-body);
-  --text-body: 1.0625rem;
-  --text-card: 1rem;
+  --text-body: 1.125rem;
+  --text-card: 1.0625rem;
   --text-small: .875rem;
   --text-meta: .8125rem;
   --text-caption: .75rem;
@@ -386,6 +386,41 @@ figcaption { font-size: var(--text-meta); color: var(--muted); margin-top: 10px;
 .contact-email { letter-spacing: -.015em; }
 .button-primary, .button-light { box-shadow: 0 4px 10px #173d3214; }
 .footer { padding-block: 30px; }
+/* Small, consistent symbols and warm/cool accents preserve the reading hierarchy. */
+.ui-icon { width: 21px; height: 21px; flex-shrink: 0; vertical-align: middle; }
+.section-eyebrow > .ui-icon { width: 42px; height: 42px; padding: 10px; border-radius: 13px; color: #28634e; background: #dcebdd; }
+.section-eyebrow > span { border: 0; width: auto; height: auto; font-size: 12px; }
+#projects .section-eyebrow > .ui-icon { color: #326580; background: #d9eaf0; }
+#experience .section-eyebrow > .ui-icon { color: #98522e; background: #f5e2d5; }
+#awards .section-eyebrow > .ui-icon { color: #87591d; background: #f7e7bc; }
+#skills .section-eyebrow > .ui-icon { color: #e4f5ce; background: #ffffff14; }
+#contact .section-eyebrow > .ui-icon { color: #466084; background: #e3eaf5; }
+.hero::before { background: radial-gradient(ellipse at 80% 25%, #d8e8ef90, transparent 60%), radial-gradient(ellipse at 10% 65%, #f6dfb990, transparent 65%); }
+.hero-focus { text-decoration: underline; text-decoration-color: #d6b36d70; text-decoration-thickness: 5px; text-underline-offset: 9px; }
+.stats strong { color: #28634e; }
+.stats > div:nth-child(2) strong { color: #326580; }
+.stats > div:nth-child(3) strong { color: #94652e; }
+.education-card { background: linear-gradient(135deg, #f0f4e8, #f9efd9); border-top-color: #c6a15e; }
+.projects-section { background-color: #f0f3ed; background-image: radial-gradient(ellipse at 100% 0%, #d7e8f180, transparent 55%), radial-gradient(ellipse at 0% 90%, #f3e4c780, transparent 45%); }
+.project-filters button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.project-filters .ui-icon { width: 17px; height: 17px; }
+.project-card.category-engineering { border-top: 3px solid #689675; }
+.project-card.category-research { border-top: 3px solid #659bb2; }
+.project-card.category-ai { border-top: 3px solid #cd9661; }
+.category-research .tags li { background: #edf4f7; border-color: #d4e2ea; color: #345e70; }
+.category-ai .tags li { background: #fcf2e7; border-color: #edddc9; color: #805b32; }
+.skill-card { background: linear-gradient(145deg, #37675150, #ffffff04); border-top: 2px solid #a7cc8b; }
+.skill-card:nth-child(2) { background: linear-gradient(145deg, #416f8255, #ffffff04); border-top-color: #91c9da; }
+.skill-card:nth-child(3) { background: linear-gradient(145deg, #88703940, #ffffff04); border-top-color: #e0c285; }
+.skill-card:nth-child(4) { background: linear-gradient(145deg, #875d4c40, #ffffff04); border-top-color: #e4b096; }
+.skill-symbol { display: inline-grid; place-items: center; width: 46px; height: 46px; border-radius: 13px; margin-bottom: 20px; background: #d9eeb61a; color: #d9eeb6; }
+.skill-symbol .ui-icon { width: 25px; height: 25px; }
+.skill-card:nth-child(2) .skill-symbol { color: #b7e2f0; background: #b7e2f015; }
+.skill-card:nth-child(3) .skill-symbol { color: #f4d69a; background: #f4d69a15; }
+.skill-card:nth-child(4) .skill-symbol { color: #f5c4ac; background: #f5c4ac15; }
+.award-item { background: linear-gradient(120deg, #fffdf7, #faf1df); border-left-color: #c49a51; }
+.certificate-image { background: radial-gradient(ellipse at top left, #f8ecd2, transparent 70%), #e9eee5; }
+.contact-section { background: radial-gradient(ellipse at 95% 10%, #d8e7f0, transparent 55%), linear-gradient(120deg, #ecf1df, #f7eedc); }
 @media (prefers-reduced-motion: no-preference) {
   .project-body h3 a > span { transition: transform .2s; }
   .project-card:hover h3 a > span { transform: translate(2px, -2px); }
@@ -458,7 +493,7 @@ figcaption { font-size: var(--text-meta); color: var(--muted); margin-top: 10px;
   .related-grid .project-card .media-placeholder { grid-template-columns: 1fr 1.3fr; padding: 18px; }
 }
 @media (max-width: 640px) {
-  :root { --text-body: 1rem; --text-card: .9375rem; }
+  :root { --text-body: 1.0625rem; --text-card: 1rem; }
   html { scroll-padding-top: 100px; }
   .container { width: calc(100% - 36px); }
   .nav-inner { width: calc(100% - 36px); gap: 7px; }

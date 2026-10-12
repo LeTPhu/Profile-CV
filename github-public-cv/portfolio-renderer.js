@@ -310,6 +310,23 @@
       return `<footer class="footer container"><div><a class="footer-brand" href="${prefix + (lang === "en" ? "en/" : "./")}">${esc(data.profile.name)}<span aria-hidden="true">.</span></a><p>${esc(l.footer)}</p></div><div class="footer-right"><a href="${esc(data.profile.github)}" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="${esc(prefix + data.profile.pdf)}" download>${esc(l.pdf)} ↓</a><a href="${prefix}admin/">${lang === "vi" ? "Quản trị" : "Manage"}</a><small>${esc(l.lastUpdate)}: ${updated} · ${esc(l.snapshot)}</small></div></footer>`;
     }
 
+    function icon(name) {
+      const paths = {
+        person: '<circle cx="12" cy="8" r="3"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/>',
+        all: '<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/>',
+        engineering: '<path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-14-2 18"/>',
+        research: '<path d="M9 3h6m-5 0v7L4 20q0 1 2 1h12q2 0 2-1l-6-10V3M7 16h10"/>',
+        ai: '<rect x="6" y="6" width="12" height="12" rx="3"/><path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4"/><circle cx="12" cy="12" r="2"/>',
+        journey: '<rect x="3" y="7" width="18" height="14" rx="3"/><path d="M8 7V4h8v3M3 12q9 6 18 0m-9 1v4"/>',
+        award: '<path d="M8 3h8v7a4 4 0 0 1-8 0V3Zm0 2H4v3a4 4 0 0 0 4 4m8-7h4v3a4 4 0 0 1-4 4m-4 2v6m-4 1h8"/>',
+        mail: '<rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/>',
+        agent: '<circle cx="12" cy="12" r="4"/><circle cx="4" cy="4" r="2"/><circle cx="20" cy="4" r="2"/><circle cx="12" cy="21" r="2"/><path d="m6 6 3 3m6 0 3-3m-6 10v3"/>',
+        data: '<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/>',
+      };
+      const drawing = Object.prototype.hasOwnProperty.call(paths, name) ? paths[name] : paths.all;
+      return `<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${drawing}</svg>`;
+    }
+
     function sectionHeading(number, eyebrow, title, description = "") {
       const id = {
         "01": "about-heading",
@@ -319,7 +336,8 @@
         "05": "awards-heading",
         "06": "contact-heading",
       }[number];
-      return `<div class="section-heading"><p class="section-eyebrow"><span>${number}</span> ${esc(eyebrow)}</p><h2 id="${id}">${esc(title)}</h2>${description ? `<p class="section-description">${esc(description)}</p>` : ""}</div>`;
+      const symbol = { "01": "person", "02": "all", "03": "journey", "04": "ai", "05": "award", "06": "mail" }[number];
+      return `<div class="section-heading"><p class="section-eyebrow">${icon(symbol)}<span>${number}</span> ${esc(eyebrow)}</p><h2 id="${id}">${esc(title)}</h2>${description ? `<p class="section-description">${esc(description)}</p>` : ""}</div>`;
     }
 
     function projectCard(project, index, lang, prefix, compact = false) {
@@ -420,7 +438,7 @@
     <section id="projects" class="section projects-section" aria-labelledby="projects-heading"><div class="container">
       ${sectionHeading("02", l.selected, l.projectIntro, l.projectSub)}
       <div class="project-toolbar"><div class="project-filters" role="group" aria-label="${lang === "vi" ? "Lọc dự án" : "Filter projects"}" hidden>
-      ${["all", "engineering", "research", "ai"].map((filter) => `<button type="button" data-filter="${filter}" aria-pressed="${filter === "all"}">${esc(l[filter])}</button>`).join("")}</div><p id="filter-count" class="filter-count" role="status" aria-live="polite" data-result-label="${esc(l.resultCount)}">${data.projects.length} ${esc(l.resultCount)}</p></div>
+      ${["all", "engineering", "research", "ai"].map((filter) => `<button type="button" data-filter="${filter}" aria-pressed="${filter === "all"}">${icon(filter)}${esc(l[filter])}</button>`).join("")}</div><p id="filter-count" class="filter-count" role="status" aria-live="polite" data-result-label="${esc(l.resultCount)}">${data.projects.length} ${esc(l.resultCount)}</p></div>
       <div class="project-grid">${data.projects.map((p, i) => projectCard(p, i, lang, prefix)).join("")}</div>
       <p id="no-projects" hidden>${esc(l.noResult)}</p>
     </div></section>
@@ -430,7 +448,7 @@
     </section>
     <section id="skills" class="section skills-section" aria-labelledby="skills-heading"><div class="container">
       ${sectionHeading("04", l.skills, l.skillsTitle)}
-      <div class="skills-grid">${data.skills.map((skill, i) => `<article class="skill-card"><span class="skill-number">0${i + 1}</span><h3>${esc(skill.name)}</h3><p>${esc(t(skill.description, lang))}</p>${tagList(skill.items, lang)}</article>`).join("")}</div>
+      <div class="skills-grid">${data.skills.map((skill, i) => `<article class="skill-card"><div class="skill-symbol">${icon(({ "AI / ML": "ai", "AI Agent / LLM": "agent", "Full-stack": "engineering", "Data / DevOps / QA": "data" })[skill.name])}</div><span class="skill-number">0${i + 1}</span><h3>${esc(skill.name)}</h3><p>${esc(t(skill.description, lang))}</p>${tagList(skill.items, lang)}</article>`).join("")}</div>
       <div class="toolbox"><h3>${esc(l.tools)}</h3>${tagList(data.tools, lang)}<p class="language-note"><strong>${esc(l.english)}:</strong> ${esc(t(data.english, lang))}</p></div>
     </div></section>
     <section id="awards" class="section container awards-section" aria-labelledby="awards-heading">
@@ -578,7 +596,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="${prefix}portfolio.css?v=20261010-1" />
+  <link rel="stylesheet" href="${prefix}portfolio.css?v=20261012-1" />
   <script type="application/ld+json">${JSON.stringify(schema).replace(/</g, "\\u003c")}</script>
   <script src="${prefix}portfolio.js?v=20261009-4" defer></script>
 </head>
