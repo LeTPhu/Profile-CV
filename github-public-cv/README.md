@@ -214,11 +214,11 @@ Cửa sổ xem ảnh tham khảo [W3C Modal Dialog Pattern](https://www.w3.org/W
 
 ## Bộ Ảnh Bìa Dự Án
 
-Bảy ảnh trong `assets/project-covers/` được tạo bằng công cụ ImageGen tích hợp ngày 12/10/2026, theo nội dung từng dự án trong dữ liệu CV. Đây là **minh họa ý tưởng bằng AI**, không phải ảnh giao diện, sơ đồ kiến trúc chính thức hay kết quả thực nghiệm. Nhãn và mô tả thay thế có cả tiếng Việt và tiếng Anh.
+Bảy ảnh bìa đang sử dụng trong `assets/project-covers/` được tạo bằng công cụ ImageGen tích hợp ngày 13/10/2026, theo nội dung từng dự án trong dữ liệu CV. Bản `concept-v2.webp` dùng đồ họa công nghệ 2D, nền xanh đậm và điểm nhấn cyan/xanh lá. Đây là **minh họa ý tưởng bằng AI**, không phải ảnh giao diện, sơ đồ kiến trúc chính thức hay kết quả thực nghiệm. Nhãn và mô tả thay thế có cả tiếng Việt và tiếng Anh.
 
-Ảnh WebP 1200 × 800 được tối ưu dung lượng và hiển thị trọn vẹn. Trang chi tiết ưu tiên tải ảnh bìa, thẻ dự án tải ảnh khi gần vùng nhìn thấy. Nếu tải lỗi, trang trở về minh họa SVG dự phòng. Có thể thay ảnh trong quản trị như bình thường; nhãn AI chỉ áp dụng cho bộ tài nguyên có đường dẫn `assets/project-covers/*-concept-v1.webp`.
+Ảnh WebP 1200 × 800 được tối ưu dung lượng và hiển thị trọn vẹn. Trang chi tiết ưu tiên tải ảnh bìa, thẻ dự án tải ảnh khi gần vùng nhìn thấy. Nếu tải lỗi, trang trở về minh họa SVG dự phòng. Có thể thay ảnh trong quản trị như bình thường; nhãn AI áp dụng cho các tài nguyên `assets/project-covers/*-concept-v1.webp` và `*-concept-v2.webp`. Bản cũ được giữ lại để chủ sở hữu có thể chọn lại khi cần.
 
-Toàn bộ prompt tạo ảnh được lưu tại `../scripts/project-cover-prompts.json`. Khi thay nội dung dự án đáng kể, cần cập nhật ảnh tương ứng thay vì tiếp tục dùng minh họa không còn phù hợp.
+Prompt bộ ảnh hiện tại được lưu tại `../scripts/project-cover-prompts-v2.json`; prompt bản cũ ở `../scripts/project-cover-prompts.json`. Khi thay nội dung dự án đáng kể, cần cập nhật ảnh tương ứng thay vì tiếp tục dùng minh họa không còn phù hợp.
 
 ## Gắn Vào Profile GitHub
 
