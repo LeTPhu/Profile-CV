@@ -637,6 +637,20 @@ figcaption { font-size: var(--text-meta); color: var(--muted); margin-top: 10px;
   .project-card:first-child .media-label { max-width: 130px; }
   .project-card:first-child .field-illustration svg { max-height: 140px; }
 }
+/* Preserve the complete artwork instead of cropping the project subject. */
+.project-card .media--concept.has-image,
+.related-grid .project-card:first-child .media--concept.has-image,
+.project-grid.is-filtered .project-card:first-child .media--concept.has-image {
+  aspect-ratio: 3 / 2; height: auto; min-height: 0; background: #eee7da;
+}
+.project-grid:not(.is-filtered) > .project-card:first-child .media--concept.has-image { height: 100%; }
+.media--concept.has-image img { object-fit: contain; }
+.media--cover.media--concept.has-image { aspect-ratio: auto; height: clamp(220px, 40vw, 460px); background: #eee7da; }
+.concept-label { display: none; }
+.has-image > .concept-label { display: block; position: absolute; bottom: 10px; right: 10px; padding: 4px 9px; border: 1px solid #ddd5c5; border-radius: 6px; background: #fffdf6ed; color: #48584b; font-size: 11px; line-height: 1.5; pointer-events: none; }
+@media (max-width: 640px) {
+  .project-grid:not(.is-filtered) > .project-card:first-child .media--concept.has-image { height: auto; }
+}
 @media print {
   @page { size: A4; margin: 14mm; }
   body { background: white; font-size: 11px; color: #1d332b; }

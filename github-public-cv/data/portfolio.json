@@ -166,7 +166,7 @@
       "result": { "vi": "Mốc QA ghi trong CV: 03/10/2026. Repository ghi nhận 4/4 CI jobs PASS, matrix 416 PASS và Product Surface A-F strict 24/24 PASS.", "en": "QA checkpoint recorded in the CV: 3 October 2026. The repository recorded 4/4 passing CI jobs, a matrix of 416 PASS and Product Surface A-F strict 24/24 PASS." },
       "technologies": ["Vue 3", "TypeScript", "Fastify", "Prisma", "PostgreSQL", "Socket.IO", "Redis / BullMQ", "MinIO / S3", "Docker"],
       "repository": "",
-      "image": { "src": "", "alt": { "vi": "Ảnh giao diện AIOCRM", "en": "AIOCRM interface screenshot" } },
+      "image": {"src":"assets/project-covers/aiocrm-concept-v1.webp","alt":{"vi":"Minh họa ý tưởng bằng AI: kết nối khách hàng, hội thoại, công việc và hóa đơn. Không phải ảnh giao diện hoặc kết quả thực nghiệm.","en":"AI-generated concept illustration: customers, conversations, work and invoices connected. Not an interface screenshot or experimental result."},"position":"50% 50%"},
       "gallery": []
     },
     {
@@ -192,7 +192,7 @@
       "result": { "vi": "Phạm vi được ghi nhận là thực hành kỹ thuật và hạ tầng cá nhân.", "en": "The recorded scope is technical practice and personal infrastructure." },
       "technologies": ["OpenClaw", "9router", "Ubuntu / VPS", "Multi-provider APIs", "Tool Calling"],
       "repository": "",
-      "image": { "src": "", "alt": { "vi": "Ảnh luồng agent và provider", "en": "Agent and provider workflow image" } },
+      "image": {"src":"assets/project-covers/openclaw-9router-concept-v1.webp","alt":{"vi":"Minh họa ý tưởng bằng AI: điều phối agent và nhiều nhà cung cấp mô hình. Không phải ảnh giao diện hoặc kết quả thực nghiệm.","en":"AI-generated concept illustration: agent orchestration and multiple model providers. Not an interface screenshot or experimental result."},"position":"50% 50%"},
       "gallery": []
     },
     {
@@ -220,7 +220,7 @@
       "result": { "vi": "Nghiên cứu học thuật; CV không công bố một điểm benchmark tổng hợp cho dự án.", "en": "Academic research; the CV does not report an overall benchmark score for this project." },
       "technologies": ["Log-Mel", "CRNN", "ATST-SED", "Google Colab", "BEATs", "CLAP"],
       "repository": "",
-      "image": { "src": "", "alt": { "vi": "Ảnh spectrogram hoặc timeline sự kiện âm thanh", "en": "Spectrogram or audio event timeline" } },
+      "image": {"src":"assets/project-covers/sound-event-detection-concept-v1.webp","alt":{"vi":"Minh họa ý tưởng bằng AI: dạng sóng, phổ âm và các khoảng sự kiện âm thanh. Không phải ảnh giao diện hoặc kết quả thực nghiệm.","en":"AI-generated concept illustration: waveform, spectrogram and audio event intervals. Not an interface screenshot or experimental result."},"position":"50% 50%"},
       "gallery": []
     },
     {
@@ -244,7 +244,7 @@
       "result": { "vi": "CV ghi nhận mức tăng +13.80 điểm phần trăm trong thiết lập đánh giá nêu trên; số liệu không được trình bày như một kết quả tổng quát cho mọi benchmark.", "en": "The CV records an increase of +13.80 percentage points in that evaluation setup; these figures are not presented as a general result across benchmarks." },
       "technologies": ["Multimodal VQA", "Modality Dropout", "Knowledge Distillation", "Quality Gate", "Missing Tokens"],
       "repository": "",
-      "image": { "src": "", "alt": { "vi": "Ảnh kết quả đánh giá QA-TIGER", "en": "QA-TIGER evaluation results" } },
+      "image": {"src":"assets/project-covers/qa-tiger-concept-v1.webp","alt":{"vi":"Minh họa ý tưởng bằng AI: hỏi đáp đa phương thức khi thiếu thông tin hình ảnh. Không phải ảnh giao diện hoặc kết quả thực nghiệm.","en":"AI-generated concept illustration: multimodal question answering with missing visual information. Not an interface screenshot or experimental result."},"position":"50% 50%"},
       "gallery": []
     },
     {
@@ -270,7 +270,7 @@
       "result": { "vi": "13 test case chức năng được ghi nhận trong báo cáo của prototype.", "en": "13 functional test cases recorded in the prototype report." },
       "technologies": ["FastAPI", "SQLModel", "SQLite", "RBAC", "Rule-based Classification"],
       "repository": "",
-      "image": { "src": "", "alt": { "vi": "Ảnh giao diện AI Helpdesk", "en": "AI Helpdesk interface screenshot" } },
+      "image": {"src":"assets/project-covers/ai-helpdesk-concept-v1.webp","alt":{"vi":"Minh họa ý tưởng bằng AI: phân loại ticket, hỗ trợ IT, SLA và phân quyền. Không phải ảnh giao diện hoặc kết quả thực nghiệm.","en":"AI-generated concept illustration: ticket categorization, IT support, SLA and access control. Not an interface screenshot or experimental result."},"position":"50% 50%"},
       "gallery": []
     },
     {
@@ -288,7 +288,7 @@
       "result": { "vi": "Phạm vi ứng dụng: văn bản hành chính tiếng Việt.", "en": "Application scope: Vietnamese administrative documents." },
       "technologies": ["PaddleOCR", "VietOCR", "RAG", "LLM"],
       "repository": "",
-      "image": { "src": "", "alt": { "vi": "Ảnh giao diện hỏi đáp văn bản", "en": "Document Q&A interface screenshot" } },
+      "image": {"src":"assets/project-covers/ocr-rag-concept-v1.webp","alt":{"vi":"Minh họa ý tưởng bằng AI: trích xuất văn bản, truy xuất tài liệu và hỏi đáp. Không phải ảnh giao diện hoặc kết quả thực nghiệm.","en":"AI-generated concept illustration: text extraction, document retrieval and question answering. Not an interface screenshot or experimental result."},"position":"50% 50%"},
       "gallery": []
     },
     {
@@ -312,7 +312,7 @@
       "result": { "vi": "Giải Ba Cuộc thi AI NTTU 2024; Top 5 chung kết, Giải Khuyến khích và Top 5 sản phẩm phổ biến nhất tại DSC UIT 2024.", "en": "Third Prize in NTTU AI Competition 2024; Top 5 finalists, Consolation Prize and Top 5 most popular products at DSC UIT 2024." },
       "technologies": ["MobileNetV2", "Bi-LSTM", "Computer Vision", "Video"],
       "repository": "https://github.com/LeTPhu/Violence-Detection",
-      "image": { "src": "", "alt": { "vi": "Ảnh giao diện phát hiện bạo lực", "en": "Violence detection interface screenshot" } },
+      "image": {"src":"assets/project-covers/violence-detection-concept-v1.webp","alt":{"vi":"Minh họa ý tưởng bằng AI: chuỗi khung hình video và cảnh báo hành vi. Không phải ảnh giao diện hoặc kết quả thực nghiệm.","en":"AI-generated concept illustration: video frame sequences and behavioral alerts. Not an interface screenshot or experimental result."},"position":"50% 50%"},
       "gallery": []
     }
   ]

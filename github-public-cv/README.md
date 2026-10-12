@@ -212,6 +212,14 @@ Cấu trúc trang và mô tả ảnh tham khảo hướng dẫn [W3C về cấu 
 
 Cửa sổ xem ảnh tham khảo [W3C Modal Dialog Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) và [MDN về dialog](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog). Việc trì hoãn tải ảnh ngoài màn hình tham khảo [web.dev về native lazy loading](https://web.dev/articles/browser-level-image-lazy-loading). Các minh họa mạng/nút trong dự án là đồ họa trang trí, được ghi rõ là minh họa lĩnh vực, không phải ảnh chụp một sản phẩm đã triển khai.
 
+## Bộ Ảnh Bìa Dự Án
+
+Bảy ảnh trong `assets/project-covers/` được tạo bằng công cụ ImageGen tích hợp ngày 12/10/2026, theo nội dung từng dự án trong dữ liệu CV. Đây là **minh họa ý tưởng bằng AI**, không phải ảnh giao diện, sơ đồ kiến trúc chính thức hay kết quả thực nghiệm. Nhãn và mô tả thay thế có cả tiếng Việt và tiếng Anh.
+
+Ảnh WebP 1200 × 800 được tối ưu dung lượng và hiển thị trọn vẹn. Trang chi tiết ưu tiên tải ảnh bìa, thẻ dự án tải ảnh khi gần vùng nhìn thấy. Nếu tải lỗi, trang trở về minh họa SVG dự phòng. Có thể thay ảnh trong quản trị như bình thường; nhãn AI chỉ áp dụng cho bộ tài nguyên có đường dẫn `assets/project-covers/*-concept-v1.webp`.
+
+Toàn bộ prompt tạo ảnh được lưu tại `../scripts/project-cover-prompts.json`. Khi thay nội dung dự án đáng kể, cần cập nhật ảnh tương ứng thay vì tiếp tục dùng minh họa không còn phù hợp.
+
 ## Gắn Vào Profile GitHub
 
 Trong **Edit profile**, điền ô **Website** bằng `https://letphu.github.io/Profile-CV/`. Có thể ghim repository **Profile-CV** hoặc thêm link vào README profile:

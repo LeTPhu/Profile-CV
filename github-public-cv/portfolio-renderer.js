@@ -263,8 +263,11 @@
     ) {
       const hasImage = Boolean(image?.src);
       const illustrated = ["project", "cover"].includes(kind);
-      return `<div class="media media--${kind}${hasImage ? " has-image" : ""}" data-media>
-    ${hasImage ? `<img src="${esc(prefix + image.src)}" alt="${esc(t(image.alt, lang))}" ${kind === "portrait" ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async" style="object-position:${esc(image.position || "50% 50%")}" />` : ""}
+      // Identify our bundled artwork by its asset path; uploaded screenshots stay unlabelled.
+      const concept = illustrated && /^assets\/project-covers\/[a-z0-9-]+-concept-v1\.webp$/.test(image?.src || "");
+      return `<div class="media media--${kind}${concept ? " media--concept" : ""}${hasImage ? " has-image" : ""}" data-media>
+    ${hasImage ? `<img src="${esc(prefix + image.src)}" alt="${esc(t(image.alt, lang))}" ${kind === "portrait" || kind === "cover" ? 'fetchpriority="high"' : 'loading="lazy"'} ${concept ? 'width="1200" height="800"' : ""} decoding="async" style="object-position:${esc(image.position || "50% 50%")}" />` : ""}
+    ${concept ? `<span class="concept-label">${lang === "vi" ? "Minh họa AI" : "AI illustration"}</span>` : ""}
     <div class="media-placeholder"${hasImage ? " hidden" : ""}>
       <span class="media-index" aria-hidden="true">${kind === "portrait" ? "PERSONAL / 01" : "PROJECT / " + number}</span>
       <div class="media-mark${illustrated ? " field-illustration" : ""}" aria-hidden="true">${kind === "portrait" ? esc(data.profile.initials) : illustrated ? projectIllustration(project) : "<span></span><span></span><span></span>"}</div>
@@ -596,7 +599,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="${prefix}portfolio.css?v=20261012-1" />
+  <link rel="stylesheet" href="${prefix}portfolio.css?v=20261012-2" />
   <script type="application/ld+json">${JSON.stringify(schema).replace(/</g, "\\u003c")}</script>
   <script src="${prefix}portfolio.js?v=20261009-4" defer></script>
 </head>

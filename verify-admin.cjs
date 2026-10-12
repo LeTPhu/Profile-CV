@@ -28,11 +28,9 @@ module.exports = async (browser, baseURL) => {
     refuseWrites = false,
     jsonCommit,
     blobCommit;
-  const tree = fs
-    .readdirSync(path.join(__dirname, "github-public-cv/assets/certificates"))
-    .filter((x) => /\.jpg$/.test(x))
-    .map((x) => ({
-      path: "github-public-cv/assets/certificates/" + x,
+  const tree = [...new Set(Model.images(Model.normalize(source)).map(image => image.src).filter(Boolean))]
+    .map((asset) => ({
+      path: "github-public-cv/" + asset,
       type: "blob",
     }));
   tree.push({ path: "github-public-cv/" + source.profile.pdf, type: "blob" });

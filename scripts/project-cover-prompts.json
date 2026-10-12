@@ -1,0 +1,44 @@
+[
+  {
+    "id": "aiocrm",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: stylized-concept. Create one premium editorial 3D illustration for a personal engineering portfolio project cover, landscape 3:2 composition. Multichannel CRM and business operations. A central sculptural customer contact card connected to three small conversation bubbles, an orderly kanban-like group of task tiles and a simple invoice sheet. Focus on connecting people, conversations and work. Forest green and sage, small warm gold accents. Art direction: sophisticated tactile clay and matte ceramic forms, frosted translucent glass accents, precise rounded edges, soft studio daylight, gentle ambient shadows, subtle paper grain background, polished designer-crafted still life. Restrained detail, recognizable strong silhouettes, centered composition all important objects inside central 70% so it can crop to wide card or square. Fill composition confidently, not tiny floating objects in huge empty space. Background pale warm ivory with very subtle palette gradient. No words, no letters, no logos, no watermarks, no UI screenshot, no invented statistics. This is clearly a conceptual illustration, not an actual software product screenshot.",
+    "file": "github-public-cv/assets/project-covers/aiocrm-concept-v1.webp"
+  },
+  {
+    "id": "openclaw-9router",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: stylized-concept. One premium editorial 3D illustration, landscape 3:2, for an engineering portfolio cover. Multi-provider AI agent routing on a personal Ubuntu VPS. A central elegant routing hub on a small server plinth, luminous paths branching to several distinct model nodes with simple geometric cores, a tool-shaped small node. Focus on orchestration and routing, not robots. Deep evergreen with cyan and pale mint accents. Sophisticated tactile matte ceramic forms, frosted glass panels and subtle metallic connections, soft studio daylight, gentle ambient shadows, warm ivory paper-grain backdrop. Designer-crafted technical still life, visual hierarchy, strong readable silhouettes. Center objects within central 75%, sufficient margins for responsive cards. Match a green/cream portfolio with gold accents. No text, letters, logos, watermarks, UI screenshots, fake statistics. Clearly conceptual artwork.",
+    "file": "github-public-cv/assets/project-covers/openclaw-9router-concept-v1.webp"
+  },
+  {
+    "id": "sound-event-detection",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: stylized-concept. One premium editorial 3D illustration, landscape 3:2, for an engineering portfolio cover. Audio event detection research. A beautifully sculpted audio waveform ribbon alongside a translucent time-frequency spectrogram plane and three separated onset-offset event bars. Abstract conceptual audio analysis, no measured results, no axes or numerical data. Teal and muted azure with amber highlights. Sophisticated tactile matte ceramic and frosted glass forms, soft studio daylight, gentle shadows, pale warm ivory paper backdrop. A sculptural audio analysis still life, tasteful restrained scientific aesthetic, no decorative plants. Centered main objects in central 75%, sufficient margins, clear at thumbnail size. Match a green/cream portfolio. No words, letters, logos, watermarks, fake UI screenshot or statistical claims. Clearly conceptual visualization, not real inference results.",
+    "file": "github-public-cv/assets/project-covers/sound-event-detection-concept-v1.webp"
+  },
+  {
+    "id": "qa-tiger",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: stylized-concept. One premium editorial 3D illustration, landscape 3:2, for engineering portfolio cover. Multimodal visual question answering robustness under missing visual input. A floating image tile with a simple landscape, a question bubble, a second image tile partly fragmented into small empty squares, connected to one stable answer node. Conceptual resilience to missing modality, NOT a tiger animal. Muted blue and deep teal with apricot accents. Sophisticated tactile matte ceramic and frosted glass, thin brass connectors, soft studio daylight and gentle ambient shadows, warm ivory paper backdrop. Designer-crafted scientific still life, strong clear forms, no plants. Balanced centered composition with important objects within central 75%. No words, letters, numbers, logos, watermarks, fake screenshots or statistical results. Question mark pictogram allowed. Clearly conceptual research artwork.",
+    "file": "github-public-cv/assets/project-covers/qa-tiger-concept-v1.webp"
+  },
+  {
+    "id": "ai-helpdesk",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: stylized-concept. One premium editorial 3D illustration, landscape 3:2, engineering portfolio project cover. Enterprise IT support ticket management prototype, using RULE-BASED category suggestions. A beautiful headset placed beside layered ticket-shaped cards routing into three tidy trays, with a small clock and a small shield/key shape suggesting SLA and role-based access. Do not depict a robot or neural brain. Forest green and warm ivory with amber details. Sophisticated tactile matte ceramic forms and frosted glass accents, small brass details, soft studio daylight, gentle shadows, warm ivory paper backdrop. Designer-crafted technical still life with restrained detail, clear silhouettes. Center key objects in central 75%, sufficient margins for responsive use. No words, letters, logos, watermarks, interface screenshots, made-up metrics. No robot, no brain, no futuristic neural AI core. Clearly conceptual support workflow.",
+    "file": "github-public-cv/assets/project-covers/ai-helpdesk-concept-v1.webp"
+  },
+  {
+    "id": "ocr-rag",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: stylized-concept. One premium editorial 3D illustration, landscape 3:2, engineering portfolio project cover. Vietnamese administrative document OCR and retrieval augmented question answering. Three layered paper sheets with abstract typographic lines, a subtle scanning light plane, small extracted document blocks flowing through a retrieval lens into a conversation bubble. No legible text, no seals, no fake government branding. Warm parchment, terracotta and forest green. Sophisticated tactile matte paper and ceramic shapes, frosted glass scanning plane and retrieval lens, restrained brass connections, soft studio daylight, ambient shadows, pale warm ivory background. Designer-crafted still life showing document extraction to retrieval to response, clear at thumbnail size. Center composition with comfortable margins. No words, letters, logos, watermarks, fake screenshots, real government seals, made-up metrics. Clearly conceptual artwork.",
+    "file": "github-public-cv/assets/project-covers/ocr-rag-concept-v1.webp"
+  },
+  {
+    "id": "violence-detection",
+    "tool": "built-in image_gen",
+    "prompt": "Use case: stylized-concept. One premium editorial 3D illustration, landscape 3:2, engineering portfolio project cover. Video-based violence detection and early warning, spatial and temporal features. Three gently offset video frame panels showing anonymous neutral human silhouettes in a public space, connected by temporal feature beads, a small amber warning shield beside them. Non-graphic, no weapons, no injuries, no surveillance targeting identifiable people, no fake accuracy metrics. Warm ivory, terracotta and deep teal. Sophisticated tactile matte ceramic frame structures, frosted glass and minimal brass connections, soft studio daylight, gentle shadows, warm ivory backdrop. Designer-crafted technical still life, no plants, strong silhouette, clear at small size. Anonymous stylized human figures, temporal sequence clearly depicted, conceptual alert pictogram. Center key objects with comfortable margins. No words, numbers, logos, watermarks, fake UI screenshots, accuracy scores or fabricated test outputs. Clearly concept art not actual footage.",
+    "file": "github-public-cv/assets/project-covers/violence-detection-concept-v1.webp"
+  }
+]

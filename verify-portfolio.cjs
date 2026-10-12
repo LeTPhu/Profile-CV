@@ -21,6 +21,22 @@ module.exports = async (browser, baseURL) => {
   assert.match(await page.locator(".hero-summary").textContent(), /Nguyễn Tất Thành/);
   results.push("Real CV data and intentional photo placeholders");
 
+  for (const project of content.projects.filter(project => project.image.src.startsWith("assets/project-covers/"))) {
+    const image = page.locator(`.project-grid img[src$="${project.image.src}"]`);
+    await image.scrollIntoViewIfNeeded();
+    await image.evaluate(img => img.decode());
+    assert.equal(await image.evaluate(img => img.naturalWidth), 1200);
+    assert.equal(await image.evaluate(img => getComputedStyle(img).objectFit), "contain");
+    assert.match(await image.getAttribute("alt"), /Minh họa ý tưởng/);
+  }
+  const brokenArtwork = await browser.newPage();
+  await brokenArtwork.route("**/assets/project-covers/*", route => route.abort());
+  await brokenArtwork.goto(url + "projects/aiocrm.html?lang=vi");
+  await brokenArtwork.locator(".media--cover .media-placeholder").waitFor({ state: "visible" });
+  assert.equal(await brokenArtwork.locator(".media--cover .concept-label").isVisible(), false);
+  await brokenArtwork.close();
+  results.push("Seven decoded, uncropped concept covers and graceful failed-image fallback");
+
   const invalidLabels = await page.locator("[aria-labelledby]").evaluateAll(nodes => nodes.flatMap(node => node.getAttribute("aria-labelledby").split(/\s+/).filter(id => !document.getElementById(id))));
   assert.deepEqual(invalidLabels, []);
   const pages = [url, url + "en/", ...content.projects.flatMap(project => [url + "projects/" + project.id + ".html", url + "en/projects/" + project.id + ".html"])];
