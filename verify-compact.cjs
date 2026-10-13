@@ -67,6 +67,26 @@ module.exports = async (browser, baseURL) => {
       );
     }
     await page.setViewportSize({ width: 1024, height: 900 });
+    const paths = page.locator("[data-project-category]");
+    assert.equal(await paths.count(), 3);
+    for (const category of ["ai", "engineering", "research"]) {
+      const expected = source.projects.filter((project) => project.category === category).length;
+      const link = page.locator(`[data-project-category="${category}"]`);
+      assert.match(await link.textContent(), new RegExp(`\\b${expected}\\b`));
+      await link.focus();
+      await page.keyboard.press("Enter");
+      assert.equal(new URL(page.url()).hash, "#projects");
+      assert.equal(await page.locator(".project-grid .project-card:visible").count(), expected);
+      assert.equal(await page.locator(`[data-filter="${category}"]`).getAttribute("aria-pressed"), "true");
+      assert.equal(await page.evaluate(() => document.activeElement.dataset.filter), category);
+    }
+    await page.locator('[data-filter="all"]').click();
+    assert.equal(await page.locator(".project-grid .project-card:visible").count(), source.projects.length);
+    await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight));
+    await page.waitForFunction(() => Number(document.querySelector(".site-nav").style.getPropertyValue("--reading-progress")) === 1);
+    await page.evaluate(() => scrollTo(0, 0));
+    await page.waitForFunction(() => Number(document.querySelector(".site-nav").style.getPropertyValue("--reading-progress")) === 0);
+    assert.equal(await page.evaluate(() => document.getAnimations().length), 0, "Reduced motion disables reveal animations");
     await page.locator(".menu-toggle").click();
     assert.equal(
       await page.locator(".menu-toggle").getAttribute("aria-expanded"),
@@ -210,5 +230,21 @@ module.exports = async (browser, baseURL) => {
     "contain",
   );
   await context.close();
-  return "Larger bilingual reading sizes and responsive menu, long names at five widths, compact sections/covers, full-width filtered cards, no empty galleries/related section and uncropped real gallery images";
+  const fallbackContext = await browser.newContext({ locale: "vi-VN" });
+  await fallbackContext.addInitScript(() => { delete window.IntersectionObserver; });
+  const fallbackPage = await fallbackContext.newPage();
+  await fallbackPage.goto(url + "?lang=vi");
+  await fallbackPage.locator(".section-heading").first().scrollIntoViewIfNeeded();
+  assert.equal(await fallbackPage.locator(".section-heading").first().evaluate(element => getComputedStyle(element).opacity), "1", "Missing observer never hides content");
+  await fallbackContext.close();
+  const motionContext = await browser.newContext({ locale: "en-US", reducedMotion: "no-preference", viewport: { width: 390, height: 844 } });
+  const motionPage = await motionContext.newPage();
+  await motionPage.goto(url + "en/?lang=en");
+  await motionPage.locator("#skills").evaluate(element => element.scrollIntoView({ behavior: "instant" }));
+  await motionPage.waitForFunction(() => document.getAnimations().some(animation => animation.effect.target.matches(".skill-card, #skills .section-heading")));
+  await motionPage.emulateMedia({ reducedMotion: "reduce" });
+  await motionPage.waitForFunction(() => document.getAnimations().length === 0);
+  assert.equal(await motionPage.locator("#skills .section-heading").evaluate(element => getComputedStyle(element).opacity), "1", "Changing motion preference leaves complete content visible");
+  await motionContext.close();
+  return "Larger bilingual reading sizes and responsive menu, keyboard discipline shortcuts/counts, reading progress, reduced-motion/observer fallback, long names at five widths, compact sections/covers, full-width filtered cards, no empty galleries/related section and uncropped real gallery images";
 };

@@ -33,6 +33,19 @@ Trang portfolio tải Be Vietnam Pro từ `assets/fonts/be-vietnam-pro/`, có b�
 
 Kiểm tra cỡ chữ, tên dài và bố cục ở 320, 390, 768, 1024, 1440 px trong `verify-compact.cjs`. Kiểm tra toàn bộ tương tác, hai ngôn ngữ, ảnh lỗi, quản trị và bản in bằng `verify-all.cjs`. Việc kiểm tra này không phải chứng nhận khả năng tiếp cận toàn diện.
 
+### Dấu Ấn Thiết Kế Ngày 14/10/2026
+
+Đã xem giao diện thực tế của [Dennis Snellenberg](https://dennissnellenberg.com/), tìm hiểu các tương tác trên [Hakim El Hattab](https://hakim.se/), cùng hướng dẫn [NN/g về chuyển động có mục đích](https://www.nngroup.com/articles/animation-purpose-ux/) và [Josh Comeau về CSS transitions](https://www.joshwcomeau.com/animation/css-transitions/). Áp dụng vào portfolio này:
+
+- Tên và ảnh cá nhân làm trọng tâm. Khung ảnh bất đối xứng, lớp nền xanh chanh, hình quỹ đạo và dấu hình học được vẽ bằng CSS/SVG; ảnh gốc và vị trí ảnh do chủ hồ sơ chọn không bị sửa. Monogram lấy từ trường `profile.initials`; favicon LP được đồng bộ với hồ sơ hiện tại.
+- Ba lối khám phá AI ứng dụng, hệ thống/web và nghiên cứu có màu nhận diện riêng. Số lượng tính trực tiếp từ dữ liệu, chỉ hiện nhóm có dự án và bỏ toàn bộ khi ẩn phần dự án. Chọn một ô đưa đến bộ lọc tương ứng; thao tác bàn phím đưa focus đến nút lọc đã chọn. Khi không có JavaScript, liên kết vẫn dẫn đến danh sách đầy đủ.
+- Dự án đầu danh sách có nền xanh rừng và chữ sáng để tạo điểm nhấn. Chủ sở hữu thay thứ tự thì điểm nhấn theo thứ tự mới. Chế độ lọc và dự án liên quan dùng thẻ tiêu chuẩn; ảnh ghép logo công nghệ vẫn hiển thị đầy đủ.
+- Thanh tiến độ đọc ở mép menu phản ánh vị trí cuộn thực tế. Các khối nội dung mới xuất hiện có chuyển động ngắn một lần; phản hồi mũi tên gắn với hover/focus. Không có hiệu ứng chuyển động liên tục hoặc thay thế con trỏ.
+- Nội dung mặc định luôn hiển thị. Khi thiếu IntersectionObserver/Web Animations hoặc xem trước trong quản trị, trang vẫn đầy đủ. Thiết lập giảm chuyển động được tôn trọng cả lúc mở trang và khi người xem đổi thiết lập; hiệu ứng đang chạy được hủy.
+- Giữ hệ chữ lớn đã kiểm tra, bổ sung điểm nhấn icon ở kỹ năng và nền hình học ở liên hệ. Bản in bỏ các chi tiết trang trí/điều hướng mới và dùng chữ tối trên nền trắng cho dự án mở đầu.
+
+Các ca kiểm tra bổ sung xác minh lối khám phá bằng bàn phím ở cả hai ngôn ngữ, số lượng/bộ lọc đồng bộ, thanh tiến độ từ đầu đến cuối trang, phần ẩn/nhóm rỗng, giảm chuyển động và fallback khi không có observer hoặc JavaScript.
+
 ## Nơi Chỉnh Nội Dung
 
 ### Chỉnh Trực Tiếp Trên Website

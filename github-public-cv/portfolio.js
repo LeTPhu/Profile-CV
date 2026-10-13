@@ -27,22 +27,35 @@ window.matchMedia("(min-width: 1101px)").addEventListener("change", closeMenu);
 const filters = document.querySelector(".project-filters");
 if (filters) {
   filters.hidden = false;
-  filters.addEventListener("click", event => {
-    const button = event.target.closest("[data-filter]");
+  function selectProjectCategory(category) {
+    const button = [...filters.querySelectorAll("[data-filter]")].find(item => item.dataset.filter === category);
     if (!button) return;
     const grid = document.querySelector(".project-grid");
-    grid.classList.toggle("is-filtered", button.dataset.filter !== "all");
+    grid.classList.toggle("is-filtered", category !== "all");
     filters.querySelectorAll("button").forEach(item => item.setAttribute("aria-pressed", String(item === button)));
     let count = 0;
     document.querySelectorAll(".project-grid .project-card").forEach(card => {
-      const visible = button.dataset.filter === "all" || card.dataset.category === button.dataset.filter;
+      const visible = category === "all" || card.dataset.category === category;
       card.hidden = !visible;
       if (visible) count++;
     });
     const status = document.querySelector("#filter-count");
     status.textContent = count + " " + status.dataset.resultLabel;
     document.querySelector("#no-projects").hidden = count !== 0;
+  }
+  filters.addEventListener("click", event => {
+    const button = event.target.closest("[data-filter]");
+    if (button) selectProjectCategory(button.dataset.filter);
   });
+  document.querySelectorAll("[data-project-category]").forEach(link => link.addEventListener("click", event => {
+    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    selectProjectCategory(link.dataset.projectCategory);
+    if (location.hash !== "#projects") history.pushState(null, "", "#projects");
+    document.querySelector("#projects").scrollIntoView({ block: "start" });
+    // Native fragment navigation would otherwise discard the filter's keyboard focus.
+    filters.querySelector(`[data-filter="${link.dataset.projectCategory}"]`).focus({ preventScroll: true });
+  }));
 }
 
 const copyButton = document.querySelector("#copy-email");
@@ -226,7 +239,11 @@ if (document.body.dataset.page === "home") {
   let scheduled = false;
   function updateCurrentSection() {
     scheduled = false;
-    const offset = document.querySelector(".site-nav").getBoundingClientRect().height + 55;
+    const header = document.querySelector(".site-nav");
+    const offset = header.getBoundingClientRect().height + 55;
+    const scrollable = document.documentElement.scrollHeight - innerHeight;
+    const progress = scrollable > 0 ? Math.min(1, Math.max(0, scrollY / scrollable)) : 0;
+    header.style.setProperty("--reading-progress", String(progress));
     let current = "";
     sections.forEach(section => {
       if (section.getBoundingClientRect().top <= offset) current = section.id;
@@ -242,4 +259,35 @@ if (document.body.dataset.page === "home") {
   addEventListener("scroll", scheduleNavigationUpdate, { passive: true });
   addEventListener("resize", scheduleNavigationUpdate);
   updateCurrentSection();
+}
+
+// Content is visible by default; motion only enhances newly encountered blocks.
+const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+if ("IntersectionObserver" in window && "animate" in Element.prototype) {
+  const targets = [...document.querySelectorAll(".section-heading, .explore-path, .education-card, .skill-card, .award-item")];
+  const seen = new WeakSet();
+  const animations = new Set();
+  let observer;
+  function configureReveals() {
+    observer?.disconnect();
+    animations.forEach(animation => animation.cancel());
+    animations.clear();
+    if (motionPreference.matches) return;
+    observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting || seen.has(entry.target)) return;
+        seen.add(entry.target);
+        observer.unobserve(entry.target);
+        const animation = entry.target.animate(
+          [{ opacity: .35, transform: "translateY(14px)" }, { opacity: 1, transform: "translateY(0)" }],
+          { duration: 420, easing: "cubic-bezier(.22, 1, .36, 1)" },
+        );
+        animations.add(animation);
+        animation.finished.then(() => animations.delete(animation), () => animations.delete(animation));
+      });
+    }, { threshold: .12 });
+    targets.forEach(target => { if (!seen.has(target)) observer.observe(target); });
+  }
+  motionPreference.addEventListener("change", configureReveals);
+  configureReveals();
 }

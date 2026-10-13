@@ -42,6 +42,7 @@
         resume: "Xem CV A4",
         home: "Trang chủ",
         explore: "Khám phá dự án",
+        choosePath: "Khám phá dự án theo lĩnh vực",
         email: "Gửi email",
         all: "Tất cả",
         engineering: "Hệ thống & web",
@@ -129,6 +130,7 @@
         resume: "View A4 resume",
         home: "Home",
         explore: "Explore projects",
+        choosePath: "Explore projects by discipline",
         email: "Send an email",
         all: "All",
         engineering: "Systems & web",
@@ -286,7 +288,7 @@
       return `<a class="skip-link" href="#main">${esc(l.skip)}</a>
   <header class="site-nav">
     <div class="nav-inner">
-      <a class="brand" href="${home}" aria-label="${esc(l.home)}"><span class="brand-mark">P.</span><span>${esc(data.profile.name)}</span></a>
+      <a class="brand" href="${home}" aria-label="${esc(l.home)}"><span class="brand-mark" aria-hidden="true">${esc(data.profile.initials)}</span><span>${esc(data.profile.name)}</span></a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-open-label="${esc(l.menu)}" data-close-label="${esc(l.close)}"><span class="menu-icon" aria-hidden="true"></span><span data-menu-label>${esc(l.menu)}</span></button>
       <nav id="main-nav" class="main-nav" aria-label="${lang === "vi" ? "Điều hướng chính" : "Main navigation"}">
         ${order
@@ -398,21 +400,30 @@
     function homePage(lang) {
       const l = labels[lang],
         prefix = basePath(lang);
+      const paths = visible("projects")
+        ? ["ai", "engineering", "research"]
+            .map((category) => ({
+              category,
+              count: data.projects.filter((project) => project.category === category).length,
+            }))
+            .filter((path) => path.count)
+        : [];
       const source = `${header(lang)}
   <main id="main">
     <section class="hero container" aria-labelledby="hero-title">
+      <svg class="hero-orbits" viewBox="0 0 580 580" fill="none" aria-hidden="true" focusable="false"><circle cx="305" cy="275" r="230"/><ellipse cx="305" cy="275" rx="280" ry="145" transform="rotate(-35 305 275)"/><path d="M55 70v30m-15-15h30M500 420v24m-12-12h24"/><circle class="orbit-node" cx="113" cy="147" r="7"/><circle class="orbit-node" cx="512" cy="375" r="5"/></svg>
       <div class="hero-content">
         <p class="hero-eyebrow"><span class="status-dot" aria-hidden="true"></span>${esc(t(data.profile.direction, lang))}</p>
         <h1 id="hero-title">${esc(data.profile.name)}<span class="name-period">.</span></h1>
         <p class="hero-focus">${data.profile.focus
           .split(/\s*&\s*|\n/)
-          .map((x, i) => (i ? `<span>${esc(x)}.</span>` : esc(x) + "."))
+          .map((x, i) => `<span class="${i ? "focus-secondary" : "focus-primary"}">${esc(x)}.</span>`)
           .join("<br />")}</p>
         <p class="hero-summary">${esc(t(data.profile.summary, lang))}</p>
         <div class="hero-actions"><a class="button button-primary" href="#projects">${esc(l.explore)} <span aria-hidden="true">↗</span></a><a class="button button-outline" href="${prefix + data.profile.pdf}" download>${esc(l.pdf)} <span aria-hidden="true">↓</span></a></div>
         <p class="hero-location"><span aria-hidden="true">⌖</span> ${esc(t(data.profile.location, lang))} <span class="location-divider">/</span> <a href="${esc(data.profile.github)}" target="_blank" rel="noopener noreferrer">@${esc(data.profile.github.split("/").filter(Boolean).pop())} ↗</a></p>
       </div>
-      <figure class="hero-portrait">${media(data.profile.photo, lang, prefix, "portrait", l.portrait)}
+      <figure class="hero-portrait"><div class="portrait-frame">${media(data.profile.photo, lang, prefix, "portrait", l.portrait)}<svg class="portrait-spark" viewBox="0 0 100 100" fill="none" aria-hidden="true" focusable="false"><path d="m50 2 9 27 24-13-13 25 28 9-28 9 13 25-24-13-9 27-9-27-24 13 13-25-28-9 28-9-13-25 24 13Z" fill="currentColor"/><circle cx="50" cy="50" r="10"/></svg></div><figcaption>${esc(l.motto)}</figcaption>
       </figure>
     </section>
     <div class="stats container" aria-label="${lang === "vi" ? "Thông tin nổi bật" : "Profile highlights"}">
@@ -420,6 +431,7 @@
       <div><strong>${data.projects.length.toString().padStart(2, "0")}</strong><span>${esc(l.projectCount)}</span></div>
       <div><strong>${esc(data.settings?.scholarship ?? "4 / 4")}</strong><span>${esc(l.scholarship)}</span></div>
     </div>
+    ${paths.length ? `<nav class="explore-paths container" aria-label="${esc(l.choosePath)}">${paths.map(({ category, count }) => `<a class="explore-path path-${category}" href="#projects" data-project-category="${category}"><span class="path-top">${icon(category)}<span>${count} ${esc(l.projects.toLowerCase())}</span></span><span class="path-name">${esc(l[category])}</span><span class="path-arrow" aria-hidden="true">↗</span></a>`).join("")}</nav>` : ""}
     <section id="about" class="section container about-section" aria-labelledby="about-heading">
       ${sectionHeading("01", l.about, l.aboutTitle)}
       <div class="about-grid"><div class="about-copy">${t(
@@ -594,9 +606,9 @@
   <link rel="preload" href="${prefix}assets/fonts/be-vietnam-pro/be-vietnam-pro-400-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="${prefix}assets/fonts/be-vietnam-pro/be-vietnam-pro-400-vietnamese.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="${prefix}assets/fonts/be-vietnam-pro/fonts.css" />
-  <link rel="stylesheet" href="${prefix}portfolio.css?v=20261013-3" />
+  <link rel="stylesheet" href="${prefix}portfolio.css?v=20261014-1" />
   <script type="application/ld+json">${JSON.stringify(schema).replace(/</g, "\\u003c")}</script>
-  <script src="${prefix}portfolio.js?v=20261009-4" defer></script>
+  <script src="${prefix}portfolio.js?v=20261014-1" defer></script>
 </head>
 <body data-page="${project ? "project" : "home"}" data-language="${lang}">${body}</body>
 </html>\n`;

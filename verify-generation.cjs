@@ -18,6 +18,14 @@ module.exports = () => {
   const data = JSON.parse(
     fs.readFileSync(path.join(site, "data/portfolio.json"), "utf8"),
   );
+  const Renderer = require("./github-public-cv/portfolio-renderer.js");
+  const hiddenFixture = structuredClone(data);
+  hiddenFixture.settings.hiddenSections = ["projects"];
+  const hiddenHome = Renderer(hiddenFixture).homePage("vi");
+  assert.equal(hiddenHome.includes("data-project-category"), false, "Hidden projects remove exploration shortcuts");
+  const researchFixture = structuredClone(data);
+  researchFixture.projects = researchFixture.projects.filter(project => project.category === "research");
+  assert.equal((Renderer(researchFixture).homePage("en").match(/data-project-category=/g) || []).length, 1, "Only populated disciplines become shortcuts");
   const removed = data.projects.pop();
   data.settings = {
     sectionOrder: [
@@ -106,5 +114,6 @@ module.exports = () => {
     2,
   );
   assert.equal(fs.existsSync(path.join(site, "projects/manual.html")), true);
-  return "Regenerated bilingual content/A4, custom sections, settings, safe obsolete-page cleanup and empty collections";
+  assert.equal(fs.readFileSync(path.join(site, "index.html"), "utf8").includes("data-project-category"), false, "Empty projects omit exploration shortcuts");
+  return "Regenerated bilingual content/A4, custom sections, settings, populated/hidden discipline links, safe obsolete-page cleanup and empty collections";
 };

@@ -211,6 +211,9 @@ module.exports = async (browser, baseURL) => {
   assert.equal(await noJs.locator('[data-certificate="ai-first-prize"]').getAttribute("href"), "assets/certificates/ai-first-prize.jpg");
   assert.equal(await noJs.locator("#main-nav").getByRole("link", { name: "Giới thiệu", exact: true }).isVisible(), true);
   assert.equal(await noJs.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+  await noJs.locator('[data-project-category="research"]').click();
+  assert.equal(new URL(noJs.url()).hash, "#projects");
+  assert.equal(await noJs.locator(".project-card:visible").count(), 7, "Without JavaScript the shortcut still reaches all projects");
   await noJs.goto(url + "en/projects/qa-tiger.html");
   assert.match(await noJs.locator(".result-box").textContent(), /13\.80/);
   await context.close();

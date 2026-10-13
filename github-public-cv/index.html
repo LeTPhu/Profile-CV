@@ -22,14 +22,14 @@
   <link rel="preload" href="assets/fonts/be-vietnam-pro/be-vietnam-pro-400-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/be-vietnam-pro/be-vietnam-pro-400-vietnamese.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/fonts/be-vietnam-pro/fonts.css" />
-  <link rel="stylesheet" href="portfolio.css?v=20261013-3" />
+  <link rel="stylesheet" href="portfolio.css?v=20261014-1" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","mainEntity":{"@type":"Person","name":"Lê Tấn Phú","url":"https://letphu.github.io/Profile-CV/","sameAs":["https://github.com/LeTPhu"],"alumniOf":{"@type":"CollegeOrUniversity","name":"Đại học Nguyễn Tất Thành"},"knowsAbout":["AI / ML","AI Agent / LLM","Full-stack","Data / DevOps / QA"]}}</script>
-  <script src="portfolio.js?v=20261009-4" defer></script>
+  <script src="portfolio.js?v=20261014-1" defer></script>
 </head>
 <body data-page="home" data-language="vi"><a class="skip-link" href="#main">Đến nội dung</a>
   <header class="site-nav">
     <div class="nav-inner">
-      <a class="brand" href="./" aria-label="Trang chủ"><span class="brand-mark">P.</span><span>Lê Tấn Phú</span></a>
+      <a class="brand" href="./" aria-label="Trang chủ"><span class="brand-mark" aria-hidden="true">LP</span><span>Lê Tấn Phú</span></a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-open-label="Mở menu" data-close-label="Đóng menu"><span class="menu-icon" aria-hidden="true"></span><span data-menu-label>Mở menu</span></button>
       <nav id="main-nav" class="main-nav" aria-label="Điều hướng chính">
         <a href="#about">Giới thiệu</a><a href="#projects">Dự án</a><a href="#experience">Hành trình</a><a href="#skills">Kỹ năng</a><a href="#awards">Thành tích</a>
@@ -40,15 +40,16 @@
   </header>
   <main id="main">
     <section class="hero container" aria-labelledby="hero-title">
+      <svg class="hero-orbits" viewBox="0 0 580 580" fill="none" aria-hidden="true" focusable="false"><circle cx="305" cy="275" r="230"/><ellipse cx="305" cy="275" rx="280" ry="145" transform="rotate(-35 305 275)"/><path d="M55 70v30m-15-15h30M500 420v24m-12-12h24"/><circle class="orbit-node" cx="113" cy="147" r="7"/><circle class="orbit-node" cx="512" cy="375" r="5"/></svg>
       <div class="hero-content">
         <p class="hero-eyebrow"><span class="status-dot" aria-hidden="true"></span>Định hướng AI Engineer</p>
         <h1 id="hero-title">Lê Tấn Phú<span class="name-period">.</span></h1>
-        <p class="hero-focus">AI Agent.<br /><span>LLM Systems.</span></p>
+        <p class="hero-focus"><span class="focus-primary">AI Agent.</span><br /><span class="focus-secondary">LLM Systems.</span></p>
         <p class="hero-summary">Tốt nghiệp Công nghệ thông tin - Trí tuệ nhân tạo tại Đại học Nguyễn Tất Thành. Tôi quan tâm đến AI Agent/LLM, AI ứng dụng và phát triển hệ thống web có kiểm thử.</p>
         <div class="hero-actions"><a class="button button-primary" href="#projects">Khám phá dự án <span aria-hidden="true">↗</span></a><a class="button button-outline" href="assets/cv/Le_Tan_Phu_CV_2026.pdf" download>Tải CV PDF <span aria-hidden="true">↓</span></a></div>
         <p class="hero-location"><span aria-hidden="true">⌖</span> Hóc Môn, TP. Hồ Chí Minh <span class="location-divider">/</span> <a href="https://github.com/LeTPhu" target="_blank" rel="noopener noreferrer">@LeTPhu ↗</a></p>
       </div>
-      <figure class="hero-portrait"><div class="media media--portrait has-image" data-media>
+      <figure class="hero-portrait"><div class="portrait-frame"><div class="media media--portrait has-image" data-media>
     <img src="assets/uploads/d1d2a33f-fadf-49ee-b1eb-81fd5a257848.jpg" alt="Ảnh chân dung Lê Tấn Phú" fetchpriority="high"  decoding="async" style="object-position:50% 45%" />
 
     <div class="media-placeholder" hidden>
@@ -56,7 +57,7 @@
       <div class="media-mark" aria-hidden="true">LP</div>
       <span class="media-label">Học hỏi. Xây dựng. Kiểm chứng.</span>
     </div>
-  </div>
+  </div><svg class="portrait-spark" viewBox="0 0 100 100" fill="none" aria-hidden="true" focusable="false"><path d="m50 2 9 27 24-13-13 25 28 9-28 9 13 25-24-13-9 27-9-27-24 13 13-25-28-9 28-9-13-25 24 13Z" fill="currentColor"/><circle cx="50" cy="50" r="10"/></svg></div><figcaption>Học hỏi. Xây dựng. Kiểm chứng.</figcaption>
       </figure>
     </section>
     <div class="stats container" aria-label="Thông tin nổi bật">
@@ -64,6 +65,7 @@
       <div><strong>07</strong><span>dự án &amp; nghiên cứu</span></div>
       <div><strong>4 / 4</strong><span>năm nhận học bổng</span></div>
     </div>
+    <nav class="explore-paths container" aria-label="Khám phá dự án theo lĩnh vực"><a class="explore-path path-ai" href="#projects" data-project-category="ai"><span class="path-top"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="6" y="6" width="12" height="12" rx="3"/><path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4m12-6h4m-4 6h4"/><circle cx="12" cy="12" r="2"/></svg><span>2 dự án</span></span><span class="path-name">AI ứng dụng</span><span class="path-arrow" aria-hidden="true">↗</span></a><a class="explore-path path-engineering" href="#projects" data-project-category="engineering"><span class="path-top"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-14-2 18"/></svg><span>3 dự án</span></span><span class="path-name">Hệ thống &amp; web</span><span class="path-arrow" aria-hidden="true">↗</span></a><a class="explore-path path-research" href="#projects" data-project-category="research"><span class="path-top"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 3h6m-5 0v7L4 20q0 1 2 1h12q2 0 2-1l-6-10V3M7 16h10"/></svg><span>2 dự án</span></span><span class="path-name">Nghiên cứu</span><span class="path-arrow" aria-hidden="true">↗</span></a></nav>
 
     <section id="about" class="section container about-section" aria-labelledby="about-heading">
       <div class="section-heading"><p class="section-eyebrow"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="3"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></svg>Giới thiệu</p><h2 id="about-heading">AI ứng dụng. Hệ thống có kiểm thử.</h2></div>
