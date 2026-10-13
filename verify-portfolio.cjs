@@ -27,7 +27,7 @@ module.exports = async (browser, baseURL) => {
     await image.evaluate(img => img.decode());
     assert.equal(await image.evaluate(img => img.naturalWidth), 1200);
     assert.equal(await image.evaluate(img => getComputedStyle(img).objectFit), "contain");
-    assert.match(await image.getAttribute("alt"), /Minh họa ý tưởng/);
+    assert.match(await image.getAttribute("alt"), /Minh họa ý tưởng|Ảnh ghép công nghệ/);
   }
   const brokenArtwork = await browser.newPage();
   await brokenArtwork.route("**/assets/project-covers/*", route => route.abort());
@@ -35,7 +35,7 @@ module.exports = async (browser, baseURL) => {
   await brokenArtwork.locator(".media--cover .media-placeholder").waitFor({ state: "visible" });
   assert.equal(await brokenArtwork.locator(".media--cover .concept-label").isVisible(), false);
   await brokenArtwork.close();
-  results.push("Seven decoded, uncropped concept covers and graceful failed-image fallback");
+  results.push("Seven decoded, uncropped project covers and graceful failed-image fallback");
 
   const invalidLabels = await page.locator("[aria-labelledby]").evaluateAll(nodes => nodes.flatMap(node => node.getAttribute("aria-labelledby").split(/\s+/).filter(id => !document.getElementById(id))));
   assert.deepEqual(invalidLabels, []);

@@ -1,0 +1,83 @@
+[
+  {
+    "id": "aiocrm", "title": "AIOCRM", "subtitle": "Multichannel CRM & business operations", "accent": "#397a5d", "mode": "logos", "columns": 3,
+    "items": [
+      { "name": "Vue 3", "logo": "vuedotjs", "role": "Frontend" },
+      { "name": "TypeScript", "logo": "typescript", "role": "Typed application code" },
+      { "name": "Fastify", "logo": "fastify", "role": "Backend API" },
+      { "name": "Prisma", "logo": "prisma", "role": "Data access" },
+      { "name": "PostgreSQL", "logo": "postgresql", "role": "Database" },
+      { "name": "Socket.IO", "logo": "socketdotio", "role": "Realtime" },
+      { "name": "Redis / BullMQ", "logo": "redis", "role": "Cache & jobs" },
+      { "name": "MinIO / S3", "logo": "minio", "role": "Object storage" },
+      { "name": "Docker", "logo": "docker", "role": "Containers" }
+    ],
+    "footer": "Vue + TypeScript  /  Node.js + Fastify  /  PostgreSQL"
+  },
+  {
+    "id": "openclaw-9router", "title": "OpenClaw + 9router", "subtitle": "Agents, model routing & personal infrastructure", "accent": "#426baa", "mode": "logos", "columns": 3,
+    "items": [
+      { "name": "OpenClaw", "logo": "openclaw", "role": "Agent environment" },
+      { "name": "9router", "logo": "9router", "role": "Model / provider routing" },
+      { "name": "Ubuntu", "logo": "ubuntu", "role": "VPS environment" },
+      { "name": "DeepSeek", "logo": "deepseek", "role": "Provider explored" },
+      { "name": "GPT / OpenAI", "role": "Provider explored", "textOnly": true },
+      { "name": "Kiro / xKiro", "role": "API experiments", "textOnly": true }
+    ],
+    "footer": "Multi-provider APIs  /  Tool Calling  /  Ubuntu VPS"
+  },
+  {
+    "id": "sound-event-detection", "title": "Sound Event Detection", "subtitle": "Audio models, representations & research tools", "accent": "#2f7582", "mode": "models", "columns": 3,
+    "items": [
+      { "name": "Google Colab", "logo": "googlecolab", "role": "Experiment environment" },
+      { "name": "Log-Mel", "role": "Audio representation", "symbol": "wave" },
+      { "name": "CRNN", "role": "Architecture studied", "symbol": "network" },
+      { "name": "ATST-SED", "role": "Model experiments", "symbol": "network" },
+      { "name": "BEATs", "role": "Model comparison", "symbol": "wave" },
+      { "name": "CLAP", "role": "Extension explored", "symbol": "network" }
+    ],
+    "footer": "Audio research  /  Onset & offset  /  Published benchmarks"
+  },
+  {
+    "id": "qa-tiger", "title": "QA-TIGER", "subtitle": "Robustness in multimodal visual question answering", "accent": "#46698c", "mode": "methods", "columns": 2,
+    "items": [
+      { "name": "Multimodal VQA", "role": "Research task", "symbol": "vision" },
+      { "name": "Modality Dropout", "role": "Missing inputs", "symbol": "blocks" },
+      { "name": "Knowledge Distillation", "role": "Knowledge transfer", "symbol": "network" },
+      { "name": "Quality Gate", "role": "Input quality", "symbol": "gate" }
+    ],
+    "footer": "Modality Dropout  /  Missing Tokens  /  Quality Gate"
+  },
+  {
+    "id": "ai-helpdesk", "title": "AI Helpdesk", "subtitle": "Enterprise support prototype / AEGONA", "accent": "#277c70", "mode": "logos", "columns": 3,
+    "items": [
+      { "name": "FastAPI", "logo": "fastapi", "role": "Backend API" },
+      { "name": "SQLModel", "logo": "sqlmodel", "role": "Data models" },
+      { "name": "SQLite", "logo": "sqlite", "role": "Prototype database" },
+      { "name": "RBAC", "role": "Access control", "symbol": "gate" },
+      { "name": "Rule-based", "role": "Ticket categorization", "symbol": "network" },
+      { "name": "SLA", "role": "Support workflows", "symbol": "clock" }
+    ],
+    "footer": "FastAPI + SQLModel + SQLite  /  Ticket, asset & SLA"
+  },
+  {
+    "id": "ocr-rag", "title": "OCR-RAG Chatbot", "subtitle": "Vietnamese administrative document question answering", "accent": "#976736", "mode": "mixed", "columns": 2,
+    "items": [
+      { "name": "PaddleOCR", "logo": "paddleocr", "role": "Text extraction" },
+      { "name": "VietOCR", "role": "Vietnamese recognition", "textOnly": true },
+      { "name": "RAG", "role": "Document retrieval", "symbol": "document" },
+      { "name": "LLM", "role": "Question answering", "symbol": "chat" }
+    ],
+    "footer": "PaddleOCR + VietOCR  /  Retrieval  /  Question answering"
+  },
+  {
+    "id": "violence-detection", "title": "Violence Detection", "subtitle": "Spatial + temporal analysis for video alerts", "accent": "#9b654a", "mode": "pipeline", "columns": 2,
+    "items": [
+      { "name": "MobileNetV2", "role": "Spatial feature extraction", "symbol": "vision" },
+      { "name": "Bi-LSTM", "role": "Temporal modeling", "symbol": "network" },
+      { "name": "Computer Vision", "role": "Video analysis", "symbol": "vision" },
+      { "name": "Video", "role": "Frame sequences", "symbol": "video" }
+    ],
+    "footer": "Video frames  /  MobileNetV2  /  Bi-LSTM  /  Alerts"
+  }
+]

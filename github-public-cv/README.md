@@ -214,11 +214,15 @@ Cửa sổ xem ảnh tham khảo [W3C Modal Dialog Pattern](https://www.w3.org/W
 
 ## Bộ Ảnh Bìa Dự Án
 
-Bảy ảnh bìa đang sử dụng trong `assets/project-covers/` được tạo bằng công cụ ImageGen tích hợp ngày 13/10/2026, theo nội dung từng dự án trong dữ liệu CV. Bản `concept-v2.webp` dùng đồ họa công nghệ 2D, nền xanh đậm và điểm nhấn cyan/xanh lá. Đây là **minh họa ý tưởng bằng AI**, không phải ảnh giao diện, sơ đồ kiến trúc chính thức hay kết quả thực nghiệm. Nhãn và mô tả thay thế có cả tiếng Việt và tiếng Anh.
+Bảy ảnh bìa hiện tại là `assets/project-covers/*-stack-v1.webp`, ghép từ logo công nghệ và tên mô hình/phương pháp có trong dữ liệu CV. Logo OpenClaw, 9router, SQLModel và PaddleOCR lấy từ repository của dự án. Logo web, hạ tầng và Colab lấy từ Simple Icons, có ghi nguồn thương hiệu. Các phương pháp như Bi-LSTM, Modality Dropout, RAG hay RBAC được trình bày bằng tên và biểu tượng chung, không được mô tả như logo thương hiệu. Các provider trong ảnh agent được ghi rõ là những provider đã thử nghiệm.
 
-Ảnh WebP 1200 × 800 được tối ưu dung lượng và hiển thị trọn vẹn. Trang chi tiết ưu tiên tải ảnh bìa, thẻ dự án tải ảnh khi gần vùng nhìn thấy. Nếu tải lỗi, trang trở về minh họa SVG dự phòng. Có thể thay ảnh trong quản trị như bình thường; nhãn AI áp dụng cho các tài nguyên `assets/project-covers/*-concept-v1.webp` và `*-concept-v2.webp`. Bản cũ được giữ lại để chủ sở hữu có thể chọn lại khi cần.
+Ảnh WebP 1200 × 800 hiển thị đầy đủ, có mô tả thay thế tiếng Việt/Anh. Trang chi tiết ưu tiên tải ảnh bìa; thẻ dự án tải ảnh khi gần vùng nhìn thấy. Khi ảnh lỗi, trang dùng SVG dự phòng. Chủ sở hữu có thể thay ảnh trong quản trị. Bộ ảnh ghép logo không mang nhãn AI; các ảnh AI cũ `*-concept-v1.webp` / `*-concept-v2.webp` vẫn có nhãn tương ứng nếu chọn lại.
 
-Prompt bộ ảnh hiện tại được lưu tại `../scripts/project-cover-prompts-v2.json`; prompt bản cũ ở `../scripts/project-cover-prompts.json`. Khi thay nội dung dự án đáng kể, cần cập nhật ảnh tương ứng thay vì tiếp tục dùng minh họa không còn phù hợp.
+Cấu hình ghép ảnh ở `../scripts/technology-covers.json`, công cụ dựng ở `../scripts/build-technology-covers.cjs`. Chạy với Playwright và Sharp: `node scripts/build-technology-covers.cjs`, hoặc truyền `--sharp-path` khi dùng Sharp từ runtime có sẵn. Kết quả PNG/HTML xem thử nằm trong `../output/technology-covers/`. Công cụ này dựng ảnh cục bộ từ tài nguyên đã lưu, không yêu cầu tài khoản tạo ảnh.
+
+Nguồn, commit đã cố định, màu thương hiệu và SHA-256 nằm trong `assets/technology-logos/sources.json`. Các file logo gốc và giấy phép được giữ cùng thư mục. `../scripts/fetch-technology-logos.cjs` tải lại đúng các phiên bản đã ghi. Simple Icons dùng CC0 cho bộ icon; bản ghi nguồn cũng giữ thông tin giấy phép upstream khi có, gồm Vue.js (CC-BY-NC-SA-4.0). Các thương hiệu thuộc chủ sở hữu tương ứng. Logo chỉ nhận diện công nghệ trong hồ sơ.
+
+Ảnh AI trước đây và prompt ở `../scripts/project-cover-prompts.json` / `../scripts/project-cover-prompts-v2.json` được giữ lại. Khi thay công nghệ của dự án, cần cập nhật cấu hình và dựng lại ảnh ghép.
 
 ## Gắn Vào Profile GitHub
 

@@ -433,10 +433,10 @@
       ],
       "repository": "",
       "image": {
-        "src": "assets/project-covers/aiocrm-concept-v2.webp",
+        "src": "assets/project-covers/aiocrm-stack-v1.webp",
         "alt": {
-          "vi": "Minh họa ý tưởng bằng AI: kết nối khách hàng, hội thoại, công việc và hóa đơn. Không phải ảnh giao diện hoặc kết quả thực nghiệm.",
-          "en": "AI-generated concept illustration: customers, conversations, work and invoices connected. Not an interface screenshot or experimental result."
+          "vi": "Ảnh ghép công nghệ của AIOCRM: Vue 3, TypeScript, Fastify, Prisma, PostgreSQL, Socket.IO, Redis / BullMQ, MinIO / S3, Docker.",
+          "en": "Technology collage for AIOCRM: Vue 3, TypeScript, Fastify, Prisma, PostgreSQL, Socket.IO, Redis / BullMQ, MinIO / S3, Docker."
         },
         "position": "50% 50%"
       },
@@ -487,10 +487,10 @@
       ],
       "repository": "",
       "image": {
-        "src": "assets/project-covers/openclaw-9router-concept-v2.webp",
+        "src": "assets/project-covers/openclaw-9router-stack-v1.webp",
         "alt": {
-          "vi": "Minh họa ý tưởng bằng AI: điều phối agent và nhiều nhà cung cấp mô hình. Không phải ảnh giao diện hoặc kết quả thực nghiệm.",
-          "en": "AI-generated concept illustration: agent orchestration and multiple model providers. Not an interface screenshot or experimental result."
+          "vi": "Ảnh ghép công nghệ của OpenClaw + 9router: OpenClaw, 9router, Ubuntu, DeepSeek, GPT / OpenAI, Kiro / xKiro, Ubuntu / VPS, Multi-provider APIs, Tool Calling.",
+          "en": "Technology collage for OpenClaw + 9router: OpenClaw, 9router, Ubuntu, DeepSeek, GPT / OpenAI, Kiro / xKiro, Ubuntu / VPS, Multi-provider APIs, Tool Calling."
         },
         "position": "50% 50%"
       },
@@ -544,10 +544,10 @@
       ],
       "repository": "",
       "image": {
-        "src": "assets/project-covers/sound-event-detection-concept-v2.webp",
+        "src": "assets/project-covers/sound-event-detection-stack-v1.webp",
         "alt": {
-          "vi": "Minh họa ý tưởng bằng AI: dạng sóng, phổ âm và các khoảng sự kiện âm thanh. Không phải ảnh giao diện hoặc kết quả thực nghiệm.",
-          "en": "AI-generated concept illustration: waveform, spectrogram and audio event intervals. Not an interface screenshot or experimental result."
+          "vi": "Ảnh ghép công nghệ của Sound Event Detection: Google Colab, Log-Mel, CRNN, ATST-SED, BEATs, CLAP.",
+          "en": "Technology collage for Sound Event Detection: Google Colab, Log-Mel, CRNN, ATST-SED, BEATs, CLAP."
         },
         "position": "50% 50%"
       },
@@ -596,10 +596,10 @@
       ],
       "repository": "",
       "image": {
-        "src": "assets/project-covers/qa-tiger-concept-v2.webp",
+        "src": "assets/project-covers/qa-tiger-stack-v1.webp",
         "alt": {
-          "vi": "Minh họa ý tưởng bằng AI: hỏi đáp đa phương thức khi thiếu thông tin hình ảnh. Không phải ảnh giao diện hoặc kết quả thực nghiệm.",
-          "en": "AI-generated concept illustration: multimodal question answering with missing visual information. Not an interface screenshot or experimental result."
+          "vi": "Ảnh ghép công nghệ của QA-TIGER Robustness: Multimodal VQA, Modality Dropout, Knowledge Distillation, Quality Gate, Missing Tokens.",
+          "en": "Technology collage for QA-TIGER Robustness: Multimodal VQA, Modality Dropout, Knowledge Distillation, Quality Gate, Missing Tokens."
         },
         "position": "50% 50%"
       },
@@ -650,10 +650,10 @@
       ],
       "repository": "",
       "image": {
-        "src": "assets/project-covers/ai-helpdesk-concept-v2.webp",
+        "src": "assets/project-covers/ai-helpdesk-stack-v1.webp",
         "alt": {
-          "vi": "Minh họa ý tưởng bằng AI: phân loại ticket, hỗ trợ IT, SLA và phân quyền. Không phải ảnh giao diện hoặc kết quả thực nghiệm.",
-          "en": "AI-generated concept illustration: ticket categorization, IT support, SLA and access control. Not an interface screenshot or experimental result."
+          "vi": "Ảnh ghép công nghệ của AI Helpdesk - AEGONA: FastAPI, SQLModel, SQLite, RBAC, Rule-based, SLA, Rule-based Classification.",
+          "en": "Technology collage for AI Helpdesk - AEGONA: FastAPI, SQLModel, SQLite, RBAC, Rule-based, SLA, Rule-based Classification."
         },
         "position": "50% 50%"
       },
@@ -699,10 +699,10 @@
       ],
       "repository": "",
       "image": {
-        "src": "assets/project-covers/ocr-rag-concept-v2.webp",
+        "src": "assets/project-covers/ocr-rag-stack-v1.webp",
         "alt": {
-          "vi": "Minh họa ý tưởng bằng AI: trích xuất văn bản, truy xuất tài liệu và hỏi đáp. Không phải ảnh giao diện hoặc kết quả thực nghiệm.",
-          "en": "AI-generated concept illustration: text extraction, document retrieval and question answering. Not an interface screenshot or experimental result."
+          "vi": "Ảnh ghép công nghệ của OCR-RAG Chatbot: PaddleOCR, VietOCR, RAG, LLM.",
+          "en": "Technology collage for OCR-RAG Chatbot: PaddleOCR, VietOCR, RAG, LLM."
         },
         "position": "50% 50%"
       },
@@ -750,10 +750,10 @@
       ],
       "repository": "https://github.com/LeTPhu/Violence-Detection",
       "image": {
-        "src": "assets/project-covers/violence-detection-concept-v2.webp",
+        "src": "assets/project-covers/violence-detection-stack-v1.webp",
         "alt": {
-          "vi": "Minh họa ý tưởng bằng AI: chuỗi khung hình video và cảnh báo hành vi. Không phải ảnh giao diện hoặc kết quả thực nghiệm.",
-          "en": "AI-generated concept illustration: video frame sequences and behavioral alerts. Not an interface screenshot or experimental result."
+          "vi": "Ảnh ghép công nghệ của Violence Detection: MobileNetV2, Bi-LSTM, Computer Vision, Video.",
+          "en": "Technology collage for Violence Detection: MobileNetV2, Bi-LSTM, Computer Vision, Video."
         },
         "position": "50% 50%"
       },

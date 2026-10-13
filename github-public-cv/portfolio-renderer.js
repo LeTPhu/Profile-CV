@@ -266,8 +266,9 @@
       // Identify our bundled artwork by its asset path; uploaded screenshots stay unlabelled.
       const concept = illustrated && /^assets\/project-covers\/[a-z0-9-]+-concept-v[12]\.webp$/.test(image?.src || "");
       const technical = concept && image.src.endsWith("-concept-v2.webp");
-      return `<div class="media media--${kind}${concept ? " media--concept" : ""}${technical ? " media--technical" : ""}${hasImage ? " has-image" : ""}" data-media>
-    ${hasImage ? `<img src="${esc(prefix + image.src)}" alt="${esc(t(image.alt, lang))}" ${kind === "portrait" || kind === "cover" ? 'fetchpriority="high"' : 'loading="lazy"'} ${concept ? 'width="1200" height="800"' : ""} decoding="async" style="object-position:${esc(image.position || "50% 50%")}" />` : ""}
+      const stack = illustrated && /^assets\/project-covers\/[a-z0-9-]+-stack-v1\.webp$/.test(image?.src || "");
+      return `<div class="media media--${kind}${concept ? " media--concept" : ""}${technical ? " media--technical" : ""}${stack ? " media--stack" : ""}${hasImage ? " has-image" : ""}" data-media>
+    ${hasImage ? `<img src="${esc(prefix + image.src)}" alt="${esc(t(image.alt, lang))}" ${kind === "portrait" || kind === "cover" ? 'fetchpriority="high"' : 'loading="lazy"'} ${concept || stack ? 'width="1200" height="800"' : ""} decoding="async" style="object-position:${esc(image.position || "50% 50%")}" />` : ""}
     ${concept ? `<span class="concept-label">${lang === "vi" ? "Minh họa AI" : "AI illustration"}</span>` : ""}
     <div class="media-placeholder"${hasImage ? " hidden" : ""}>
       <span class="media-index" aria-hidden="true">${kind === "portrait" ? "PERSONAL / 01" : "PROJECT / " + number}</span>
@@ -600,7 +601,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="${prefix}portfolio.css?v=20261013-1" />
+  <link rel="stylesheet" href="${prefix}portfolio.css?v=20261013-2" />
   <script type="application/ld+json">${JSON.stringify(schema).replace(/</g, "\\u003c")}</script>
   <script src="${prefix}portfolio.js?v=20261009-4" defer></script>
 </head>
