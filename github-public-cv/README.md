@@ -17,7 +17,21 @@ Bố cục thu gọn khoảng cách giữa các phần, khung minh họa và th�
 
 Phần dự án dùng hai cột rộng trên máy tính và một cột trên điện thoại, với dự án đầu tiên được làm nổi bật. Bảy dự án hiện có được thiết kế minh họa ý tưởng riêng bằng SVG; hình gắn với mã dự án nên không bị đổi nhầm khi sắp xếp lại. Minh họa là đồ họa trang trí, không phải ảnh chụp sản phẩm hoặc số liệu thực nghiệm. Khi thêm ảnh thật trong Quản trị, ảnh được ưu tiên hiển thị; dự án mới chưa có ảnh dùng minh họa trung tính. Bộ lọc trên điện thoại xếp thành hai hàng cân đối.
 
-Chữ trên website dùng Be Vietnam Pro nhất quán: giới thiệu và nội dung chi tiết 17 px trên máy tính / 16 px trên điện thoại, mô tả thẻ 16 px / 15 px, nhãn quan trọng 12–14 px. Tiêu đề có độ đậm và khoảng cách chữ riêng để dấu tiếng Việt rõ, không tăng đồng loạt mọi thành phần. Kích thước nội dung dùng đơn vị rem; menu chuyển sang dạng thu gọn ở màn hình từ 1100 px trở xuống để giữ chữ dễ đọc. Thiết lập font của công cụ build CV và CV A4 không bị thay đổi.
+Chữ trên website dùng Be Vietnam Pro nhất quán: giới thiệu và nội dung chi tiết 20 px trên máy tính / 18 px trên điện thoại; mô tả thẻ 18 px / 17 px; nhãn và nút chính 15–17 px. Tiêu đề phần từ 34 đến 48 px. Cỡ nội dung dùng rem, khoảng cách dòng 1.6–1.7 và đoạn văn có độ rộng giới hạn. Menu thu gọn từ 1100 px trở xuống. Thiết lập font của Builder và CV A4 được quản lý riêng.
+
+Trang portfolio tải Be Vietnam Pro từ `assets/fonts/be-vietnam-pro/`, có bốn mức đậm 400/500/600/700 và các bộ ký tự Việt, Latin, Latin mở rộng. Hai bộ chữ thường được preload; các file còn lại tải theo ký tự/mức đậm thực sự sử dụng. File WOFF2 lấy từ Google Fonts, cùng giấy phép SIL OFL và nguồn/SHA-256 được lưu trong thư mục này. Tải lại bằng `../scripts/fetch-portfolio-fonts.cjs`. Cách này giảm phụ thuộc vào kết nối bên ngoài khi mở trang và giúp bố cục chữ nhất quán.
+
+### Nghiên Cứu Và Bố Cục Ngày 13/10/2026
+
+Đã xem trực tiếp giao diện desktop của [Brittany Chiang](https://brittanychiang.com/) và [Adham Dannaway](https://www.adhamdannaway.com/), đọc thêm [Rauno Freiberg](https://rauno.me/), cùng hướng dẫn [NN/g về khả năng đọc](https://www.nngroup.com/articles/legibility-readability-comprehension/) và [W3C về thay đổi cỡ chữ](https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html). Những quyết định dưới đây là áp dụng riêng cho nội dung hồ sơ này.
+
+- Từ cách chia nội dung của Brittany: mỗi thẻ dự án có tên, một mô tả, ba công nghệ tiêu biểu và liên kết chi tiết. Tiêu đề phụ, số thứ tự và các mũi tên lặp được giảm; đầy đủ đóng góp và công nghệ vẫn ở trang chi tiết.
+- Từ cách đặt điểm nhấn của Adham: tên, định hướng và ảnh chân dung là trọng tâm đầu trang. Nhãn trang trí, dòng năm/ngôn ngữ và lớp phủ trên ảnh được bỏ để tạo một điểm nhìn rõ.
+- Từ cách dùng chữ có chọn lọc của Rauno và hướng dẫn NN/g: gom nhãn về ít mức cỡ chữ hơn, giảm chữ hoa/giãn chữ, tăng tương phản của nội dung và dùng khoảng cách để phân nhóm thay cho nhiều đường viền.
+- Kỹ năng có tiêu đề và icon trên cùng một hàng; công nghệ là danh sách chữ dễ đọc. Thành tích đặt thời gian trước nội dung; chứng nhận dùng hai cột rộng trên desktop và một cột trên điện thoại.
+- Ảnh ghép công nghệ dùng logo lớn và tên ngắn, bỏ phụ đề/ghi chú nhỏ trong ảnh. Tên, mô tả và công nghệ vẫn có văn bản HTML để đọc, tìm kiếm và sử dụng với trình đọc màn hình.
+
+Kiểm tra cỡ chữ, tên dài và bố cục ở 320, 390, 768, 1024, 1440 px trong `verify-compact.cjs`. Kiểm tra toàn bộ tương tác, hai ngôn ngữ, ảnh lỗi, quản trị và bản in bằng `verify-all.cjs`. Việc kiểm tra này không phải chứng nhận khả năng tiếp cận toàn diện.
 
 ## Nơi Chỉnh Nội Dung
 
@@ -214,7 +228,7 @@ Cửa sổ xem ảnh tham khảo [W3C Modal Dialog Pattern](https://www.w3.org/W
 
 ## Bộ Ảnh Bìa Dự Án
 
-Bảy ảnh bìa hiện tại là `assets/project-covers/*-stack-v1.webp`, ghép từ logo công nghệ và tên mô hình/phương pháp có trong dữ liệu CV. Logo OpenClaw, 9router, SQLModel và PaddleOCR lấy từ repository của dự án. Logo web, hạ tầng và Colab lấy từ Simple Icons, có ghi nguồn thương hiệu. Các phương pháp như Bi-LSTM, Modality Dropout, RAG hay RBAC được trình bày bằng tên và biểu tượng chung, không được mô tả như logo thương hiệu. Các provider trong ảnh agent được ghi rõ là những provider đã thử nghiệm.
+Bảy ảnh bìa hiện tại là `assets/project-covers/*-stack-v2.webp`, ghép từ logo công nghệ và tên mô hình/phương pháp có trong dữ liệu CV. Logo OpenClaw, 9router, SQLModel và PaddleOCR lấy từ repository của dự án. Logo web, hạ tầng và Colab lấy từ Simple Icons, có ghi nguồn thương hiệu. Các phương pháp như Bi-LSTM, Modality Dropout, RAG hay RBAC được trình bày bằng tên và biểu tượng chung, không được mô tả như logo thương hiệu. Các provider trong ảnh agent là những provider đã thử nghiệm. Bản v2 dùng logo và tên lớn; bản v1 có thêm tiêu đề/ghi chú, được giữ để có thể chọn lại.
 
 Ảnh WebP 1200 × 800 hiển thị đầy đủ, có mô tả thay thế tiếng Việt/Anh. Trang chi tiết ưu tiên tải ảnh bìa; thẻ dự án tải ảnh khi gần vùng nhìn thấy. Khi ảnh lỗi, trang dùng SVG dự phòng. Chủ sở hữu có thể thay ảnh trong quản trị. Bộ ảnh ghép logo không mang nhãn AI; các ảnh AI cũ `*-concept-v1.webp` / `*-concept-v2.webp` vẫn có nhãn tương ứng nếu chọn lại.
 

@@ -41,48 +41,24 @@ function symbol(name) {
   return `<svg viewBox="0 0 54 54" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${drawings[name] || drawings.network}</svg>`;
 }
 
-function document(plan, index) {
-  const project = portfolio.projects.find(item => item.id === plan.id);
-  if (!project) throw new Error("Unknown project: " + plan.id);
+function document(plan) {
+  if (!portfolio.projects.some(project => project.id === plan.id)) throw new Error("Unknown project: " + plan.id);
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><style>
   *{box-sizing:border-box}html,body{margin:0;width:1200px;height:800px;overflow:hidden}
-  body{font-family:"Bahnschrift","Segoe UI",sans-serif;color:#193a30;background:#f4f5ef}
-  .cover{padding:48px 58px 34px;width:1200px;height:800px;position:relative;display:flex;flex-direction:column;--accent:${plan.accent};background:radial-gradient(ellipse at 100% 0%,#dce8e580,transparent 50%),linear-gradient(125deg,#fbfbf7,#eef2ec)}
-  .cover:before{content:"";position:absolute;width:160px;height:160px;right:-40px;top:-75px;border:30px solid var(--accent);border-radius:50%;opacity:.10}
-  .eyebrow{display:flex;align-items:center;justify-content:space-between;font-size:18px;letter-spacing:2px;color:#60726a;font-weight:600;margin-bottom:12px}
-  .eyebrow b{font-size:17px;color:var(--accent);letter-spacing:1px}
-  h1{font-size:54px;letter-spacing:-1.5px;line-height:1.1;margin:0;font-weight:650;color:#193a30}
-  .subtitle{font-size:23px;line-height:1.4;margin:10px 0 23px;color:#596c64}
-  .tiles{display:grid;grid-template-columns:repeat(${plan.columns},minmax(0,1fr));grid-template-rows:repeat(${Math.ceil(plan.items.length / plan.columns)},minmax(0,1fr));gap:16px;flex:1;min-height:0}
-  .tile{min-width:0;border:1px solid #dce3db;border-radius:17px;background:#fff;box-shadow:0 5px 0 #dbe3d420;padding:15px 20px;display:flex;align-items:center;gap:18px}
-  .mark{width:64px;height:64px;flex-shrink:0;display:grid;place-items:center;color:var(--accent)}
-  .mark img,.mark svg{display:block;max-width:100%;max-height:100%;width:100%;height:100%;object-fit:contain}
-  .tile h2{font-size:27px;font-weight:600;letter-spacing:-.5px;line-height:1.2;margin:0;overflow-wrap:normal}
-  .tile p{font-size:17px;color:#6a7971;margin:8px 0 0;line-height:1.25}
-  .tile.text-only{background:#f8faf5;border-left:4px solid var(--accent)}
-  .tile.text-only h2{font-size:31px;color:var(--accent)}
-  .tile.generic .mark{background:#f1f5ef;border-radius:14px;padding:10px}
-  .footer{font-size:19px;line-height:1.3;margin:23px 0 0;padding-top:17px;border-top:1px solid #d5ded3;color:#617469}
-  .models .tile,.methods .tile,.pipeline .tile,.mixed .tile{padding:22px 24px}
-  .models .tile h2{font-size:29px}.methods .tile h2{font-size:32px}
-  .models .mark,.methods .mark,.pipeline .mark,.mixed .mark{width:76px;height:76px}
-  .mixed .tile h2,.pipeline .tile h2{font-size:38px}
-  .logos .tiles:has(.tile:nth-child(9)) .tile{gap:13px;padding:14px 18px}
-  .logos .tiles:has(.tile:nth-child(9)) .mark{width:57px;height:57px}
-  .logos .tiles:has(.tile:nth-child(9)) .tile h2{font-size:25px}
-  .tile:has(img){flex-direction:column;justify-content:center;gap:12px;text-align:center}
-  .tile:has(img) .mark{width:104px;height:104px}
-  .tile:has(img) h2{font-size:31px}
-  .tile:has(img) p{display:none}
-  .logos .tiles:has(.tile:nth-child(9)) .tile{padding:12px;gap:8px}
-  .logos .tiles:has(.tile:nth-child(9)) .mark{width:76px;height:76px}
-  .logos .tiles:has(.tile:nth-child(9)) .tile h2{font-size:28px}
-  .models .tile:has(img) .mark,.mixed .tile:has(img) .mark{width:104px;height:104px}
-  </style></head><body><main class="cover ${esc(plan.mode)}">
-  <div class="eyebrow"><span>TECHNOLOGY / ${String(index + 1).padStart(2, "0")}</span><b>${esc(plan.mode === "methods" || plan.mode === "pipeline" ? "MODELS & METHODS" : "TOOLS & TECHNOLOGIES")}</b></div>
-  <h1>${esc(plan.title)}</h1><p class="subtitle">${esc(plan.subtitle)}</p><div class="tiles">
-  ${plan.items.map(item => `<article class="tile${item.textOnly ? " text-only" : item.logo ? "" : " generic"}">${item.textOnly ? "" : `<div class="mark">${item.logo ? `<img src="${logoData(item.logo)}" alt="${esc(item.name)}">` : symbol(item.symbol)}</div>`}<div><h2>${esc(item.name)}</h2><p>${esc(item.role)}</p></div></article>`).join("")}
-  </div><p class="footer">${esc(plan.footer)}</p></main></body></html>`;
+  body{font-family:"Bahnschrift","Segoe UI",sans-serif;color:#193a30;background:#f2f5ef}
+  .cover{padding:40px;width:1200px;height:800px;--accent:${plan.accent};background:radial-gradient(ellipse at top right,#dce8e580,transparent 65%),#f2f5ef}
+  .tiles{height:100%;display:grid;grid-template-columns:repeat(${plan.columns},minmax(0,1fr));grid-template-rows:repeat(${Math.ceil(plan.items.length / plan.columns)},minmax(0,1fr));gap:16px}
+  .tile{min-width:0;border:1px solid #dbe3d6;border-radius:20px;background:#fff;padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center}
+  .mark{width:160px;height:160px;flex-shrink:0;display:grid;place-items:center;color:var(--accent)}
+  .mark img,.mark svg{display:block;width:100%;height:100%;object-fit:contain}
+  h2{font-size:46px;font-weight:600;letter-spacing:-.6px;line-height:1.15;margin:0;max-width:100%;overflow-wrap:normal}
+  .tile.text-only{background:#f8faf5;border-top:4px solid var(--accent);color:var(--accent)}
+  .tile.generic .mark{width:104px;height:104px;border-radius:18px;background:#f1f5ef;padding:14px}
+  .tiles:has(.tile:nth-child(9)) .mark{width:108px;height:108px}
+  .tiles:has(.tile:nth-child(9)) h2{font-size:44px}
+  </style></head><body><main class="cover" aria-label="${esc(plan.title)}"><div class="tiles">
+  ${plan.items.map(item => `<article class="tile${item.textOnly ? " text-only" : item.logo ? "" : " generic"}">${item.textOnly ? "" : `<div class="mark">${item.logo ? `<img src="${logoData(item.logo)}" alt="${esc(item.name)}">` : symbol(item.symbol)}</div>`}<h2>${esc(item.name)}</h2></article>`).join("")}
+  </div></main></body></html>`;
 }
 
 (async () => {
@@ -100,7 +76,7 @@ function document(plan, index) {
       if (clipped) throw new Error("Technology tile content clipped: " + plan.id);
       const png = await page.screenshot({ type: "png", animations: "disabled" });
       fs.writeFileSync(path.join(output, plan.id + ".png"), png);
-      const target = path.join(assets, "project-covers", plan.id + "-stack-v1.webp");
+      const target = path.join(assets, "project-covers", plan.id + "-stack-v2.webp");
       await sharp(png).webp({ quality: 92, effort: 6 }).toFile(target);
       const size = fs.statSync(target).size; total += size;
       console.log(plan.id + ": " + Math.round(size / 1024) + " KB");

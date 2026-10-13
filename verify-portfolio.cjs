@@ -203,6 +203,7 @@ module.exports = async (browser, baseURL) => {
   const noJs = await context.newPage();
   await noJs.route("https://fonts.googleapis.com/**", route => route.abort());
   await noJs.route("https://fonts.gstatic.com/**", route => route.abort());
+  await noJs.route("**/assets/fonts/**", route => route.abort());
   await noJs.goto(url);
   assert.equal(await noJs.locator(".project-card").count(), 7);
   assert.equal(await noJs.locator(".certificate-card").count(), 5);

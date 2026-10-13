@@ -50,19 +50,19 @@ module.exports = async (browser, baseURL) => {
       assert.match(typography.family, /Be Vietnam Pro/);
       for (const field of ["summary", "about"])
         assert.ok(
-          typography[field] >= (width <= 640 ? 16 : 17),
+          typography[field] >= (width <= 640 ? 18 : 20),
           `${field}: larger reading size at ${width}`,
         );
       for (const field of ["card", "skill", "award", "certificate"])
         assert.ok(
-          typography[field] >= (width <= 640 ? 15 : 16),
+          typography[field] >= (width <= 640 ? 17 : 18),
           `${field}: legible card text at ${width}`,
         );
       assert.ok(
-        typography.label >= 12 &&
-          typography.tags >= 12 &&
-          typography.link >= 14 &&
-          typography.heading >= 30,
+        typography.label >= 15 &&
+          typography.tags >= 15 &&
+          typography.link >= 16 &&
+          typography.heading >= 34,
         "Readable labels, links and headings",
       );
     }

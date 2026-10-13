@@ -51,15 +51,14 @@
         cover: "Không gian dành cho ảnh dự án",
         portrait: "Học hỏi. Xây dựng. Kiểm chứng.",
         selected: "Dự án & nghiên cứu",
-        projectIntro:
-          "Những hệ thống tôi xây dựng, những câu hỏi tôi tìm hiểu.",
+        projectIntro: "Những dự án tôi xây dựng.",
         projectSub:
-          "Từ AI ứng dụng đến hệ thống web và nghiên cứu học thuật. Chọn một dự án để xem phạm vi, công nghệ và kết quả ghi nhận.",
-        aboutTitle: "Từ nền tảng AI đến hệ thống có kiểm thử.",
-        experienceTitle: "Học hỏi qua từng trải nghiệm.",
-        skillsTitle: "Công nghệ tôi làm việc cùng.",
-        awardsTitle: "Những cột mốc đáng nhớ.",
-        contactTitle: "Bắt đầu một cuộc trò chuyện.",
+          "Khám phá phạm vi, công nghệ và kết quả của từng dự án.",
+        aboutTitle: "AI ứng dụng. Hệ thống có kiểm thử.",
+        experienceTitle: "Kinh nghiệm & hành trình.",
+        skillsTitle: "Công nghệ & kỹ năng.",
+        awardsTitle: "Thành tích & ghi nhận.",
+        contactTitle: "Cùng trao đổi ý tưởng.",
         contactText:
           "Bạn muốn trao đổi về AI ứng dụng, agent/LLM hoặc phát triển hệ thống web? Có thể liên hệ với tôi qua email hoặc GitHub.",
         projectCount: "dự án & nghiên cứu",
@@ -139,14 +138,14 @@
         cover: "Space for project imagery",
         portrait: "Learn. Build. Validate.",
         selected: "Projects & research",
-        projectIntro: "Systems I build. Questions I explore.",
+        projectIntro: "Projects I've built.",
         projectSub:
-          "From applied AI to web systems and academic research. Explore each project's scope, technologies and recorded findings.",
-        aboutTitle: "An AI foundation. A focus on tested systems.",
-        experienceTitle: "Learning through experience.",
-        skillsTitle: "Technologies I work with.",
-        awardsTitle: "Milestones along the way.",
-        contactTitle: "Let's start a conversation.",
+          "Explore the scope, technologies and findings of each project.",
+        aboutTitle: "Applied AI. Tested systems.",
+        experienceTitle: "Experience & education.",
+        skillsTitle: "Technologies & skills.",
+        awardsTitle: "Achievements & recognition.",
+        contactTitle: "Let's exchange ideas.",
         contactText:
           "Interested in applied AI, agents/LLM systems or web development? You can reach me by email or on GitHub.",
         projectCount: "projects & research",
@@ -266,7 +265,7 @@
       // Identify our bundled artwork by its asset path; uploaded screenshots stay unlabelled.
       const concept = illustrated && /^assets\/project-covers\/[a-z0-9-]+-concept-v[12]\.webp$/.test(image?.src || "");
       const technical = concept && image.src.endsWith("-concept-v2.webp");
-      const stack = illustrated && /^assets\/project-covers\/[a-z0-9-]+-stack-v1\.webp$/.test(image?.src || "");
+      const stack = illustrated && /^assets\/project-covers\/[a-z0-9-]+-stack-v[12]\.webp$/.test(image?.src || "");
       return `<div class="media media--${kind}${concept ? " media--concept" : ""}${technical ? " media--technical" : ""}${stack ? " media--stack" : ""}${hasImage ? " has-image" : ""}" data-media>
     ${hasImage ? `<img src="${esc(prefix + image.src)}" alt="${esc(t(image.alt, lang))}" ${kind === "portrait" || kind === "cover" ? 'fetchpriority="high"' : 'loading="lazy"'} ${concept || stack ? 'width="1200" height="800"' : ""} decoding="async" style="object-position:${esc(image.position || "50% 50%")}" />` : ""}
     ${concept ? `<span class="concept-label">${lang === "vi" ? "Minh họa AI" : "AI illustration"}</span>` : ""}
@@ -287,7 +286,7 @@
       return `<a class="skip-link" href="#main">${esc(l.skip)}</a>
   <header class="site-nav">
     <div class="nav-inner">
-      <a class="brand" href="${home}" aria-label="${esc(l.home)}"><span class="brand-mark">P.</span><span>${esc(data.profile.name)}<span class="brand-sub">AI / ENGINEERING</span></span></a>
+      <a class="brand" href="${home}" aria-label="${esc(l.home)}"><span class="brand-mark">P.</span><span>${esc(data.profile.name)}</span></a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-open-label="${esc(l.menu)}" data-close-label="${esc(l.close)}"><span class="menu-icon" aria-hidden="true"></span><span data-menu-label>${esc(l.menu)}</span></button>
       <nav id="main-nav" class="main-nav" aria-label="${lang === "vi" ? "Điều hướng chính" : "Main navigation"}">
         ${order
@@ -342,7 +341,7 @@
         "06": "contact-heading",
       }[number];
       const symbol = { "01": "person", "02": "all", "03": "journey", "04": "ai", "05": "award", "06": "mail" }[number];
-      return `<div class="section-heading"><p class="section-eyebrow">${icon(symbol)}<span>${number}</span> ${esc(eyebrow)}</p><h2 id="${id}">${esc(title)}</h2>${description ? `<p class="section-description">${esc(description)}</p>` : ""}</div>`;
+      return `<div class="section-heading"><p class="section-eyebrow">${icon(symbol)}${esc(eyebrow)}</p><h2 id="${id}">${esc(title)}</h2>${description ? `<p class="section-description">${esc(description)}</p>` : ""}</div>`;
     }
 
     function projectCard(project, index, lang, prefix, compact = false) {
@@ -351,9 +350,8 @@
     <a class="project-image-link" href="${prefix + pagePath(lang, project)}" aria-label="${esc(l.detail + ": " + project.name)}">${media(project.image, lang, prefix, "project", l.cover, String(index + 1).padStart(2, "0"), project)}</a>
     <div class="project-body">
       <div class="project-meta"><span>${l[project.category]}</span><span>${esc(t(project.period, lang))}</span></div>
-      <h3><a href="${prefix + pagePath(lang, project)}">${esc(project.name)} <span aria-hidden="true">↗</span></a></h3>
-      <p class="project-title">${esc(t(project.title, lang))}</p>
-      ${compact ? "" : `<p class="project-summary">${esc(t(project.summary, lang))}</p>${tagList(project.technologies.slice(0, 4), lang)}`}
+      <h3><a href="${prefix + pagePath(lang, project)}">${esc(project.name)}</a></h3>
+      ${compact ? `<p class="project-title">${esc(t(project.title, lang))}</p>` : `<p class="project-summary">${esc(t(project.summary, lang))}</p>${tagList(project.technologies.slice(0, 3), lang)}`}
       <a class="text-link" href="${prefix + pagePath(lang, project)}">${esc(l.detail)} <span aria-hidden="true">↗</span></a>
     </div>
   </article>`;
@@ -380,7 +378,7 @@
         <a class="certificate-image" href="${esc(prefix + certificate.src)}" target="_blank" rel="noopener noreferrer" data-certificate="${certificate.id}" data-title="${esc(t(certificate.title, lang))}" data-description="${esc(t(certificate.description, lang))}" data-issuer="${esc(t(certificate.issuer, lang))}" data-issued="${esc(l.issued + ": " + issued)}" data-alt="${esc(t(certificate.alt, lang))}" aria-label="${esc(l.viewImage + ": " + t(certificate.title, lang))}">
           <img src="${esc(prefix + certificate.src)}" width="${certificate.width}" height="${certificate.height}" alt="${esc(t(certificate.alt, lang))}" loading="lazy" decoding="async" />
           <span class="certificate-image-error" hidden>${esc(l.imageError)}</span><span class="image-open" aria-hidden="true">${esc(l.viewImage)} ↗</span>
-        </a><div class="certificate-body"><div class="certificate-meta"><span>${l[certificate.category]}</span><span aria-hidden="true">${String(index + 1).padStart(2, "0")} / ${String(data.certificates.length).padStart(2, "0")}</span></div><h4>${esc(t(certificate.title, lang))}</h4><p>${esc(t(certificate.description, lang))}</p><div class="certificate-foot"><span>${esc(t(certificate.issuer, lang))}</span><time datetime="${certificate.issued}">${esc(l.issued)}: ${issued}</time></div></div>
+        </a><div class="certificate-body"><h4>${esc(t(certificate.title, lang))}</h4><p>${esc(t(certificate.description, lang))}</p><div class="certificate-foot"><span>${esc(t(certificate.issuer, lang))}</span><time datetime="${certificate.issued}">${esc(l.issued)}: ${issued}</time></div></div>
       </article>`;
       })
       .join("")}</div><p class="archive-note">${esc(l.archiveHint)}</p>
@@ -404,25 +402,19 @@
   <main id="main">
     <section class="hero container" aria-labelledby="hero-title">
       <div class="hero-content">
-        <p class="hero-edition">PERSONAL PORTFOLIO <span>2026 / VI + EN</span></p>
         <p class="hero-eyebrow"><span class="status-dot" aria-hidden="true"></span>${esc(t(data.profile.direction, lang))}</p>
         <h1 id="hero-title">${esc(data.profile.name)}<span class="name-period">.</span></h1>
         <p class="hero-focus">${data.profile.focus
           .split(/\s*&\s*|\n/)
           .map((x, i) => (i ? `<span>${esc(x)}.</span>` : esc(x) + "."))
           .join("<br />")}</p>
-        <p class="hero-motto">${esc(l.motto)}</p>
         <p class="hero-summary">${esc(t(data.profile.summary, lang))}</p>
         <div class="hero-actions"><a class="button button-primary" href="#projects">${esc(l.explore)} <span aria-hidden="true">↗</span></a><a class="button button-outline" href="${prefix + data.profile.pdf}" download>${esc(l.pdf)} <span aria-hidden="true">↓</span></a></div>
         <p class="hero-location"><span aria-hidden="true">⌖</span> ${esc(t(data.profile.location, lang))} <span class="location-divider">/</span> <a href="${esc(data.profile.github)}" target="_blank" rel="noopener noreferrer">@${esc(data.profile.github.split("/").filter(Boolean).pop())} ↗</a></p>
       </div>
       <figure class="hero-portrait">${media(data.profile.photo, lang, prefix, "portrait", l.portrait)}
-        <figcaption><span>${esc(l.photoCaption)}</span><span aria-hidden="true">PROFILE / 2026</span></figcaption>
-        <div class="portrait-tag" aria-hidden="true">AI / ML<br /><strong>BUILD. TEST. LEARN.</strong></div>
-        <a class="portrait-proof" href="#certificates"><span class="proof-star" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M20 2L24 15L38 20L24 25L20 38L16 25L2 20L16 15Z" stroke="currentColor"/><path d="M20 10V30M10 20H30" stroke="currentColor"/></svg></span><span><strong>${String(data.certificates?.length || 0).padStart(2, "0")}</strong><small>${esc(l.proofCount)}</small></span><span aria-hidden="true">↗</span></a>
       </figure>
     </section>
-    <div class="discipline-strip container"><span>${esc(l.disciplines)}</span><a href="#about">${esc(l.about)} <span aria-hidden="true">↓</span></a></div>
     <div class="stats container" aria-label="${lang === "vi" ? "Thông tin nổi bật" : "Profile highlights"}">
       <div><strong>${esc(data.education.gpa)}</strong><span>GPA · ${esc(t(data.education.classification, lang))}</span></div>
       <div><strong>${data.projects.length.toString().padStart(2, "0")}</strong><span>${esc(l.projectCount)}</span></div>
@@ -449,17 +441,17 @@
     </div></section>
     <section id="experience" class="section container" aria-labelledby="experience-heading">
       ${sectionHeading("03", l.experience, l.experienceTitle)}
-      <div class="timeline">${data.experience.map((exp, i) => `<article class="timeline-entry"><div class="timeline-date"><span class="timeline-point" aria-hidden="true"></span><span>${esc(exp.period)}</span><small>0${i + 1}</small></div><div class="timeline-content"><h3>${esc(t(exp.role, lang))}</h3><p class="timeline-company">${esc(t(exp.organization, lang))}</p><ul>${htmlList(t(exp.points, lang))}</ul></div></article>`).join("")}</div>
+      <div class="timeline">${data.experience.map((exp) => `<article class="timeline-entry"><div class="timeline-date"><span class="timeline-point" aria-hidden="true"></span><span>${esc(exp.period)}</span></div><div class="timeline-content"><h3>${esc(t(exp.role, lang))}</h3><p class="timeline-company">${esc(t(exp.organization, lang))}</p><ul>${htmlList(t(exp.points, lang))}</ul></div></article>`).join("")}</div>
     </section>
     <section id="skills" class="section skills-section" aria-labelledby="skills-heading"><div class="container">
       ${sectionHeading("04", l.skills, l.skillsTitle)}
-      <div class="skills-grid">${data.skills.map((skill, i) => `<article class="skill-card"><div class="skill-symbol">${icon(({ "AI / ML": "ai", "AI Agent / LLM": "agent", "Full-stack": "engineering", "Data / DevOps / QA": "data" })[skill.name])}</div><span class="skill-number">0${i + 1}</span><h3>${esc(skill.name)}</h3><p>${esc(t(skill.description, lang))}</p>${tagList(skill.items, lang)}</article>`).join("")}</div>
+      <div class="skills-grid">${data.skills.map((skill) => `<article class="skill-card"><div class="skill-header"><div class="skill-symbol">${icon(({ "AI / ML": "ai", "AI Agent / LLM": "agent", "Full-stack": "engineering", "Data / DevOps / QA": "data" })[skill.name])}</div><h3>${esc(skill.name)}</h3></div><p>${esc(t(skill.description, lang))}</p>${tagList(skill.items, lang)}</article>`).join("")}</div>
       <div class="toolbox"><h3>${esc(l.tools)}</h3>${tagList(data.tools, lang)}<p class="language-note"><strong>${esc(l.english)}:</strong> ${esc(t(data.english, lang))}</p></div>
     </div></section>
     <section id="awards" class="section container awards-section" aria-labelledby="awards-heading">
       ${sectionHeading("05", l.awards, l.awardsTitle)}
       <p class="milestones-label small-label">${esc(l.cvMilestones)}</p>
-      <div class="awards-list">${data.awards.map((award, i) => `<article class="award-item"><span class="award-number">0${i + 1}</span><div><h3>${esc(t(award.title, lang))}</h3><p>${esc(t(award.detail, lang))}</p>${award.certificate ? `<a class="award-evidence" href="#certificate-${award.certificate}" data-evidence-id="${award.certificate}">${esc(l.evidence)} ↗</a>` : ""}</div><time>${esc(award.date)}</time></article>`).join("")}</div>
+      <div class="awards-list">${data.awards.map((award) => `<article class="award-item"><time>${esc(award.date)}</time><div><h3>${esc(t(award.title, lang))}</h3><p>${esc(t(award.detail, lang))}</p>${award.certificate ? `<a class="award-evidence" href="#certificate-${award.certificate}" data-evidence-id="${award.certificate}">${esc(l.evidence)} ↗</a>` : ""}</div></article>`).join("")}</div>
       ${certificateGallery(lang, prefix)}
     </section>
     <section id="contact" class="section contact-section" aria-labelledby="contact-heading"><div class="container contact-grid">
@@ -514,6 +506,7 @@
         prefix = basePath(lang, project);
       const index = data.projects.findIndex((p) => p.id === project.id);
       const home = prefix + (lang === "en" ? "en/" : "./");
+      const stackCover = /^assets\/project-covers\/[a-z0-9-]+-stack-v[12]\.webp$/.test(project.image.src);
       const galleryImages = project.gallery.filter((image) => image.src);
       const gallery = galleryImages.length
         ? galleryImages
@@ -529,10 +522,10 @@
       return `${header(lang, project)}<main id="main" class="project-page category-${project.category}">
     <section class="project-hero container">
       <a class="text-link" href="${home}#projects">← ${esc(l.back)}</a>
-      <div class="project-meta"><span>${l[project.category]} / 0${index + 1}</span><span>${esc(t(project.period, lang))}</span></div>
+      <div class="project-meta"><span>${l[project.category]}</span><span>${esc(t(project.period, lang))}</span></div>
       <h1>${esc(project.name)}<span class="name-period">.</span></h1><p class="project-subheading">${esc(t(project.title, lang))}</p><p class="project-lead">${esc(t(project.summary, lang))}</p>
       <div class="project-hero-actions"><span class="project-context">${esc(t(project.context, lang))}</span>${project.repository ? `<a class="button button-outline" href="${esc(project.repository)}" target="_blank" rel="noopener noreferrer">${esc(l.repo)} ↗</a>` : ""}</div>
-      <figure class="project-cover${project.image.src ? "" : " project-cover--illustration"}">${media(project.image, lang, prefix, "cover", l.cover, String(index + 1).padStart(2, "0"), project)}${project.image.src ? `<figcaption>${esc(t(project.image.alt, lang))}</figcaption>` : ""}</figure>
+      <figure class="project-cover${project.image.src ? "" : " project-cover--illustration"}">${media(project.image, lang, prefix, "cover", l.cover, String(index + 1).padStart(2, "0"), project)}${project.image.src ? `<figcaption>${esc(stackCover ? l.technologies : t(project.image.alt, lang))}</figcaption>` : ""}</figure>
     </section>
     <section class="container project-information">
       <div class="project-details"><p class="section-eyebrow">01 / ${esc(l.overview)}</p><h2>${esc(l.scope)}</h2><ul class="contribution-list">${htmlList(t(project.points, lang))}</ul><div class="result-box"><p class="small-label">${esc(l.recorded)}</p><p>${esc(t(project.result, lang))}</p></div></div>
@@ -598,10 +591,10 @@
   <link rel="canonical" href="${canonical}" />
   ${languages.map((locale) => `<link rel="alternate" hreflang="${locale}" href="${new URL(pagePath(locale, project).replace(/index\.html$/, ""), data.siteUrl).href}" />`).join("\n  ")}
   <link rel="icon" href="${prefix}assets/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="${prefix}portfolio.css?v=20261013-2" />
+  <link rel="preload" href="${prefix}assets/fonts/be-vietnam-pro/be-vietnam-pro-400-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="${prefix}assets/fonts/be-vietnam-pro/be-vietnam-pro-400-vietnamese.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="${prefix}assets/fonts/be-vietnam-pro/fonts.css" />
+  <link rel="stylesheet" href="${prefix}portfolio.css?v=20261013-3" />
   <script type="application/ld+json">${JSON.stringify(schema).replace(/</g, "\\u003c")}</script>
   <script src="${prefix}portfolio.js?v=20261009-4" defer></script>
 </head>

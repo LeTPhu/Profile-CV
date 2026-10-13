@@ -433,7 +433,7 @@
       ],
       "repository": "",
       "image": {
-        "src": "assets/project-covers/aiocrm-stack-v1.webp",
+        "src": "assets/project-covers/aiocrm-stack-v2.webp",
         "alt": {
           "vi": "Ảnh ghép công nghệ của AIOCRM: Vue 3, TypeScript, Fastify, Prisma, PostgreSQL, Socket.IO, Redis / BullMQ, MinIO / S3, Docker.",
           "en": "Technology collage for AIOCRM: Vue 3, TypeScript, Fastify, Prisma, PostgreSQL, Socket.IO, Redis / BullMQ, MinIO / S3, Docker."
@@ -487,7 +487,7 @@
       ],
       "repository": "",
       "image": {
-        "src": "assets/project-covers/openclaw-9router-stack-v1.webp",
+        "src": "assets/project-covers/openclaw-9router-stack-v2.webp",
         "alt": {
           "vi": "Ảnh ghép công nghệ của OpenClaw + 9router: OpenClaw, 9router, Ubuntu, DeepSeek, GPT / OpenAI, Kiro / xKiro, Ubuntu / VPS, Multi-provider APIs, Tool Calling.",
           "en": "Technology collage for OpenClaw + 9router: OpenClaw, 9router, Ubuntu, DeepSeek, GPT / OpenAI, Kiro / xKiro, Ubuntu / VPS, Multi-provider APIs, Tool Calling."
@@ -544,7 +544,7 @@
       ],
       "repository": "",
       "image": {
-        "src": "assets/project-covers/sound-event-detection-stack-v1.webp",
+        "src": "assets/project-covers/sound-event-detection-stack-v2.webp",
         "alt": {
           "vi": "Ảnh ghép công nghệ của Sound Event Detection: Google Colab, Log-Mel, CRNN, ATST-SED, BEATs, CLAP.",
           "en": "Technology collage for Sound Event Detection: Google Colab, Log-Mel, CRNN, ATST-SED, BEATs, CLAP."
@@ -596,7 +596,7 @@
       ],
       "repository": "",
       "image": {
-        "src": "assets/project-covers/qa-tiger-stack-v1.webp",
+        "src": "assets/project-covers/qa-tiger-stack-v2.webp",
         "alt": {
           "vi": "Ảnh ghép công nghệ của QA-TIGER Robustness: Multimodal VQA, Modality Dropout, Knowledge Distillation, Quality Gate, Missing Tokens.",
           "en": "Technology collage for QA-TIGER Robustness: Multimodal VQA, Modality Dropout, Knowledge Distillation, Quality Gate, Missing Tokens."
@@ -650,7 +650,7 @@
       ],
       "repository": "",
       "image": {
-        "src": "assets/project-covers/ai-helpdesk-stack-v1.webp",
+        "src": "assets/project-covers/ai-helpdesk-stack-v2.webp",
         "alt": {
           "vi": "Ảnh ghép công nghệ của AI Helpdesk - AEGONA: FastAPI, SQLModel, SQLite, RBAC, Rule-based, SLA, Rule-based Classification.",
           "en": "Technology collage for AI Helpdesk - AEGONA: FastAPI, SQLModel, SQLite, RBAC, Rule-based, SLA, Rule-based Classification."
@@ -699,7 +699,7 @@
       ],
       "repository": "",
       "image": {
-        "src": "assets/project-covers/ocr-rag-stack-v1.webp",
+        "src": "assets/project-covers/ocr-rag-stack-v2.webp",
         "alt": {
           "vi": "Ảnh ghép công nghệ của OCR-RAG Chatbot: PaddleOCR, VietOCR, RAG, LLM.",
           "en": "Technology collage for OCR-RAG Chatbot: PaddleOCR, VietOCR, RAG, LLM."
@@ -750,7 +750,7 @@
       ],
       "repository": "https://github.com/LeTPhu/Violence-Detection",
       "image": {
-        "src": "assets/project-covers/violence-detection-stack-v1.webp",
+        "src": "assets/project-covers/violence-detection-stack-v2.webp",
         "alt": {
           "vi": "Ảnh ghép công nghệ của Violence Detection: MobileNetV2, Bi-LSTM, Computer Vision, Video.",
           "en": "Technology collage for Violence Detection: MobileNetV2, Bi-LSTM, Computer Vision, Video."
