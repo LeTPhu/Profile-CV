@@ -46,6 +46,14 @@ Kiểm tra cỡ chữ, tên dài và bố cục ở 320, 390, 768, 1024, 1440 px
 
 Các ca kiểm tra bổ sung xác minh lối khám phá bằng bàn phím ở cả hai ngôn ngữ, số lượng/bộ lọc đồng bộ, thanh tiến độ từ đầu đến cuối trang, phần ẩn/nhóm rỗng, giảm chuyển động và fallback khi không có observer hoặc JavaScript.
 
+### Câu Chữ Và Phần Xem Nhanh
+
+Theo yêu cầu của chủ hồ sơ, câu chữ dùng giọng giới thiệu vừa phải: “Đang quan tâm”, “Một chút về tôi”, “Công nghệ đã sử dụng”. Bỏ khẩu hiệu dưới chân dung, thay chấm trạng thái bằng icon lĩnh vực và giảm các câu mang tính tự đánh giá. Kinh nghiệm, vai trò, GPA, giải thưởng, ngày tháng và số liệu có trong CV vẫn được giữ; các kết quả thử nghiệm vẫn có ghi phạm vi ở trang chi tiết. Mốc cập nhật 14/10/2026 phản ánh lần chỉnh nội dung giới thiệu này, không phải ngày xác nhận lại các benchmark.
+
+Thẻ dự án có phần “Nội dung thực hiện” / “Work involved” đóng mặc định, gồm bối cảnh và các công việc lấy nguyên từ dữ liệu của từng ngôn ngữ. Sử dụng phần tử [HTML details theo MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details), mở/đóng được bằng bàn phím và khi không có JavaScript. Thẻ dự án liên quan không lặp phần mở rộng này. Nhãn phần xem nhanh và nhãn điều hướng lĩnh vực có thể sửa riêng cho Việt/Anh trong quản trị.
+
+Trên máy tính, học vấn được đặt cạnh tiêu đề giới thiệu để phần đầu khối gọn hơn; ảnh chứng nhận có viền mảnh như khung tư liệu. Khung ảnh ghép công nghệ có chiều rộng xác định để không phóng lớn hoặc cắt ảnh khi mở phần mô tả. Các ca kiểm tra bổ sung mở/đóng nội dung ở năm độ rộng, đối chiếu với dữ liệu gốc và kiểm tra trạng thái mở khi in. Bản in bỏ nút mở/đóng, giữ phần nội dung đã mở và dùng chữ tối trên nền trắng.
+
 ## Nơi Chỉnh Nội Dung
 
 ### Chỉnh Trực Tiếp Trên Website

@@ -19,6 +19,14 @@ module.exports = () => {
     fs.readFileSync(path.join(site, "data/portfolio.json"), "utf8"),
   );
   const Renderer = require("./github-public-cv/portfolio-renderer.js");
+  const Model = require("./github-public-cv/portfolio-model.js");
+  const labelsFixture = structuredClone(data);
+  labelsFixture.content.vi.projectNotes = "Phần công việc của dự án";
+  labelsFixture.content.en.projectNotes = "Project work notes";
+  labelsFixture.content.vi.choosePath = "Chọn nhóm dự án";
+  assert.deepEqual(Model.validate(Model.normalize(labelsFixture)), [], "New disclosure/navigation labels are editable in admin");
+  assert.ok(Renderer(labelsFixture).homePage("vi").includes("Phần công việc của dự án"));
+  assert.ok(Renderer(labelsFixture).homePage("en").includes("Project work notes"));
   const hiddenFixture = structuredClone(data);
   hiddenFixture.settings.hiddenSections = ["projects"];
   const hiddenHome = Renderer(hiddenFixture).homePage("vi");

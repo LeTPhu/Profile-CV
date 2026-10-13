@@ -36,6 +36,8 @@
     "disciplines",
     "snapshot",
     "photoCaption",
+    "choosePath",
+    "projectNotes",
   ];
   function safeTree(value, depth = 0) {
     if (depth > 18)

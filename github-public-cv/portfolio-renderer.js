@@ -41,7 +41,7 @@
         pdf: "Tải CV PDF",
         resume: "Xem CV A4",
         home: "Trang chủ",
-        explore: "Khám phá dự án",
+        explore: "Xem dự án",
         choosePath: "Khám phá dự án theo lĩnh vực",
         email: "Gửi email",
         all: "Tất cả",
@@ -49,17 +49,18 @@
         research: "Nghiên cứu",
         ai: "AI ứng dụng",
         detail: "Xem chi tiết",
+        projectNotes: "Nội dung thực hiện",
         cover: "Không gian dành cho ảnh dự án",
-        portrait: "Học hỏi. Xây dựng. Kiểm chứng.",
+        portrait: "Ảnh chân dung",
         selected: "Dự án & nghiên cứu",
-        projectIntro: "Những dự án tôi xây dựng.",
+        projectIntro: "Một số dự án đã thực hiện.",
         projectSub:
-          "Khám phá phạm vi, công nghệ và kết quả của từng dự án.",
-        aboutTitle: "AI ứng dụng. Hệ thống có kiểm thử.",
+          "Ghi lại nội dung thực hiện, công nghệ sử dụng và kết quả trong từng dự án.",
+        aboutTitle: "Một chút về tôi.",
         experienceTitle: "Kinh nghiệm & hành trình.",
-        skillsTitle: "Công nghệ & kỹ năng.",
-        awardsTitle: "Thành tích & ghi nhận.",
-        contactTitle: "Cùng trao đổi ý tưởng.",
+        skillsTitle: "Công nghệ đã sử dụng.",
+        awardsTitle: "Các dấu mốc.",
+        contactTitle: "Liên hệ với tôi.",
         contactText:
           "Bạn muốn trao đổi về AI ứng dụng, agent/LLM hoặc phát triển hệ thống web? Có thể liên hệ với tôi qua email hoặc GitHub.",
         projectCount: "dự án & nghiên cứu",
@@ -86,15 +87,15 @@
         copy: "Sao chép email",
         copied: "Đã sao chép email.",
         copyFallback: "Chọn email bên dưới để sao chép.",
-        footer: "AI ứng dụng. Hệ thống có kiểm thử.",
+        footer: "Hồ sơ cá nhân & ghi chép dự án.",
         photoCaption: "Lê Tấn Phú / Hồ sơ cá nhân",
         overview: "Tổng quan dự án",
         projectLabel: "Dự án",
         lastUpdate: "Cập nhật",
-        motto: "Học hỏi. Xây dựng. Kiểm chứng.",
+        motto: "Đang quan tâm",
         disciplines: "AI ứng dụng / Phát triển hệ thống / Nghiên cứu",
         archive: "Thư viện minh chứng",
-        archiveTitle: "Những nỗ lực được ghi nhận.",
+        archiveTitle: "Giấy khen & chứng nhận.",
         archiveIntro:
           "Giấy khen và chứng nhận từ các cuộc thi, hoạt động học tập. Chọn một ảnh để xem rõ toàn bộ nội dung.",
         award: "Giấy khen",
@@ -129,7 +130,7 @@
         pdf: "Download CV",
         resume: "View A4 resume",
         home: "Home",
-        explore: "Explore projects",
+        explore: "View projects",
         choosePath: "Explore projects by discipline",
         email: "Send an email",
         all: "All",
@@ -137,17 +138,18 @@
         research: "Research",
         ai: "Applied AI",
         detail: "View project",
+        projectNotes: "Work involved",
         cover: "Space for project imagery",
-        portrait: "Learn. Build. Validate.",
+        portrait: "Portrait",
         selected: "Projects & research",
-        projectIntro: "Projects I've built.",
+        projectIntro: "Projects I've worked on.",
         projectSub:
-          "Explore the scope, technologies and findings of each project.",
-        aboutTitle: "Applied AI. Tested systems.",
+          "Notes on the work, technologies and findings within each project's scope.",
+        aboutTitle: "A little about me.",
         experienceTitle: "Experience & education.",
-        skillsTitle: "Technologies & skills.",
-        awardsTitle: "Achievements & recognition.",
-        contactTitle: "Let's exchange ideas.",
+        skillsTitle: "Technologies I've used.",
+        awardsTitle: "A few milestones.",
+        contactTitle: "Get in touch.",
         contactText:
           "Interested in applied AI, agents/LLM systems or web development? You can reach me by email or on GitHub.",
         projectCount: "projects & research",
@@ -174,15 +176,15 @@
         copy: "Copy email",
         copied: "Email copied.",
         copyFallback: "Select the email below to copy it.",
-        footer: "Applied AI. Tested systems.",
+        footer: "Personal profile & project notes.",
         photoCaption: "Le Tan Phu / Personal profile",
         overview: "Project overview",
         projectLabel: "Project",
         lastUpdate: "Updated",
-        motto: "Learn. Build. Validate.",
+        motto: "Current interests",
         disciplines: "Applied AI / Systems development / Research",
         archive: "Evidence archive",
-        archiveTitle: "Effort, recognised.",
+        archiveTitle: "Awards & certificates.",
         archiveIntro:
           "Awards and participation certificates from competitions and learning activities. Select an image to read the full document.",
         award: "Award",
@@ -348,12 +350,17 @@
 
     function projectCard(project, index, lang, prefix, compact = false) {
       const l = labels[lang];
+      const points = t(project.points, lang);
+      const notes = !compact && points.length
+        ? `<details class="project-notes"><summary aria-label="${esc(l.projectNotes + ": " + project.name)}"><span>${esc(l.projectNotes)}</span><svg class="notes-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><div class="project-notes-content"><p class="project-note-context">${esc(t(project.context, lang))}</p><ul>${htmlList(points)}</ul></div></details>`
+        : "";
       return `<article class="project-card category-${project.category}" data-category="${project.category}">
     <a class="project-image-link" href="${prefix + pagePath(lang, project)}" aria-label="${esc(l.detail + ": " + project.name)}">${media(project.image, lang, prefix, "project", l.cover, String(index + 1).padStart(2, "0"), project)}</a>
     <div class="project-body">
       <div class="project-meta"><span>${l[project.category]}</span><span>${esc(t(project.period, lang))}</span></div>
       <h3><a href="${prefix + pagePath(lang, project)}">${esc(project.name)}</a></h3>
       ${compact ? `<p class="project-title">${esc(t(project.title, lang))}</p>` : `<p class="project-summary">${esc(t(project.summary, lang))}</p>${tagList(project.technologies.slice(0, 3), lang)}`}
+      ${notes}
       <a class="text-link" href="${prefix + pagePath(lang, project)}">${esc(l.detail)} <span aria-hidden="true">↗</span></a>
     </div>
   </article>`;
@@ -413,8 +420,9 @@
     <section class="hero container" aria-labelledby="hero-title">
       <svg class="hero-orbits" viewBox="0 0 580 580" fill="none" aria-hidden="true" focusable="false"><circle cx="305" cy="275" r="230"/><ellipse cx="305" cy="275" rx="280" ry="145" transform="rotate(-35 305 275)"/><path d="M55 70v30m-15-15h30M500 420v24m-12-12h24"/><circle class="orbit-node" cx="113" cy="147" r="7"/><circle class="orbit-node" cx="512" cy="375" r="5"/></svg>
       <div class="hero-content">
-        <p class="hero-eyebrow"><span class="status-dot" aria-hidden="true"></span>${esc(t(data.profile.direction, lang))}</p>
+        <p class="hero-eyebrow">${icon("ai")}${esc(t(data.profile.direction, lang))}</p>
         <h1 id="hero-title">${esc(data.profile.name)}<span class="name-period">.</span></h1>
+        <p class="hero-focus-label">${esc(l.motto)}</p>
         <p class="hero-focus">${data.profile.focus
           .split(/\s*&\s*|\n/)
           .map((x, i) => `<span class="${i ? "focus-secondary" : "focus-primary"}">${esc(x)}.</span>`)
@@ -423,7 +431,7 @@
         <div class="hero-actions"><a class="button button-primary" href="#projects">${esc(l.explore)} <span aria-hidden="true">↗</span></a><a class="button button-outline" href="${prefix + data.profile.pdf}" download>${esc(l.pdf)} <span aria-hidden="true">↓</span></a></div>
         <p class="hero-location"><span aria-hidden="true">⌖</span> ${esc(t(data.profile.location, lang))} <span class="location-divider">/</span> <a href="${esc(data.profile.github)}" target="_blank" rel="noopener noreferrer">@${esc(data.profile.github.split("/").filter(Boolean).pop())} ↗</a></p>
       </div>
-      <figure class="hero-portrait"><div class="portrait-frame">${media(data.profile.photo, lang, prefix, "portrait", l.portrait)}<svg class="portrait-spark" viewBox="0 0 100 100" fill="none" aria-hidden="true" focusable="false"><path d="m50 2 9 27 24-13-13 25 28 9-28 9 13 25-24-13-9 27-9-27-24 13 13-25-28-9 28-9-13-25 24 13Z" fill="currentColor"/><circle cx="50" cy="50" r="10"/></svg></div><figcaption>${esc(l.motto)}</figcaption>
+      <figure class="hero-portrait"><div class="portrait-frame">${media(data.profile.photo, lang, prefix, "portrait", l.portrait)}<svg class="portrait-spark" viewBox="0 0 100 100" fill="none" aria-hidden="true" focusable="false"><path d="m50 2 9 27 24-13-13 25 28 9-28 9 13 25-24-13-9 27-9-27-24 13 13-25-28-9 28-9-13-25 24 13Z" fill="currentColor"/><circle cx="50" cy="50" r="10"/></svg></div>
       </figure>
     </section>
     <div class="stats container" aria-label="${lang === "vi" ? "Thông tin nổi bật" : "Profile highlights"}">
@@ -606,7 +614,7 @@
   <link rel="preload" href="${prefix}assets/fonts/be-vietnam-pro/be-vietnam-pro-400-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="${prefix}assets/fonts/be-vietnam-pro/be-vietnam-pro-400-vietnamese.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="${prefix}assets/fonts/be-vietnam-pro/fonts.css" />
-  <link rel="stylesheet" href="${prefix}portfolio.css?v=20261014-1" />
+  <link rel="stylesheet" href="${prefix}portfolio.css?v=20261014-2" />
   <script type="application/ld+json">${JSON.stringify(schema).replace(/</g, "\\u003c")}</script>
   <script src="${prefix}portfolio.js?v=20261014-1" defer></script>
 </head>

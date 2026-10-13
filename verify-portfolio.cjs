@@ -214,6 +214,10 @@ module.exports = async (browser, baseURL) => {
   await noJs.locator('[data-project-category="research"]').click();
   assert.equal(new URL(noJs.url()).hash, "#projects");
   assert.equal(await noJs.locator(".project-card:visible").count(), 7, "Without JavaScript the shortcut still reaches all projects");
+  const noJsNotes = noJs.locator(".project-notes").first();
+  await noJsNotes.locator("summary").click();
+  assert.equal(await noJsNotes.evaluate(element => element.open), true, "Project disclosures work without JavaScript");
+  assert.equal(await noJsNotes.locator(".project-notes-content").isVisible(), true);
   await noJs.goto(url + "en/projects/qa-tiger.html");
   assert.match(await noJs.locator(".result-box").textContent(), /13\.80/);
   await context.close();

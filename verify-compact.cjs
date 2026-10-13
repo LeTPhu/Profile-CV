@@ -65,7 +65,35 @@ module.exports = async (browser, baseURL) => {
           typography.heading >= 34,
         "Readable labels, links and headings",
       );
+      const notes = page.locator(".project-grid > .project-card:first-child .project-notes");
+      await notes.locator("summary").focus();
+      await page.keyboard.press("Space");
+      assert.equal(await notes.evaluate(element => element.open), true, "Project notes open with the keyboard");
+      assert.deepEqual(await notes.locator("li").allTextContents(), source.projects[0].points[lang], "Notes retain the supplied scope in each language");
+      assert.equal(await notes.locator(".project-note-context").textContent(), source.projects[0].context[lang]);
+      const notesLayout = await notes.locator(".project-notes-content").evaluate(element => ({
+        overflow: document.documentElement.scrollWidth > innerWidth,
+        textSize: parseFloat(getComputedStyle(element).fontSize),
+      }));
+      assert.equal(notesLayout.overflow, false, `Expanded ${lang} notes fit at ${width}`);
+      assert.ok(notesLayout.textSize >= (width <= 640 ? 17 : 18));
+      const cover = await page.locator(".project-grid > .project-card:first-child .project-image-link").evaluate(element => ({
+        linkWidth: element.getBoundingClientRect().width,
+        mediaWidth: element.querySelector(".media").getBoundingClientRect().width,
+        imageWidth: element.querySelector("img").getBoundingClientRect().width,
+      }));
+      assert.ok(cover.mediaWidth <= cover.linkWidth + 1 && cover.imageWidth <= cover.linkWidth + 1, "Expanding notes never crops an oversized technology plate");
+      await page.keyboard.press("Enter");
+      assert.equal(await notes.evaluate(element => element.open), false);
     }
+    const firstNotes = page.locator(".project-grid > .project-card:first-child .project-notes");
+    await firstNotes.locator("summary").click();
+    await page.emulateMedia({ media: "print" });
+    assert.equal(await firstNotes.locator(".project-notes-content").isVisible(), true, "Opened notes remain readable when printed");
+    assert.equal(await firstNotes.locator("summary").isVisible(), false, "Printing omits disclosure controls");
+    assert.equal(await firstNotes.locator(".project-notes-content").evaluate(element => getComputedStyle(element).color), "rgb(29, 51, 43)");
+    await page.emulateMedia({ media: "screen" });
+    await firstNotes.locator("summary").click();
     await page.setViewportSize({ width: 1024, height: 900 });
     const paths = page.locator("[data-project-category]");
     assert.equal(await paths.count(), 3);
@@ -178,6 +206,7 @@ module.exports = async (browser, baseURL) => {
   );
   for (const project of source.projects) {
     await page.goto(url + "projects/" + project.id + ".html?lang=vi");
+    assert.equal(await page.locator(".related-grid .project-notes").count(), 0, "Related cards stay compact");
     if (!project.gallery.some((image) => image.src))
       assert.equal(
         await page.locator(".project-gallery").count(),
@@ -246,5 +275,5 @@ module.exports = async (browser, baseURL) => {
   await motionPage.waitForFunction(() => document.getAnimations().length === 0);
   assert.equal(await motionPage.locator("#skills .section-heading").evaluate(element => getComputedStyle(element).opacity), "1", "Changing motion preference leaves complete content visible");
   await motionContext.close();
-  return "Larger bilingual reading sizes and responsive menu, keyboard discipline shortcuts/counts, reading progress, reduced-motion/observer fallback, long names at five widths, compact sections/covers, full-width filtered cards, no empty galleries/related section and uncropped real gallery images";
+  return "Bilingual reading sizes, keyboard project disclosures with original scope/print state and uncropped expanded covers, responsive menu, discipline shortcuts/counts, reading progress, reduced-motion/observer fallback, long names at five widths, compact sections/covers, full-width filtered cards and uncropped galleries";
 };
