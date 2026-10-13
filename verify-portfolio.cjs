@@ -17,9 +17,9 @@ module.exports = async (browser, baseURL) => {
   assert.equal(await page.locator(".certificate-card").count(), 5);
   assert.deepEqual(content.awards.slice(-2).map(award => award.date), ["04/2023", "03/2023"]);
   assert.equal(await page.locator(".timeline-entry").count(), 2);
-  assert.equal(await page.locator(".hero-portrait img").count(), 0);
+  assert.equal(await page.locator(".hero-portrait img").count(), content.profile.photo.src ? 1 : 0);
   assert.match(await page.locator(".hero-summary").textContent(), /Nguyễn Tất Thành/);
-  results.push("Real CV data and intentional photo placeholders");
+  results.push("Real CV data and owner portrait selection");
 
   for (const project of content.projects.filter(project => project.image.src.startsWith("assets/project-covers/"))) {
     const image = page.locator(`.project-grid img[src$="${project.image.src}"]`);
@@ -189,8 +189,7 @@ module.exports = async (browser, baseURL) => {
   const imageContext = await browser.newContext({ locale: "vi-VN" });
   const imagePage = await imageContext.newPage();
   const html = fs.readFileSync(path.join(__dirname, "github-public-cv/index.html"), "utf8")
-    .replace('<div class="media media--portrait" data-media>', '<div class="media media--portrait has-image" data-media><img src="data:image/png;base64,broken" alt="Test portrait" />')
-    .replace('<div class="media-placeholder">', '<div class="media-placeholder" hidden>');
+    .replace(/<div class="media media--portrait[^\"]*" data-media>\s*(?:<img[^>]*>\s*)?<div class="media-placeholder"[^>]*>/, '<div class="media media--portrait has-image" data-media><img src="data:image/png;base64,broken" alt="Test portrait" /><div class="media-placeholder" hidden>');
   await imagePage.route(url + "?image-test", route => route.fulfill({ contentType: "text/html; charset=utf-8", body: html }));
   await imagePage.goto(url + "?image-test");
   await imagePage.waitForFunction(() => !document.querySelector(".hero-portrait img"));

@@ -13,7 +13,7 @@
         "website": "https://github.com/LeTPhu",
         "address": "Hóc Môn, TP. Hồ Chí Minh",
         "summary": "Tốt nghiệp Công nghệ thông tin - Trí tuệ nhân tạo tại Đại học Nguyễn Tất Thành. Tôi quan tâm đến AI Agent/LLM, AI ứng dụng và phát triển hệ thống web có kiểm thử.",
-        "photo": "./assets/avatar-placeholder.svg"
+        "photo": "./assets/uploads/d1d2a33f-fadf-49ee-b1eb-81fd5a257848.jpg"
       },
       "theme": {
         "accent": "#1d7c73",
@@ -33,7 +33,7 @@
         "photoBorder": 3
       },
       "visibility": {
-        "photo": false,
+        "photo": true,
         "personal": true,
         "skills": true,
         "languages": true,
@@ -195,7 +195,7 @@
         "website": "https://github.com/LeTPhu",
         "address": "Hoc Mon, Ho Chi Minh City",
         "summary": "An Information Technology graduate specializing in Artificial Intelligence at Nguyen Tat Thanh University. My interests span AI agents, LLM systems, applied AI and tested web applications.",
-        "photo": "./assets/avatar-placeholder.svg"
+        "photo": "./assets/uploads/d1d2a33f-fadf-49ee-b1eb-81fd5a257848.jpg"
       },
       "theme": {
         "accent": "#1f4e79",
@@ -215,7 +215,7 @@
         "photoBorder": 3
       },
       "visibility": {
-        "photo": false,
+        "photo": true,
         "personal": true,
         "skills": true,
         "languages": true,
