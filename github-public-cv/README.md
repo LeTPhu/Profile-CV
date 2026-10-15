@@ -54,6 +54,19 @@ Thẻ dự án có phần “Nội dung thực hiện” / “Work involved” �
 
 Trên máy tính, học vấn được đặt cạnh tiêu đề giới thiệu để phần đầu khối gọn hơn; ảnh chứng nhận có viền mảnh như khung tư liệu. Khung ảnh ghép công nghệ có chiều rộng xác định để không phóng lớn hoặc cắt ảnh khi mở phần mô tả. Các ca kiểm tra bổ sung mở/đóng nội dung ở năm độ rộng, đối chiếu với dữ liệu gốc và kiểm tra trạng thái mở khi in. Bản in bỏ nút mở/đóng, giữ phần nội dung đã mở và dùng chữ tối trên nền trắng.
 
+### Rà Soát Tiếng Anh Ngày 15/10/2026
+
+- Dùng `Degree of Engineer in Information Technology (Artificial Intelligence)` theo học vị Kỹ sư do chủ hồ sơ xác nhận và cách diễn đạt được lựa chọn cho hồ sơ. [Mô tả chương trình NTTU được đối chiếu](https://fast.ntt.edu.vn/wp-content/uploads/2023/11/2019.-Ba%CC%89n-mo%CC%82-ta%CC%89-CTDT-ca%CC%A3%CC%82p-nha%CC%A3%CC%82t-bo%CC%82%CC%89-sung.pdf) là của ngành Công nghệ kỹ thuật hóa học, không phải văn bằng cá nhân hoặc bằng chứng về tên tiếng Anh chính thức của khóa CNTT này. Khi có bằng song ngữ hoặc bản dịch công chứng, ưu tiên đúng tên trên giấy tờ. Không tự quy đổi sang Bachelor, Master hoặc một trình độ của Mỹ. [Stanford](https://aa.stanford.edu/academics-admissions/graduate-programs/degree-engineer-post-ms-program) cũng dùng cả “Degree of Engineer” và “Engineer's degree” cho chương trình sau M.S.; chỉ thay cách diễn đạt không xác nhận tương đương văn bằng.
+- Dùng `The Saigon International College (SGI)` theo [website của SGI](https://sgicollege.edu.vn/). Giữ nguyên `365 Ecosystem JSC (365 EJSC)` ở cả hai ngôn ngữ theo xác nhận của chủ hồ sơ. [Bài viết của Đại học Trà Vinh](https://en.tvu.edu.vn/365-ecosystem-joint-stock-company-works-at-tra-vinh-university/) cũng sử dụng viết tắt `365 EJSC`; không tự thay tên đơn vị thực tập bằng tên một hồ sơ doanh nghiệp khác.
+- Tiếng Anh thống nhất chính tả Mỹ, dấu phẩy trong danh sách và ngày dạng `Jul 5, 2023` để không nhập nhằng ngày/tháng. Mốc tháng/năm của thành tích và dự án giữ nguyên. Việc viết đầy đủ `UIT Data Science Challenge 2024` tham khảo [thông báo của UIT](https://www.uit.edu.vn/bai-viet/phat-dong-cuoc-thi-uit-data-science-challenge-2024).
+- Phần giới thiệu dùng chung cho website và CV A4 được viết thành một đoạn không dùng đại từ cá nhân, tham khảo [hướng dẫn CV của Harvard](https://careerservices.fas.harvard.edu/resources/gsas-cv-cover-letter-guide-2/). Phần About trên website vẫn có thể dùng ngôi thứ nhất. Nhãn `Experience` và tiêu đề `Professional experience` khớp với phần chỉ gồm kinh nghiệm làm việc.
+- Làm mượt mô tả các dự án nhưng không thêm kết quả hoặc vai trò. AIOCRM vẫn là mốc QA ngày 03/10/2026 trong CV; QA-TIGER giữ tháng 09/2026, 51.57%, 65.38% và mức +13.80 điểm phần trăm được ghi nhận, cùng giới hạn phạm vi benchmark. Dùng `quality gating` thay vì suy diễn số lượng gate. Helpdesk vẫn là prototype có phân loại rule-based, không được mô tả thành một mô hình AI đã huấn luyện.
+- Helpdesk chỉ ghi con số 13 test cases ở phần kết quả; bullet trước đó nói về phạm vi kiểm thử ở cả Việt/Anh. Bộ dựng A4 còn loại các dòng trùng hoàn toàn sau khi bỏ khoảng trắng đầu/cuối, không dùng so khớp mơ hồ để xóa thông tin chỉ vì trùng số. PDF gốc, ảnh chứng nhận và nội dung số liệu không bị sửa.
+
+Kiểm tra bổ sung đối chiếu tên văn bằng, tên SGI và tên đơn vị 365 đã xác nhận; kiểm tra nhãn Experience, ngày cấp theo US English, số 13 chỉ xuất hiện một lần trong mô tả Helpdesk và việc không lặp kết quả trùng hoàn toàn khi dựng CV A4.
+
+Kiểm tra bản in tiếng Anh còn phát hiện quy tắc giữ nguyên toàn bộ khối sidebar khiến giải thưởng bị đẩy sang một trang thứ ba gần như chỉ có cột phải. CSS in đã được đổi để ngắt giữa các nhóm kỹ năng và giữa các giải thưởng, vẫn giữ từng mục riêng cùng nhau. Với dữ liệu hiện tại, bản A4 tiếng Anh có hai trang mà không giảm cỡ chữ hay bỏ nội dung; có kiểm tra số trang và xem lại ảnh dựng của cả hai trang.
+
 ## Nơi Chỉnh Nội Dung
 
 ### Chỉnh Trực Tiếp Trên Website

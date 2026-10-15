@@ -12,7 +12,7 @@ module.exports = async (browser, baseURL) => {
   const content = JSON.parse(fs.readFileSync(path.join(__dirname, "github-public-cv/data/portfolio.json"), "utf8"));
   assert.deepEqual(content.education.degree, {
     vi: "Kỹ sư Công nghệ thông tin - Trí tuệ nhân tạo",
-    en: "Engineer's Degree in Information Technology - Artificial Intelligence",
+    en: "Degree of Engineer in Information Technology (Artificial Intelligence)",
   }, "Keep the owner's confirmed engineering qualification in both languages");
   await page.goto(url);
   assert.equal(await page.locator("h1").textContent(), "Lê Tấn Phú.");
@@ -23,6 +23,8 @@ module.exports = async (browser, baseURL) => {
   assert.equal(await page.locator(".timeline-entry").count(), 2);
   assert.equal(await page.locator(".hero-portrait img").count(), content.profile.photo.src ? 1 : 0);
   assert.match(await page.locator(".hero-summary").textContent(), /Nguyễn Tất Thành/);
+  assert.equal(content.experience[1].organization.en, "365 Ecosystem JSC (365 EJSC)", "Keep the internship organization as confirmed by the owner");
+  assert.equal(content.experience[0].organization.en, "The Saigon International College (SGI)");
   results.push("Real CV data and owner portrait selection");
 
   for (const project of content.projects.filter(project => project.image.src.startsWith("assets/project-covers/"))) {
@@ -51,6 +53,13 @@ module.exports = async (browser, baseURL) => {
     if (await page.locator(".education-card").count()) {
       const lang = await page.locator("html").getAttribute("lang");
       assert.equal(await page.locator(".education-card > p:not(.small-label)").textContent(), content.education.degree[lang]);
+      if (lang === "en") {
+        assert.equal(await page.locator('#main-nav a[href="#experience"]').textContent(), "Experience");
+        assert.equal(await page.locator("#experience-heading").textContent(), "Professional experience.");
+        assert.match(await page.locator(".stats").textContent(), /projects & studies/);
+        assert.match(await page.locator("#certificate-ai-first-prize time").textContent(), /Jul 5, 2023/);
+        assert.match(await page.locator(".hero-summary").textContent(), /^Information Technology graduate/);
+      }
     }
     assert.equal(await page.locator("h1").count(), 1, target);
     const links = await page.locator("a[href], link[rel=stylesheet], script[src], img[src]").evaluateAll(elements => elements.map(element => element.href || element.src).filter(Boolean));

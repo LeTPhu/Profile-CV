@@ -5,7 +5,7 @@
     "vi": {
       "profile": {
         "fullName": "Lê Tấn Phú",
-        "headline": "Định hướng AI Engineer | AI Agent & LLM Systems",
+        "headline": "Định hướng AI Engineer | AI Agents & LLM Systems",
         "dob": "",
         "nationality": "",
         "email": "letanphu2906@gmail.com",
@@ -106,7 +106,7 @@
           "name": "AI Helpdesk - AEGONA - Prototype hệ thống hỗ trợ doanh nghiệp",
           "role": "Xây dựng Ứng dụng Hệ thống thông tin doanh nghiệp",
           "period": "05/2026",
-          "details": "Hiện thực prototype FastAPI + SQLModel + SQLite cho ticket, asset, SLA và RBAC.\nMô-đun hỗ trợ phân loại ở mức rule-based để gợi ý nhóm ticket.\nBáo cáo ghi nhận 13 test case chức năng cho các luồng lõi trong phạm vi prototype.\n13 test case chức năng được ghi nhận trong báo cáo của prototype."
+          "details": "Hiện thực prototype FastAPI + SQLModel + SQLite cho ticket, asset, SLA và RBAC.\nMô-đun hỗ trợ phân loại ở mức rule-based để gợi ý nhóm ticket.\nPhạm vi kiểm thử chức năng tập trung vào các luồng cốt lõi của prototype.\n13 test case chức năng được ghi nhận trong báo cáo của prototype."
         },
         {
           "name": "OCR-RAG Chatbot - Hỏi đáp văn bản hành chính tiếng Việt",
@@ -187,14 +187,14 @@
     "en": {
       "profile": {
         "fullName": "Lê Tấn Phú",
-        "headline": "Aspiring AI Engineer | AI Agent & LLM Systems",
+        "headline": "Aspiring AI Engineer | AI Agents & LLM Systems",
         "dob": "",
         "nationality": "",
         "email": "letanphu2906@gmail.com",
         "phone": "0974 613 051",
         "website": "https://github.com/LeTPhu",
         "address": "Hoc Mon, Ho Chi Minh City",
-        "summary": "I graduated in Information Technology, specializing in Artificial Intelligence, from Nguyen Tat Thanh University. I am currently exploring AI agents and LLM systems through AI and web projects.",
+        "summary": "Information Technology graduate specializing in Artificial Intelligence from Nguyen Tat Thanh University, currently exploring AI agents and LLM systems through applied AI and web projects.",
         "photo": "./assets/uploads/d1d2a33f-fadf-49ee-b1eb-81fd5a257848.jpg"
       },
       "theme": {
@@ -238,25 +238,25 @@
       "experience": [
         {
           "role": "Training, Communications & Admissions Staff",
-          "company": "Saigon International Vocational School (SGI)",
+          "company": "The Saigon International College (SGI)",
           "period": "06/2025 - 01/2026",
           "location": "",
-          "details": "Standardized, digitized and checked records; supported admissions operations, payment settlement and Excel-based data processing.\nPrepared lesson plans, taught classes and coordinated learning materials."
+          "details": "Standardized, digitized, and checked records; supported admissions operations, financial reconciliation, and Excel-based data processing.\nPrepared lesson plans, taught classes, and coordinated learning materials."
         },
         {
           "role": "AI Intern",
           "company": "365 Ecosystem JSC (365 EJSC)",
           "period": "09/2024 - 10/2024",
           "location": "",
-          "details": "Contributed to recommendation systems, data processing and ETL, and ML/DL experiments on enterprise data.\nPracticed MLOps/DevOps workflows; consolidated and presented project results."
+          "details": "Contributed to recommendation systems, data processing/ETL, and ML/DL experiments on enterprise data.\nWorked with MLOps/DevOps workflows; summarized and presented project results."
         }
       ],
       "education": [
         {
           "school": "Nguyen Tat Thanh University",
-          "degree": "Engineer's Degree in Information Technology - Artificial Intelligence",
+          "degree": "Degree of Engineer in Information Technology (Artificial Intelligence)",
           "period": "2021 - 2025",
-          "details": "Graduated with Excellent classification - GPA 3.75/4.00"
+          "details": "Graduation classification: Excellent - GPA 3.75/4.00"
         }
       ],
       "projects": [
@@ -264,43 +264,43 @@
           "name": "AIOCRM - Multichannel CRM & business operations",
           "role": "Personal project",
           "period": "2026 - present",
-          "details": "Developed and tested customer, Social Inbox, Work Hub and sales pipeline modules.\nImplemented invoice/VietQR, KPI, Facebook Ops and school-related workflows.\nUsed Vue 3, TypeScript, Node.js/Fastify, Prisma, PostgreSQL, Socket.IO, Redis/BullMQ, MinIO/S3 and Docker.\nQA checkpoint recorded in the CV: 3 October 2026. The repository recorded 4/4 passing CI jobs, a matrix of 416 PASS and Product Surface A-F strict 24/24 PASS."
+          "details": "Developed and tested customer, Social Inbox, Work Hub and sales pipeline modules.\nImplemented invoicing/VietQR, KPI tracking, Facebook Ops, and school-related workflows.\nUsed Vue 3, TypeScript, Node.js/Fastify, Prisma, PostgreSQL, Socket.IO, Redis/BullMQ, MinIO/S3 and Docker.\nAt the October 3, 2026 QA checkpoint recorded in the CV, the repository recorded 4/4 CI jobs passing, 416 matrix checks passing, and 24/24 Product Surface A-F strict checks passing."
         },
         {
           "name": "OpenClaw + 9router - Multi-provider AI agent environment",
           "role": "Technical practice / personal infrastructure",
           "period": "2026 - present",
-          "details": "Set up OpenClaw on Ubuntu VPS and used 9router to route agents, models and providers.\nExperimented with DeepSeek, GPT/OpenAI and Kiro/xKiro through OpenAI/Anthropic-compatible APIs.\nRecorded and addressed tool calling, schema differences, timeouts, rate limits and upstream errors.\nThe recorded scope is technical practice and personal infrastructure."
+          "details": "Set up OpenClaw on an Ubuntu VPS and used 9router to route agents, models, and providers.\nExperimented with DeepSeek, GPT/OpenAI, and Kiro/xKiro through OpenAI/Anthropic-compatible APIs.\nRecorded and addressed tool calling, schema differences, timeouts, rate limits, and upstream errors.\nScope: technical practice on personal infrastructure."
         },
         {
-          "name": "Sound Event Detection - Audio event detection research",
+          "name": "Sound Event Detection - Sound Event Detection research",
           "role": "Academic project - NTTU",
           "period": "05/2026",
-          "details": "Studied Log-Mel, CRNN, DESED/DCASE and ATST-SED, comparing experimental inference with published benchmarks.\nExperimented with CNN-Transformer/ATST-SED on Google Colab and read onset/offset event timelines.\nCompared CRNN+BEATs, AST-SED and PaSST; explored CLAP/open-vocabulary as a possible extension.\nSeparated self-run results from reference figures in papers and repositories.\nAcademic research; the CV does not report an overall benchmark score for this project."
+          "details": "Studied Log-Mel, CRNN, DESED/DCASE and ATST-SED, comparing experimental inference with published benchmarks.\nExperimented with CNN-Transformer/ATST-SED on Google Colab and analyzed event timelines using onset/offset timestamps.\nCompared CRNN+BEATs, AST-SED, and PaSST; explored CLAP/open-vocabulary as a possible extension.\nDistinguished self-run inference results from figures reported in papers and repositories.\nAcademic research; the CV does not report an overall benchmark score for this project."
         },
         {
           "name": "QA-TIGER Robustness - Robustness in multimodal VQA",
           "role": "Academic research",
           "period": "09/2026",
-          "details": "Studied robustness with missing modalities using modality dropout, knowledge distillation, quality gates and missing tokens.\nIn the recorded evaluation setup, Missing Visual increased from 51.57% to 65.38%.\nThe CV records an increase of +13.80 percentage points in that evaluation setup; these figures are not presented as a general result across benchmarks."
+          "details": "Studied robustness under missing modalities using modality dropout, knowledge distillation, quality gating, and missing tokens.\nIn the recorded evaluation setup, Missing Visual increased from 51.57% to 65.38%.\nThe CV records an increase of +13.80 percentage points in that evaluation setup; these figures are not presented as a general result across benchmarks."
         },
         {
           "name": "AI Helpdesk - AEGONA - Enterprise support system prototype",
-          "role": "Enterprise Information Systems application project",
+          "role": "Academic project - Enterprise Information Systems",
           "period": "05/2026",
-          "details": "Implemented a FastAPI + SQLModel + SQLite prototype for tickets, assets, SLA and RBAC.\nUsed a rule-based classification module to suggest ticket categories.\nThe report records 13 functional test cases for core flows within the prototype scope.\n13 functional test cases recorded in the prototype report."
+          "details": "Implemented a FastAPI + SQLModel + SQLite prototype for ticketing, asset management, SLA tracking, and role-based access control.\nUsed a rule-based classification module to suggest ticket categories.\nFunctional testing focused on core workflows within the prototype's scope.\n13 functional test cases recorded in the prototype report."
         },
         {
           "name": "OCR-RAG Chatbot - Vietnamese administrative document Q&A",
           "role": "Applied AI project",
           "period": "09/2024 - 12/2024",
-          "details": "Combined PaddleOCR, VietOCR and RAG-LLM to extract, retrieve and answer questions about Vietnamese administrative documents.\nApplication scope: Vietnamese administrative documents."
+          "details": "Combined PaddleOCR, VietOCR, and RAG-LLM to extract, retrieve, and answer questions about Vietnamese administrative documents.\nApplication scope: Vietnamese administrative documents."
         },
         {
           "name": "Violence Detection - Real-time violence detection & alerts",
-          "role": "Team lead - four members",
+          "role": "Team Lead - 4-member team",
           "period": "05/2024 - 07/2024",
-          "details": "Led a four-member team; used MobileNetV2 + Bi-LSTM for feature extraction and temporal modeling in video.\nThe project is associated with Third Prize in NTTU AI Competition 2024 and the DSC UIT 2024 achievements recorded in the CV.\nThird Prize in NTTU AI Competition 2024; Top 5 finalists, Consolation Prize and Top 5 most popular products at DSC UIT 2024."
+          "details": "Led a four-member team; used MobileNetV2 + Bi-LSTM for feature extraction and temporal modeling in video.\nThe project is linked to the Third Prize at the NTTU AI Competition 2024 and the UIT Data Science Challenge 2024 achievements listed in the CV.\nThird Prize at the NTTU AI Competition 2024; Top 5 Finalist, Consolation Prize, and Top 5 most popular products at UIT Data Science Challenge 2024 (DSC UIT 2024)."
         }
       ],
       "skills": [
@@ -328,24 +328,24 @@
       "languages": [
         {
           "name": "English",
-          "level": "Technical documentation reading and basic communication."
+          "level": "Technical documentation reading; basic English communication."
         }
       ],
       "awards": [
         {
           "month": "",
           "year": "2025",
-          "title": "Excellent graduation classification - GPA 3.75/4.00 - Nguyen Tat Thanh University."
+          "title": "Graduation classification: Excellent - GPA 3.75/4.00 - Nguyen Tat Thanh University."
         },
         {
           "month": "",
           "year": "2021 - 2025",
-          "title": "Academic encouragement scholarships - Awarded scholarships in all four university years."
+          "title": "Academic scholarships - Awarded an academic scholarship in each of the four university years."
         },
         {
           "month": "11",
           "year": "2024",
-          "title": "DSC UIT 2024 - Top 5 finalists, Consolation Prize and Top 5 most popular products."
+          "title": "UIT Data Science Challenge 2024 - Top 5 Finalist; Consolation Prize; Top 5 most popular products."
         },
         {
           "month": "07",

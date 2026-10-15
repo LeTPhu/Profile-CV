@@ -176,9 +176,11 @@ function buildCvData() {
         name: project.name + " - " + t(project.title, lang),
         role: t(project.context, lang),
         period: t(project.period, lang),
-        details: [...t(project.points, lang), t(project.result, lang)].join(
-          "\n",
-        ),
+        details: [...new Set(
+          [...t(project.points, lang), t(project.result, lang)]
+            .map((line) => line.trim())
+            .filter(Boolean),
+        )].join("\n"),
       })),
       skills: data.skills.map((skill) => ({
         name: skill.name,

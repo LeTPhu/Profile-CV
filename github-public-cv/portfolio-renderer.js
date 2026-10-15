@@ -120,7 +120,7 @@
       en: {
         about: "About",
         projects: "Projects",
-        experience: "Journey",
+        experience: "Experience",
         skills: "Skills",
         awards: "Achievements",
         contact: "Contact",
@@ -146,14 +146,14 @@
         projectSub:
           "Notes on the work, technologies and findings within each project's scope.",
         aboutTitle: "A little about me.",
-        experienceTitle: "Experience & education.",
+        experienceTitle: "Professional experience.",
         skillsTitle: "Technologies I've used.",
         awardsTitle: "A few milestones.",
         contactTitle: "Get in touch.",
         contactText:
-          "Interested in applied AI, agents/LLM systems or web development? You can reach me by email or on GitHub.",
-        projectCount: "projects & research",
-        scholarship: "years of scholarships",
+          "Interested in applied AI, AI agents, LLM systems, or web development? You can reach me by email or on GitHub.",
+        projectCount: "projects & studies",
+        scholarship: "university years with scholarships",
         education: "Education",
         tools: "Tools & environment",
         english: "English",
@@ -163,7 +163,7 @@
         recorded: "Results recorded in the CV",
         gallery: "Project imagery & materials",
         galleryNote:
-          "Space for interface screenshots, diagrams or experimental results.",
+          "Space for interface screenshots, diagrams, or experimental results.",
         repo: "GitHub repository",
         back: "All projects",
         next: "Explore more",
@@ -311,11 +311,17 @@
     function footer(lang, project) {
       const l = labels[lang],
         prefix = basePath(lang, project);
-      const updated = new Intl.DateTimeFormat(
-        lang === "vi" ? "vi-VN" : "en-GB",
-        { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" },
-      ).format(new Date(data.updated));
+      const updated = formatDate(data.updated, lang);
       return `<footer class="footer container"><div><a class="footer-brand" href="${prefix + (lang === "en" ? "en/" : "./")}">${esc(data.profile.name)}<span aria-hidden="true">.</span></a><p>${esc(l.footer)}</p></div><div class="footer-right"><a href="${esc(data.profile.github)}" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="${esc(prefix + data.profile.pdf)}" download>${esc(l.pdf)} ↓</a><a href="${prefix}admin/">${lang === "vi" ? "Quản trị" : "Manage"}</a><small>${esc(l.lastUpdate)}: ${updated} · ${esc(l.snapshot)}</small></div></footer>`;
+    }
+
+    function formatDate(value, lang) {
+      return new Intl.DateTimeFormat(lang === "vi" ? "vi-VN" : "en-US", {
+        day: lang === "vi" ? "2-digit" : "numeric",
+        month: lang === "vi" ? "2-digit" : "short",
+        year: "numeric",
+        timeZone: "UTC",
+      }).format(new Date(value));
     }
 
     function icon(name) {
@@ -374,15 +380,7 @@
     <div class="certificate-toolbar"><div class="certificate-filters" role="group" aria-label="${esc(l.archive)}" hidden>${["all", "award", "participation"].map((filter) => `<button type="button" data-certificate-filter="${filter}" aria-pressed="${filter === "all"}">${esc(l[filter])}</button>`).join("")}</div><p id="certificate-count" role="status" data-result-label="${esc(l.documentCount)}">${data.certificates.length} ${esc(l.documentCount)}</p></div>
     <div class="certificate-grid">${data.certificates
       .map((certificate, index) => {
-        const issued = new Intl.DateTimeFormat(
-          lang === "vi" ? "vi-VN" : "en-GB",
-          {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric",
-            timeZone: "UTC",
-          },
-        ).format(new Date(certificate.issued));
+        const issued = formatDate(certificate.issued, lang);
         return `<article class="certificate-card" id="certificate-${certificate.id}" data-certificate-category="${certificate.category}">
         <a class="certificate-image" href="${esc(prefix + certificate.src)}" target="_blank" rel="noopener noreferrer" data-certificate="${certificate.id}" data-title="${esc(t(certificate.title, lang))}" data-description="${esc(t(certificate.description, lang))}" data-issuer="${esc(t(certificate.issuer, lang))}" data-issued="${esc(l.issued + ": " + issued)}" data-alt="${esc(t(certificate.alt, lang))}" aria-label="${esc(l.viewImage + ": " + t(certificate.title, lang))}">
           <img src="${esc(prefix + certificate.src)}" width="${certificate.width}" height="${certificate.height}" alt="${esc(t(certificate.alt, lang))}" loading="lazy" decoding="async" />
@@ -614,7 +612,7 @@
   <link rel="preload" href="${prefix}assets/fonts/be-vietnam-pro/be-vietnam-pro-400-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="${prefix}assets/fonts/be-vietnam-pro/be-vietnam-pro-400-vietnamese.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="${prefix}assets/fonts/be-vietnam-pro/fonts.css" />
-  <link rel="stylesheet" href="${prefix}portfolio.css?v=20261014-2" />
+  <link rel="stylesheet" href="${prefix}portfolio.css?v=20261015-2" />
   <script type="application/ld+json">${JSON.stringify(schema).replace(/</g, "\\u003c")}</script>
   <script src="${prefix}portfolio.js?v=20261014-1" defer></script>
 </head>

@@ -50,12 +50,14 @@ body { background: radial-gradient(ellipse at 85% 0%, #dfede3, transparent 45%),
   .tools-content { right: auto; left: -80px; max-width: calc(100vw - 32px); }
 }
 @media print {
+  body { background: #fff; }
   .text-back { display: none !important; }
   .section-nav, .site-footer, .demo-notice, .share-result, #share-status, .skip-link { display: none !important; }
   .site-shell { max-width: none; padding: 0; }
   .preview-wrap { padding: 0; border: 0; }
   .paper-a4 { box-shadow: none; }
-  .entry, .award-row, .chip, .sidebar-block { break-inside: avoid-page; }
+  .entry, .award-row, .chip, .sidebar-block > ul > li, #block-personal { break-inside: avoid-page; }
+  .sidebar-block { break-inside: auto; }
   h3 { break-after: avoid-page; }
   p, li { orphans: 3; widows: 3; }
   .paper-a4.layout-stacked .cv-sidebar { grid-template-columns: 1fr 1fr; }

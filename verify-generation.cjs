@@ -35,6 +35,8 @@ module.exports = () => {
   researchFixture.projects = researchFixture.projects.filter(project => project.category === "research");
   assert.equal((Renderer(researchFixture).homePage("en").match(/data-project-category=/g) || []).length, 1, "Only populated disciplines become shortcuts");
   const removed = data.projects.pop();
+  for (const lang of ["vi", "en"])
+    data.projects[0].result[lang] = "  " + data.projects[0].points[lang][0] + "  ";
   data.settings = {
     sectionOrder: [
       "awards",
@@ -80,6 +82,10 @@ module.exports = () => {
     assert.equal(cv.documents[lang].education[0].degree, data.education.degree[lang], "A4 degree follows the shared source: " + lang);
     const document = lang === "vi" ? vi : en;
     assert.ok(document.includes(Renderer(data).esc(data.education.degree[lang])), "Homepage degree follows the shared source: " + lang);
+    const detailLines = cv.documents[lang].projects[0].details.split("\n");
+    assert.equal(detailLines.filter(line => line === data.projects[0].points[lang][0]).length, 1, "A repeated result is included once in A4: " + lang);
+    const helpdeskIndex = data.projects.findIndex(project => project.id === "ai-helpdesk");
+    assert.equal((cv.documents[lang].projects[helpdeskIndex].details.match(/\b13\b/g) || []).length, 1, "Helpdesk's 13 test cases are stated once: " + lang);
   }
   assert.ok(
     vi.indexOf('<section id="awards"') < vi.indexOf('<section id="about"'),

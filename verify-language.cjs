@@ -21,12 +21,15 @@ module.exports = async (browser, baseURL) => {
   await cv.goto(url + "cv.html");
   await cv.locator("#print-cv:enabled").waitFor();
   assert.equal(await cv.locator("html").getAttribute("lang"), "en");
-  assert.match(await cv.locator("#cv-preview").textContent(), /Engineer's Degree in Information Technology - Artificial Intelligence/);
+  assert.match(await cv.locator("#cv-preview").textContent(), /Degree of Engineer in Information Technology \(Artificial Intelligence\)/);
   assert.match(await cv.locator("#print-cv").textContent(), /Print/);
   assert.match(
     await cv.locator("#preview-summary").textContent(),
     /Nguyen Tat Thanh/,
   );
+  await cv.evaluate(() => document.fonts.ready);
+  const englishPdf = await cv.pdf({ path: path.join(__dirname, "output/playwright/public-a4-en.pdf"), format: "A4", printBackground: true, preferCSSPageSize: true });
+  assert.equal((englishPdf.toString("latin1").match(/\/Type\s*\/Page\b/g) || []).length, 2, "English A4 avoids a third page containing only sidebar overflow");
   await cv.locator('[data-lang="vi"]').click();
   assert.match(await cv.locator("#cv-preview").textContent(), /Kỹ sư Công nghệ thông tin - Trí tuệ nhân tạo/);
   await cv.goto(url + "cv.html");

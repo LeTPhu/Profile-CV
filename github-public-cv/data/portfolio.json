@@ -17,10 +17,10 @@
       "vi": "Định hướng AI Engineer",
       "en": "Aspiring AI Engineer"
     },
-    "focus": "AI Agent & LLM Systems",
+    "focus": "AI Agents & LLM Systems",
     "summary": {
       "vi": "Tôi tốt nghiệp ngành Công nghệ thông tin, chuyên ngành Trí tuệ nhân tạo tại Đại học Nguyễn Tất Thành. Hiện tôi đang tìm hiểu AI Agent/LLM và thực hành qua các dự án AI, ứng dụng web.",
-      "en": "I graduated in Information Technology, specializing in Artificial Intelligence, from Nguyen Tat Thanh University. I am currently exploring AI agents and LLM systems through AI and web projects."
+      "en": "Information Technology graduate specializing in Artificial Intelligence from Nguyen Tat Thanh University, currently exploring AI agents and LLM systems through applied AI and web projects."
     },
     "about": {
       "vi": [
@@ -28,8 +28,8 @@
         "Những dự án gần đây gồm CRM đa kênh, môi trường agent đa nhà cung cấp và đề tài AI đa phương thức. Tôi ghi lại cách làm, kiểm thử và kết quả để đối chiếu trong phạm vi từng dự án."
       ],
       "en": [
-        "My AI internship and work in training and data operations involved data processing and ETL, ML/DL experiments, record standardization and learning material coordination.",
-        "Recent work includes a multichannel CRM, a multi-provider agent environment and multimodal AI studies. I keep notes on implementation, tests and results within each project's scope."
+        "My AI internship and work in training and data operations involved data processing and ETL, ML/DL experiments, record standardization, and learning material coordination.",
+        "Recent work includes a multichannel CRM, a multi-provider agent environment, and multimodal AI studies. I document implementation details, tests, and results within each project's scope."
       ]
     },
     "photo": {
@@ -51,13 +51,13 @@
     },
     "degree": {
       "vi": "Kỹ sư Công nghệ thông tin - Trí tuệ nhân tạo",
-      "en": "Engineer's Degree in Information Technology - Artificial Intelligence"
+      "en": "Degree of Engineer in Information Technology (Artificial Intelligence)"
     },
     "period": "2021 - 2025",
     "gpa": "3.75/4.00",
     "classification": {
       "vi": "Tốt nghiệp loại Xuất sắc",
-      "en": "Graduated with Excellent classification"
+      "en": "Graduation classification: Excellent"
     }
   },
   "experience": [
@@ -68,7 +68,7 @@
       },
       "organization": {
         "vi": "Trường Trung cấp Quốc tế Sài Gòn (SGI)",
-        "en": "Saigon International Vocational School (SGI)"
+        "en": "The Saigon International College (SGI)"
       },
       "period": "06/2025 - 01/2026",
       "points": {
@@ -77,8 +77,8 @@
           "Biên soạn giáo án, trực tiếp giảng dạy và điều phối học liệu."
         ],
         "en": [
-          "Standardized, digitized and checked records; supported admissions operations, payment settlement and Excel-based data processing.",
-          "Prepared lesson plans, taught classes and coordinated learning materials."
+          "Standardized, digitized, and checked records; supported admissions operations, financial reconciliation, and Excel-based data processing.",
+          "Prepared lesson plans, taught classes, and coordinated learning materials."
         ]
       }
     },
@@ -98,8 +98,8 @@
           "Thực hành quy trình MLOps/DevOps; tổng hợp và trình bày kết quả dự án."
         ],
         "en": [
-          "Contributed to recommendation systems, data processing and ETL, and ML/DL experiments on enterprise data.",
-          "Practiced MLOps/DevOps workflows; consolidated and presented project results."
+          "Contributed to recommendation systems, data processing/ETL, and ML/DL experiments on enterprise data.",
+          "Worked with MLOps/DevOps workflows; summarized and presented project results."
         ]
       }
     }
@@ -109,7 +109,7 @@
       "name": "AI / ML",
       "description": {
         "vi": "Mô hình học máy, xử lý ngôn ngữ, thị giác và âm thanh.",
-        "en": "Machine learning, language, vision and audio."
+        "en": "Machine learning across language, vision, and audio."
       },
       "items": [
         "Python",
@@ -143,7 +143,7 @@
       "name": "Full-stack",
       "description": {
         "vi": "Giao diện web, dịch vụ backend và kết nối thời gian thực.",
-        "en": "Web interfaces, backend services and real-time connections."
+        "en": "Web interfaces, backend services, and real-time communication."
       },
       "items": [
         "Vue 3",
@@ -159,7 +159,7 @@
       "name": "Data / DevOps / QA",
       "description": {
         "vi": "Dữ liệu, môi trường triển khai và kiểm thử hệ thống.",
-        "en": "Data, deployment environments and system testing."
+        "en": "Data, deployment environments, and system testing."
       },
       "items": [
         "PostgreSQL",
@@ -189,7 +189,7 @@
   ],
   "english": {
     "vi": "Đọc tài liệu kỹ thuật và giao tiếp cơ bản.",
-    "en": "Technical documentation reading and basic communication."
+    "en": "Technical documentation reading; basic English communication."
   },
   "certificates": [
     {
@@ -213,7 +213,7 @@
       },
       "alt": {
         "vi": "Ảnh màu giấy khen Giải Nhất Cuộc thi Trí tuệ nhân tạo, Khoa CNTT năm 2023, trao cho Lê Tấn Phú.",
-        "en": "Colour photograph of the 2023 Faculty of IT AI Competition first-prize award presented to Le Tan Phu."
+        "en": "Color photograph of the 2023 Faculty of Information Technology AI Competition first-prize award presented to Le Tan Phu."
       }
     },
     {
@@ -225,7 +225,7 @@
       "height": 2139,
       "title": {
         "vi": "Giải Nhất Kỹ thuật phần mềm",
-        "en": "First Prize · Software Engineering"
+        "en": "First Prize · Software Engineering Competition"
       },
       "issuer": {
         "vi": "Đại học Nguyễn Tất Thành",
@@ -233,11 +233,11 @@
       },
       "description": {
         "vi": "Giấy khen trao cho Lê Tấn Phú, đội Five Start, trong cuộc thi Kỹ thuật phần mềm của Khoa Công nghệ thông tin.",
-        "en": "Award presented to Le Tan Phu of team Five Start in the Faculty of IT Software Engineering Competition."
+        "en": "Award presented to Le Tan Phu of team Five Start in the Faculty of Information Technology Software Engineering Competition."
       },
       "alt": {
         "vi": "Bản trắng đen giấy khen Giải Nhất Kỹ thuật phần mềm, tên Lê Tấn Phú và đội Five Start; trên giấy ghi cuộc thi năm 2022, ngày cấp 31/05/2023.",
-        "en": "Black-and-white first-prize Software Engineering award naming Le Tan Phu and team Five Start; the document states competition year 2022 and issue date 31 May 2023."
+        "en": "Black-and-white first-prize Software Engineering Competition award naming Le Tan Phu and team Five Start; the document states competition year 2022 and issue date May 31, 2023."
       }
     },
     {
@@ -253,7 +253,7 @@
       },
       "issuer": {
         "vi": "Khoa CNTT · Đại học Nguyễn Tất Thành",
-        "en": "Faculty of IT · Nguyen Tat Thanh University"
+        "en": "Faculty of Information Technology · Nguyen Tat Thanh University"
       },
       "description": {
         "vi": "Chứng nhận Lê Tấn Phú tham gia Cuộc thi Kỹ thuật Phần mềm năm 2023.",
@@ -261,7 +261,7 @@
       },
       "alt": {
         "vi": "Ảnh chứng nhận tham gia Cuộc thi Kỹ thuật Phần mềm năm 2023, cấp cho Lê Tấn Phú ngày 28/04/2023.",
-        "en": "Participation certificate for the 2023 Software Engineering Competition, issued to Le Tan Phu on 28 April 2023."
+        "en": "Participation certificate for the 2023 Software Engineering Competition, issued to Le Tan Phu on April 28, 2023."
       }
     },
     {
@@ -277,15 +277,15 @@
       },
       "issuer": {
         "vi": "Khoa CNTT · Đại học Nguyễn Tất Thành",
-        "en": "Faculty of IT · Nguyen Tat Thanh University"
+        "en": "Faculty of Information Technology · Nguyen Tat Thanh University"
       },
       "description": {
         "vi": "Chứng nhận tích cực tham gia Cuộc thi Trí tuệ nhân tạo của Khoa CNTT năm 2023.",
-        "en": "Certificate recognising active participation in the Faculty of IT Artificial Intelligence Competition in 2023."
+        "en": "Certificate recognizing active participation in the Faculty of Information Technology Artificial Intelligence Competition in 2023."
       },
       "alt": {
         "vi": "Ảnh chứng nhận tích cực tham gia Cuộc thi Trí tuệ nhân tạo năm 2023 của Lê Tấn Phú, cấp ngày 25/05/2023.",
-        "en": "Certificate for Le Tan Phu's active participation in the 2023 AI Competition, issued on 25 May 2023."
+        "en": "Certificate for Le Tan Phu's active participation in the 2023 AI Competition, issued on May 25, 2023."
       }
     },
     {
@@ -305,11 +305,11 @@
       },
       "description": {
         "vi": "Chứng nhận tham gia talkshow “Cách giải quyết vấn đề để dẫn đầu”, dành cho Lê Tấn Phú.",
-        "en": "Certificate of attendance at the “Solve Problems to Lead” talkshow, awarded to Le Tan Phu."
+        "en": "Certificate of attendance at the “Solve Problems to Lead” talk show, awarded to Le Tan Phu."
       },
       "alt": {
         "vi": "Ảnh chứng nhận SAC cấp cho Lê Tấn Phú sau khi tham gia talkshow Solve Problems to Lead ngày 29/03/2023.",
-        "en": "SAC certificate issued to Le Tan Phu for attending the Solve Problems to Lead talkshow on 29 March 2023."
+        "en": "SAC certificate issued to Le Tan Phu for attending the Solve Problems to Lead talk show on March 29, 2023."
       }
     }
   ],
@@ -318,7 +318,7 @@
       "date": "2025",
       "title": {
         "vi": "Tốt nghiệp loại Xuất sắc",
-        "en": "Excellent graduation classification"
+        "en": "Graduation classification: Excellent"
       },
       "detail": {
         "vi": "GPA 3.75/4.00 - Đại học Nguyễn Tất Thành.",
@@ -329,22 +329,22 @@
       "date": "2021 - 2025",
       "title": {
         "vi": "Học bổng khuyến khích học tập",
-        "en": "Academic encouragement scholarships"
+        "en": "Academic scholarships"
       },
       "detail": {
         "vi": "Nhận học bổng trong 4/4 năm đại học.",
-        "en": "Awarded scholarships in all four university years."
+        "en": "Awarded an academic scholarship in each of the four university years."
       }
     },
     {
       "date": "11/2024",
       "title": {
         "vi": "DSC UIT 2024",
-        "en": "DSC UIT 2024"
+        "en": "UIT Data Science Challenge 2024"
       },
       "detail": {
         "vi": "Top 5 chung kết, Giải Khuyến khích và Top 5 sản phẩm phổ biến nhất.",
-        "en": "Top 5 finalists, Consolation Prize and Top 5 most popular products."
+        "en": "Top 5 Finalist; Consolation Prize; Top 5 most popular products."
       }
     },
     {
@@ -398,7 +398,7 @@
       },
       "summary": {
         "vi": "Hệ thống CRM kết nối khách hàng, Social Inbox, công việc và nghiệp vụ doanh nghiệp/trường học.",
-        "en": "A CRM connecting customers, Social Inbox, work management and business/school operations."
+        "en": "A multichannel CRM covering customer management, Social Inbox, work management, and business/school operations."
       },
       "context": {
         "vi": "Dự án cá nhân",
@@ -412,13 +412,13 @@
         ],
         "en": [
           "Developed and tested customer, Social Inbox, Work Hub and sales pipeline modules.",
-          "Implemented invoice/VietQR, KPI, Facebook Ops and school-related workflows.",
+          "Implemented invoicing/VietQR, KPI tracking, Facebook Ops, and school-related workflows.",
           "Used Vue 3, TypeScript, Node.js/Fastify, Prisma, PostgreSQL, Socket.IO, Redis/BullMQ, MinIO/S3 and Docker."
         ]
       },
       "result": {
         "vi": "Mốc QA ghi trong CV: 03/10/2026. Repository ghi nhận 4/4 CI jobs PASS, matrix 416 PASS và Product Surface A-F strict 24/24 PASS.",
-        "en": "QA checkpoint recorded in the CV: 3 October 2026. The repository recorded 4/4 passing CI jobs, a matrix of 416 PASS and Product Surface A-F strict 24/24 PASS."
+        "en": "At the October 3, 2026 QA checkpoint recorded in the CV, the repository recorded 4/4 CI jobs passing, 416 matrix checks passing, and 24/24 Product Surface A-F strict checks passing."
       },
       "technologies": [
         "Vue 3",
@@ -456,7 +456,7 @@
       },
       "summary": {
         "vi": "Thực hành thiết lập môi trường agent trên VPS Ubuntu và điều phối model/provider trong cùng luồng làm việc.",
-        "en": "An agent environment on Ubuntu VPS with model/provider routing within a shared workflow."
+        "en": "An agent environment on an Ubuntu VPS with model/provider routing within a shared workflow."
       },
       "context": {
         "vi": "Thực hành kỹ thuật / hạ tầng cá nhân",
@@ -469,14 +469,14 @@
           "Ghi nhận và xử lý vấn đề tool calling, khác biệt schema, timeout, rate limit và lỗi upstream."
         ],
         "en": [
-          "Set up OpenClaw on Ubuntu VPS and used 9router to route agents, models and providers.",
-          "Experimented with DeepSeek, GPT/OpenAI and Kiro/xKiro through OpenAI/Anthropic-compatible APIs.",
-          "Recorded and addressed tool calling, schema differences, timeouts, rate limits and upstream errors."
+          "Set up OpenClaw on an Ubuntu VPS and used 9router to route agents, models, and providers.",
+          "Experimented with DeepSeek, GPT/OpenAI, and Kiro/xKiro through OpenAI/Anthropic-compatible APIs.",
+          "Recorded and addressed tool calling, schema differences, timeouts, rate limits, and upstream errors."
         ]
       },
       "result": {
         "vi": "Phạm vi được ghi nhận là thực hành kỹ thuật và hạ tầng cá nhân.",
-        "en": "The recorded scope is technical practice and personal infrastructure."
+        "en": "Scope: technical practice on personal infrastructure."
       },
       "technologies": [
         "OpenClaw",
@@ -506,11 +506,11 @@
       },
       "title": {
         "vi": "Nhận diện sự kiện âm thanh",
-        "en": "Audio event detection research"
+        "en": "Sound Event Detection research"
       },
       "summary": {
         "vi": "Khảo sát mô hình nhận diện sự kiện âm thanh, đối chiếu inference thử nghiệm với benchmark đã công bố.",
-        "en": "A study of audio event detection models comparing experimental inference with published benchmarks."
+        "en": "A study of Sound Event Detection models, comparing experimental inference results with published benchmarks."
       },
       "context": {
         "vi": "Đề tài học thuật - NTTU",
@@ -525,9 +525,9 @@
         ],
         "en": [
           "Studied Log-Mel, CRNN, DESED/DCASE and ATST-SED, comparing experimental inference with published benchmarks.",
-          "Experimented with CNN-Transformer/ATST-SED on Google Colab and read onset/offset event timelines.",
-          "Compared CRNN+BEATs, AST-SED and PaSST; explored CLAP/open-vocabulary as a possible extension.",
-          "Separated self-run results from reference figures in papers and repositories."
+          "Experimented with CNN-Transformer/ATST-SED on Google Colab and analyzed event timelines using onset/offset timestamps.",
+          "Compared CRNN+BEATs, AST-SED, and PaSST; explored CLAP/open-vocabulary as a possible extension.",
+          "Distinguished self-run inference results from figures reported in papers and repositories."
         ]
       },
       "result": {
@@ -567,7 +567,7 @@
       },
       "summary": {
         "vi": "Khảo sát độ bền vững khi thiếu modality, kết hợp modality dropout, knowledge distillation và quality gate.",
-        "en": "A study of robustness under missing modalities using modality dropout, knowledge distillation and quality gates."
+        "en": "A study of robustness under missing modalities using modality dropout, knowledge distillation, and quality gating."
       },
       "context": {
         "vi": "Nghiên cứu học thuật",
@@ -579,7 +579,7 @@
           "Trong thiết lập đánh giá đã ghi nhận, Missing Visual tăng từ 51.57% lên 65.38%."
         ],
         "en": [
-          "Studied robustness with missing modalities using modality dropout, knowledge distillation, quality gates and missing tokens.",
+          "Studied robustness under missing modalities using modality dropout, knowledge distillation, quality gating, and missing tokens.",
           "In the recorded evaluation setup, Missing Visual increased from 51.57% to 65.38%."
         ]
       },
@@ -619,22 +619,22 @@
       },
       "summary": {
         "vi": "Prototype quản lý ticket, asset, SLA và RBAC; gợi ý nhóm ticket bằng mô-đun phân loại rule-based.",
-        "en": "A prototype for ticket, asset, SLA and RBAC management, with rule-based ticket category suggestions."
+        "en": "A prototype for ticketing and asset management, SLA tracking, and role-based access control, with rule-based ticket category suggestions."
       },
       "context": {
         "vi": "Xây dựng Ứng dụng Hệ thống thông tin doanh nghiệp",
-        "en": "Enterprise Information Systems application project"
+        "en": "Academic project - Enterprise Information Systems"
       },
       "points": {
         "vi": [
           "Hiện thực prototype FastAPI + SQLModel + SQLite cho ticket, asset, SLA và RBAC.",
           "Mô-đun hỗ trợ phân loại ở mức rule-based để gợi ý nhóm ticket.",
-          "Báo cáo ghi nhận 13 test case chức năng cho các luồng lõi trong phạm vi prototype."
+          "Phạm vi kiểm thử chức năng tập trung vào các luồng cốt lõi của prototype."
         ],
         "en": [
-          "Implemented a FastAPI + SQLModel + SQLite prototype for tickets, assets, SLA and RBAC.",
+          "Implemented a FastAPI + SQLModel + SQLite prototype for ticketing, asset management, SLA tracking, and role-based access control.",
           "Used a rule-based classification module to suggest ticket categories.",
-          "The report records 13 functional test cases for core flows within the prototype scope."
+          "Functional testing focused on core workflows within the prototype's scope."
         ]
       },
       "result": {
@@ -673,7 +673,7 @@
       },
       "summary": {
         "vi": "Kết hợp OCR và RAG-LLM để trích xuất, truy vấn và hỏi đáp nội dung văn bản hành chính.",
-        "en": "Combining OCR and RAG-LLM to extract, retrieve and answer questions about administrative documents."
+        "en": "An OCR + RAG-LLM pipeline for extracting, retrieving, and answering questions about Vietnamese administrative documents."
       },
       "context": {
         "vi": "Dự án AI ứng dụng",
@@ -684,7 +684,7 @@
           "Kết hợp PaddleOCR, VietOCR và RAG-LLM để trích xuất, truy vấn và hỏi đáp nội dung văn bản hành chính tiếng Việt."
         ],
         "en": [
-          "Combined PaddleOCR, VietOCR and RAG-LLM to extract, retrieve and answer questions about Vietnamese administrative documents."
+          "Combined PaddleOCR, VietOCR, and RAG-LLM to extract, retrieve, and answer questions about Vietnamese administrative documents."
         ]
       },
       "result": {
@@ -726,7 +726,7 @@
       },
       "context": {
         "vi": "Trưởng nhóm 4 thành viên",
-        "en": "Team lead - four members"
+        "en": "Team Lead - 4-member team"
       },
       "points": {
         "vi": [
@@ -735,12 +735,12 @@
         ],
         "en": [
           "Led a four-member team; used MobileNetV2 + Bi-LSTM for feature extraction and temporal modeling in video.",
-          "The project is associated with Third Prize in NTTU AI Competition 2024 and the DSC UIT 2024 achievements recorded in the CV."
+          "The project is linked to the Third Prize at the NTTU AI Competition 2024 and the UIT Data Science Challenge 2024 achievements listed in the CV."
         ]
       },
       "result": {
         "vi": "Giải Ba Cuộc thi AI NTTU 2024; Top 5 chung kết, Giải Khuyến khích và Top 5 sản phẩm phổ biến nhất tại DSC UIT 2024.",
-        "en": "Third Prize in NTTU AI Competition 2024; Top 5 finalists, Consolation Prize and Top 5 most popular products at DSC UIT 2024."
+        "en": "Third Prize at the NTTU AI Competition 2024; Top 5 Finalist, Consolation Prize, and Top 5 most popular products at UIT Data Science Challenge 2024 (DSC UIT 2024)."
       },
       "technologies": [
         "MobileNetV2",
