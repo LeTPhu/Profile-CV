@@ -10,6 +10,10 @@ module.exports = async (browser, baseURL) => {
   page.on("pageerror", error => errors.push(error.message));
   const url = baseURL + "/github-public-cv/";
   const content = JSON.parse(fs.readFileSync(path.join(__dirname, "github-public-cv/data/portfolio.json"), "utf8"));
+  assert.deepEqual(content.education.degree, {
+    vi: "Kỹ sư Công nghệ thông tin - Trí tuệ nhân tạo",
+    en: "Engineer's Degree in Information Technology - Artificial Intelligence",
+  }, "Keep the owner's confirmed engineering qualification in both languages");
   await page.goto(url);
   assert.equal(await page.locator("h1").textContent(), "Lê Tấn Phú.");
   assert.equal(await page.locator(".project-grid .project-card").count(), 7);
@@ -44,6 +48,10 @@ module.exports = async (browser, baseURL) => {
   for (const target of pages) {
     const response = await page.goto(target);
     assert.equal(response.status(), 200, target);
+    if (await page.locator(".education-card").count()) {
+      const lang = await page.locator("html").getAttribute("lang");
+      assert.equal(await page.locator(".education-card > p:not(.small-label)").textContent(), content.education.degree[lang]);
+    }
     assert.equal(await page.locator("h1").count(), 1, target);
     const links = await page.locator("a[href], link[rel=stylesheet], script[src], img[src]").evaluateAll(elements => elements.map(element => element.href || element.src).filter(Boolean));
     links.filter(link => link.startsWith(baseURL) && !link.includes("#")).forEach(link => resources.add(link));

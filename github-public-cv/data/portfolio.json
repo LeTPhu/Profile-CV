@@ -1,6 +1,6 @@
 {
   "siteUrl": "https://letphu.github.io/Profile-CV/",
-  "updated": "2026-10-14",
+  "updated": "2026-10-15",
   "source": "Le_Tan_Phu_CV_2026.pdf",
   "profile": {
     "name": "Lê Tấn Phú",
@@ -50,8 +50,8 @@
       "en": "Nguyen Tat Thanh University"
     },
     "degree": {
-      "vi": "Cử nhân Công nghệ thông tin - Trí tuệ nhân tạo",
-      "en": "Bachelor of Information Technology - Artificial Intelligence"
+      "vi": "Kỹ sư Công nghệ thông tin - Trí tuệ nhân tạo",
+      "en": "Engineer's Degree in Information Technology - Artificial Intelligence"
     },
     "period": "2021 - 2025",
     "gpa": "3.75/4.00",

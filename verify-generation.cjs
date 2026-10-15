@@ -76,6 +76,11 @@ module.exports = () => {
     cv = JSON.parse(
       fs.readFileSync(path.join(site, "data/cv-public.json"), "utf8"),
     );
+  for (const lang of ["vi", "en"]) {
+    assert.equal(cv.documents[lang].education[0].degree, data.education.degree[lang], "A4 degree follows the shared source: " + lang);
+    const document = lang === "vi" ? vi : en;
+    assert.ok(document.includes(Renderer(data).esc(data.education.degree[lang])), "Homepage degree follows the shared source: " + lang);
+  }
   assert.ok(
     vi.indexOf('<section id="awards"') < vi.indexOf('<section id="about"'),
   );
