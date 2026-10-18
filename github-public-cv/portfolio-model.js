@@ -62,7 +62,7 @@
     d.settings.sectionOrder ??= [...sections];
     d.settings.hiddenSections ??= [];
     d.settings.autoLanguage ??= true;
-    d.settings.scholarship ??= "4 / 4";
+    d.settings.scholarship ??= "4";
     d.content ??= { vi: {}, en: {} };
     d.content.vi ??= {};
     d.content.en ??= {};

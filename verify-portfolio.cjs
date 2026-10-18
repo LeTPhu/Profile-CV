@@ -52,6 +52,7 @@ module.exports = async (browser, baseURL) => {
     assert.equal(response.status(), 200, target);
     if (await page.locator(".education-card").count()) {
       const lang = await page.locator("html").getAttribute("lang");
+      assert.equal(await page.locator(".stats > div").nth(2).locator("strong").textContent(), "4", "Scholarship highlight shows four years without a denominator: " + lang);
       assert.equal(await page.locator(".education-card > p:not(.small-label)").textContent(), content.education.degree[lang]);
       if (lang === "en") {
         assert.equal(await page.locator('#main-nav a[href="#experience"]').textContent(), "Experience");

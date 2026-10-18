@@ -435,7 +435,7 @@
     <div class="stats container" aria-label="${lang === "vi" ? "Thông tin nổi bật" : "Profile highlights"}">
       <div><strong>${esc(data.education.gpa)}</strong><span>GPA · ${esc(t(data.education.classification, lang))}</span></div>
       <div><strong>${data.projects.length.toString().padStart(2, "0")}</strong><span>${esc(l.projectCount)}</span></div>
-      <div><strong>${esc(data.settings?.scholarship ?? "4 / 4")}</strong><span>${esc(l.scholarship)}</span></div>
+      <div><strong>${esc(data.settings?.scholarship ?? "4")}</strong><span>${esc(l.scholarship)}</span></div>
     </div>
     ${paths.length ? `<nav class="explore-paths container" aria-label="${esc(l.choosePath)}">${paths.map(({ category, count }) => `<a class="explore-path path-${category}" href="#projects" data-project-category="${category}"><span class="path-top">${icon(category)}<span>${count} ${esc(l.projects.toLowerCase())}</span></span><span class="path-name">${esc(l[category])}</span><span class="path-arrow" aria-hidden="true">↗</span></a>`).join("")}</nav>` : ""}
     <section id="about" class="section container about-section" aria-labelledby="about-heading">

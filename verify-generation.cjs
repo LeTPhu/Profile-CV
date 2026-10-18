@@ -20,6 +20,11 @@ module.exports = () => {
   );
   const Renderer = require("./github-public-cv/portfolio-renderer.js");
   const Model = require("./github-public-cv/portfolio-model.js");
+  const scholarshipFixture = structuredClone(data);
+  delete scholarshipFixture.settings.scholarship;
+  assert.equal(Model.normalize(scholarshipFixture).settings.scholarship, "4", "Missing scholarship settings default to four years");
+  for (const lang of ["vi", "en"])
+    assert.ok(Renderer(scholarshipFixture).homePage(lang).includes('<div><strong>4</strong><span>'), "Scholarship rendering defaults to four years: " + lang);
   const labelsFixture = structuredClone(data);
   labelsFixture.content.vi.projectNotes = "Phần công việc của dự án";
   labelsFixture.content.en.projectNotes = "Project work notes";
@@ -81,6 +86,7 @@ module.exports = () => {
   for (const lang of ["vi", "en"]) {
     assert.equal(cv.documents[lang].education[0].degree, data.education.degree[lang], "A4 degree follows the shared source: " + lang);
     const document = lang === "vi" ? vi : en;
+    assert.ok(document.includes('<div><strong>4 / 4</strong><span>'), "An explicitly customized scholarship highlight is preserved: " + lang);
     assert.ok(document.includes(Renderer(data).esc(data.education.degree[lang])), "Homepage degree follows the shared source: " + lang);
     const detailLines = cv.documents[lang].projects[0].details.split("\n");
     assert.equal(detailLines.filter(line => line === data.projects[0].points[lang][0]).length, 1, "A repeated result is included once in A4: " + lang);
