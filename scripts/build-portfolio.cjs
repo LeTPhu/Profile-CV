@@ -96,6 +96,9 @@ function validate() {
   }
   if (!fs.existsSync(path.join(site, data.profile.pdf)))
     throw new Error("Missing original CV PDF");
+  for (const c of data.certifications)
+    if (c.original && !fs.existsSync(path.join(site, c.original)))
+      throw new Error("Missing original certification PDF: " + c.original);
 }
 
 function write(relative, content) {
@@ -144,7 +147,7 @@ function buildCvData() {
         customSections: data.customSections.some(
           (s) => !data.settings.hiddenSections.includes(s.id),
         ),
-        certifications: false,
+        certifications: !data.settings.hiddenSections.includes("certifications") && data.certifications.length > 0,
       },
       contactVisibility: {
         dob: false,
@@ -204,7 +207,16 @@ function buildCvData() {
             .filter(Boolean)
             .join("\n"),
         })),
-      certifications: [],
+      certifications: data.certifications.map(c => ({
+        title: t(c.title, lang),
+        issuer: t(c.issuer, lang),
+        recipient: c.recipient,
+        issued: c.issued,
+        expires: c.expires,
+        year: c.issued.slice(0, 4),
+        evidence: c.src,
+        original: c.original || "",
+      })),
     };
   }
   write("data/cv-public.json", JSON.stringify(output, null, 2) + "\n");

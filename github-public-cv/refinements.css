@@ -35,6 +35,11 @@ body { background: radial-gradient(ellipse at 85% 0%, #dfede3, transparent 45%),
 .sidebar-block, .main-block { scroll-margin-top: 20px; }
 .site-footer { display: flex; justify-content: space-between; gap: 20px; padding-top: 24px; font-size: 12px; color: #52695e; }
 .site-footer a { color: #214f42; }
+#preview-certifications { display: block; }
+#preview-certifications .cv-certification { overflow-wrap: anywhere; margin-bottom: 8px; }
+.cv-certification h4 { margin: 0 0 4px; font: 700 var(--entry-title-size)/var(--base-line-height) var(--font-heading); }
+.cv-certification p { margin-block: 3px; }
+.cv-certification a { color: var(--accent); font-size: inherit; text-underline-offset: 2px; }
 .share-result input { width: 100%; max-width: 520px; font: inherit; font-size: 12px; padding: 10px; border: 1px solid #d2ded3; border-radius: 8px; background: white; color: #214f42; }
 .share-result label { display: block; font-size: 12px; margin-bottom: 6px; }
 #share-status:empty { display: none; }
@@ -51,6 +56,9 @@ body { background: radial-gradient(ellipse at 85% 0%, #dfede3, transparent 45%),
 }
 @media print {
   body { background: #fff; }
+  .paper-a4.profile-en.has-certifications .cv-main .entry { margin-bottom: 4px; }
+  .paper-a4.profile-en.has-certifications .cv-main .main-block { margin-bottom: 8px; }
+  .paper-a4.profile-en.has-certifications .cv-main .entry ul { margin-top: 0; }
   .text-back { display: none !important; }
   .section-nav, .site-footer, .demo-notice, .share-result, #share-status, .skip-link { display: none !important; }
   .site-shell { max-width: none; padding: 0; }
@@ -58,6 +66,7 @@ body { background: radial-gradient(ellipse at 85% 0%, #dfede3, transparent 45%),
   .paper-a4 { box-shadow: none; }
   .entry, .award-row, .chip, .sidebar-block > ul > li, #block-personal { break-inside: avoid-page; }
   .sidebar-block { break-inside: auto; }
+  #block-certifications { break-inside: avoid-page; }
   h3 { break-after: avoid-page; }
   p, li { orphans: 3; widows: 3; }
   .paper-a4.layout-stacked .cv-sidebar { grid-template-columns: 1fr 1fr; }

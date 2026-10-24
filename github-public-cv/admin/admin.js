@@ -78,6 +78,7 @@
     projects: ["Dự án", "Projects"],
     awards: ["Giải thưởng", "Awards"],
     certificates: ["Giấy khen & chứng nhận", "Awards & certificates"],
+    certifications: ["Chứng chỉ", "Certifications"],
     customSections: ["Mục tự thêm", "Custom sections"],
     settings: ["Bố cục & ngôn ngữ", "Layout & language"],
     headings: ["Tiêu đề & lời giới thiệu", "Headings & introductions"],
@@ -821,6 +822,16 @@
       ["issuer", "Đơn vị cấp", "Issuer", "pair"],
       ["description", "Mô tả", "Description", "pair-textarea"],
     ],
+    certifications: [
+      ["id", "Mã đường dẫn nội bộ (không phải mã xác thực)", "Internal URL ID (not a verification code)"],
+      ["title", "Tên chứng chỉ", "Certification title", "pair"],
+      ["issuer", "Đơn vị cấp", "Issuer", "pair"],
+      ["recipient", "Người được cấp", "Recipient"],
+      ["issued", "Ngày cấp", "Issue date", "date"],
+      ["expires", "Ngày hết hạn", "Expiration date", "date"],
+      ["description", "Mô tả", "Description", "pair-textarea"],
+      ["original", "Đường dẫn PDF gốc trong assets/ (có thể để trống)", "Original PDF path in assets/ (optional)"],
+    ],
     customSections: [
       ["id", "Mã mục (không trùng mục đã có)", "Unique section ID"],
       ["title", "Tiêu đề mục", "Section heading", "pair"],
@@ -937,6 +948,8 @@
         ]);
         imageEditor(body, path, L("Ảnh chứng nhận", "Certificate image"), true);
       }
+      if (kind === "certifications")
+        imageEditor(body, path, L("Ảnh chứng chỉ", "Certification image"), true);
       if (kind === "customSections")
         imageEditor(
           body,
@@ -1115,6 +1128,7 @@
       "projects",
       "awards",
       "certificates",
+      "certifications",
       "customSections",
       "settings",
       "headings",

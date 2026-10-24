@@ -1,7 +1,61 @@
 {
   "siteUrl": "https://letphu.github.io/Profile-CV/",
-  "updated": "2026-10-19",
+  "updated": "2026-10-24",
   "source": "Le_Tan_Phu_CV_2026.pdf",
+  "certifications": [
+    {
+      "id": "gemini-certified-educator",
+      "title": {
+        "vi": "Gemini Certified Educator",
+        "en": "Gemini Certified Educator"
+      },
+      "issuer": {
+        "vi": "Google for Education",
+        "en": "Google for Education"
+      },
+      "recipient": "Lê Tấn Phú",
+      "issued": "2025-12-22",
+      "expires": "2028-12-22",
+      "description": {
+        "vi": "Chứng chỉ ghi nhận kiến thức, kỹ năng và năng lực cơ bản để sử dụng Google AI trong giáo dục.",
+        "en": "Recognizes the knowledge, skills, and basic competencies needed to use Google AI in education."
+      },
+      "src": "assets/certifications/gemini-certified-educator.png",
+      "original": "assets/certifications/gemini-certified-educator.pdf",
+      "width": 2200,
+      "height": 1700,
+      "alt": {
+        "vi": "Toàn bộ chứng chỉ Gemini Certified Educator của Google for Education cấp cho Lê Tấn Phú, ngày 22/12/2025, có hiệu lực đến 22/12/2028.",
+        "en": "Complete Gemini Certified Educator certificate from Google for Education, awarded to Lê Tấn Phú on December 22, 2025, valid through December 22, 2028."
+      }
+    },
+    {
+      "id": "gemini-certified-student-university",
+      "title": {
+        "vi": "Gemini Certified Student – University",
+        "en": "Gemini Certified Student – University"
+      },
+      "issuer": {
+        "vi": "Google for Education",
+        "en": "Google for Education"
+      },
+      "recipient": "Lê Tấn Phú",
+      "issued": "2025-12-22",
+      "expires": "2028-12-22",
+      "description": {
+        "vi": "Chứng chỉ cấp độ University ghi nhận kiến thức, kỹ năng và năng lực cơ bản để sử dụng Google AI.",
+        "en": "University-level certification recognizing the knowledge, skills, and basic competencies needed to use Google AI."
+      },
+      "src": "assets/certifications/gemini-certified-student-university.png",
+      "original": "assets/certifications/gemini-certified-student-university.pdf",
+      "width": 2200,
+      "height": 1700,
+      "alt": {
+        "vi": "Toàn bộ chứng chỉ Gemini Certified Student cấp độ University của Google for Education cấp cho Lê Tấn Phú, ngày 22/12/2025, có hiệu lực đến 22/12/2028.",
+        "en": "Complete Gemini Certified Student, University certificate from Google for Education, awarded to Lê Tấn Phú on December 22, 2025, valid through December 22, 2028."
+      }
+    }
+  ],
   "profile": {
     "name": "Lê Tấn Phú",
     "initials": "LP",
@@ -767,6 +821,7 @@
       "projects",
       "experience",
       "skills",
+      "certifications",
       "awards",
       "contact"
     ],

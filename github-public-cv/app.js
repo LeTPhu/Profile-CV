@@ -593,6 +593,7 @@ function renderPreview() {
   preview.classList.remove("layout-left", "layout-right", "layout-stacked", "profile-vi", "profile-en");
   preview.classList.add(`layout-${normalizeLayout(doc.theme.layout)}`);
   preview.classList.add(state.activeDoc === "en" ? "profile-en" : "profile-vi");
+  preview.classList.toggle("has-certifications", doc.visibility.certifications && hasMeaningfulItems(doc.certifications));
 
   text("title-personal", labels.personal);
   text("title-skills", labels.skills);
@@ -628,7 +629,7 @@ function renderPreview() {
   renderExperience(doc.experience);
   renderProjects(doc.projects);
   renderCustomSections(doc.customSections);
-  renderMini("preview-certifications", doc.certifications, "title", "year");
+  renderCertifications(doc.certifications);
 
   setVisible("block-photo", doc.visibility.photo);
   setVisible("block-personal", doc.visibility.personal && contactEntries.length > 0);
@@ -809,16 +810,46 @@ function renderCustomSections(customSections) {
   });
 }
 
-function renderMini(targetId, items, titleKey, yearKey) {
-  const root = document.getElementById(targetId);
-  root.className = "chip-list";
-  root.innerHTML = "";
-
-  items.forEach((item) => {
-    const line = document.createElement("div");
-    line.className = "chip";
-    line.innerHTML = `<strong>${escapeHtml(item[yearKey] || "")}</strong> - ${escapeHtml(item[titleKey] || "")}`;
-    root.append(line);
+function renderCertifications(items) {
+  const root = document.getElementById("preview-certifications");
+  root.replaceChildren();
+  const en = state.activeDoc === "en";
+  const formatDate = value => {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(value || "") || !Number.isFinite(Date.parse(value))) return "";
+    return new Intl.DateTimeFormat(en ? "en-US" : "vi-VN", {
+      day: en ? "numeric" : "2-digit", month: en ? "short" : "2-digit", year: "numeric", timeZone: "UTC",
+    }).format(new Date(value));
+  };
+  items.forEach(item => {
+    const entry = document.createElement("article");
+    entry.className = "entry cv-certification";
+    const title = document.createElement("h4");
+    title.textContent = item.title || "";
+    if (/^assets\/[a-zA-Z0-9/_.-]+\.pdf$/.test(item.original || "") && !item.original.split("/").includes("..")) {
+      // Imported CVs may contain arbitrary fields; only link to safe local PDF evidence.
+      const link = document.createElement("a");
+      link.href = "./" + item.original;
+      link.textContent = title.textContent;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      title.replaceChildren(link);
+    }
+    entry.append(title);
+    // The CV header already identifies its owner; do not repeat that name in every credential.
+    for (const value of [item.recipient && item.recipient !== getActiveDoc().profile.fullName ? (en ? "Awarded to: " : "Cấp cho: ") + item.recipient : ""]) {
+      if (!value) continue;
+      const p = document.createElement("p");
+      p.textContent = value;
+      entry.append(p);
+    }
+    const dates = document.createElement("p");
+    dates.textContent = [
+      item.issuer,
+      item.issued ? (en ? "Issued: " : "Ngày cấp: ") + formatDate(item.issued) : item.year,
+      item.expires ? (en ? "Expires: " : "Hết hạn: ") + formatDate(item.expires) : "",
+    ].filter(Boolean).join(" · ");
+    entry.append(dates);
+    root.append(entry);
   });
 }
 

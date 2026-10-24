@@ -142,6 +142,7 @@
             ...p.gallery.map((x) => x.src),
           ]),
           ...data.certificates.map((x) => x.src),
+          ...(data.certifications || []).flatMap((x) => [x.src, x.original]),
           ...data.customSections.map((x) => x.image.src),
         ].filter(Boolean);
         for (const path of assets)

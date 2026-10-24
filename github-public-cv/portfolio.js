@@ -116,7 +116,7 @@ document.querySelectorAll(".certificate-image img").forEach(image => {
 });
 
 const viewer = document.querySelector("#certificate-viewer");
-const certificateLinks = [...document.querySelectorAll("[data-certificate]")];
+const certificateLinks = [...document.querySelectorAll("[data-certificate], [data-certification]")];
 if (viewer && typeof viewer.showModal === "function" && certificateLinks.length) {
   const image = viewer.querySelector("#viewer-image");
   const stage = viewer.querySelector(".viewer-stage");
@@ -143,6 +143,14 @@ if (viewer && typeof viewer.showModal === "function" && certificateLinks.length)
     viewer.querySelector("#viewer-description").textContent = link.dataset.description;
     viewer.querySelector("#viewer-issuer").textContent = link.dataset.issuer;
     viewer.querySelector("#viewer-issued").textContent = link.dataset.issued;
+    viewer.querySelector("#viewer-group").textContent = link.dataset.groupLabel || document.querySelector(".certificate-filters")?.getAttribute("aria-label") || "";
+    const expires = viewer.querySelector("#viewer-expires");
+    expires.textContent = link.dataset.expires || "";
+    expires.hidden = !link.dataset.expires;
+    const pdf = viewer.querySelector("#viewer-pdf");
+    pdf.hidden = !link.dataset.original;
+    if (link.dataset.original) pdf.href = link.dataset.original;
+    else pdf.removeAttribute("href");
     viewer.querySelector("#viewer-count").textContent = `${index + 1} / ${items.length}`;
     viewer.querySelector("#viewer-original").href = link.href;
     const download = viewer.querySelector("#viewer-download");
@@ -165,7 +173,8 @@ if (viewer && typeof viewer.showModal === "function" && certificateLinks.length)
   }
 
   function openCertificate(link, opener, visibleOnly) {
-    items = visibleOnly ? certificateLinks.filter(item => !item.closest(".certificate-card").hidden) : certificateLinks;
+    // Keep professional certifications separate from competition evidence, including arrow navigation.
+    items = certificateLinks.filter(item => item.hasAttribute("data-certification") === link.hasAttribute("data-certification") && (!visibleOnly || !item.closest(".certificate-card, .certification-card").hidden));
     index = items.indexOf(link);
     if (index < 0) return;
     returnFocus = opener;

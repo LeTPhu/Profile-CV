@@ -33,6 +33,12 @@
         projects: "Dự án",
         experience: "Hành trình",
         skills: "Kỹ năng",
+        certifications: "Chứng chỉ",
+        certificationsTitle: "Chứng chỉ Google for Education.",
+        certificationsIntro: "Tên chứng chỉ, đơn vị cấp và thời hạn được đối chiếu từ tài liệu gốc. Chọn ảnh để xem toàn bộ nội dung.",
+        recipient: "Cấp cho",
+        expires: "Hết hạn",
+        originalPdf: "Tải PDF gốc",
         awards: "Thành tích",
         contact: "Liên hệ",
         skip: "Đến nội dung",
@@ -122,6 +128,12 @@
         projects: "Projects",
         experience: "Experience",
         skills: "Skills",
+        certifications: "Certifications",
+        certificationsTitle: "Google for Education certifications.",
+        certificationsIntro: "Certification names, issuer, and validity dates from the original documents. Select an image to view the complete certificate.",
+        recipient: "Awarded to",
+        expires: "Expires",
+        originalPdf: "Download original PDF",
         awards: "Achievements",
         contact: "Contact",
         skip: "Skip to content",
@@ -215,6 +227,7 @@
       "projects",
       "experience",
       "skills",
+      "certifications",
       "awards",
       "contact",
     ];
@@ -225,7 +238,7 @@
         ...(data.customSections || []).map((s) => s.id),
       ]),
     ];
-    const visible = (id) => !(data.settings?.hiddenSections || []).includes(id);
+    const visible = (id) => !(data.settings?.hiddenSections || []).includes(id) && (id !== "certifications" || Boolean(data.certifications?.length));
     function projectIllustration(project) {
       // Concept artwork stays attached to the project when the owner reorders cards.
       const art = {
@@ -295,7 +308,6 @@
       <nav id="main-nav" class="main-nav" aria-label="${lang === "vi" ? "Điều hướng chính" : "Main navigation"}">
         ${order
           .filter((id) => visible(id) && id !== "contact")
-          .slice(0, 5)
           .map(
             (id) =>
               `<a href="${project ? home : ""}#${id}">${esc(l[id] || t(data.customSections?.find((s) => s.id === id)?.title, lang))}</a>`,
@@ -395,11 +407,26 @@
     function certificateDialog(lang) {
       const l = labels[lang];
       return `<dialog id="certificate-viewer" class="certificate-viewer" aria-labelledby="viewer-title" data-loading="${esc(l.imageLoading)}" data-error="${esc(l.imageError)}">
-    <div class="viewer-top"><p class="small-label">${esc(l.archive)} <span id="viewer-count" role="status"></span></p><button type="button" class="viewer-close" aria-label="${esc(l.closeViewer)}" autofocus>${esc(l.closeViewer)} ×</button></div>
+    <div class="viewer-top"><p class="small-label"><span id="viewer-group">${esc(l.archive)}</span> <span id="viewer-count" role="status"></span></p><button type="button" class="viewer-close" aria-label="${esc(l.closeViewer)}" autofocus>${esc(l.closeViewer)} ×</button></div>
     <div class="viewer-stage"><img id="viewer-image" alt="" hidden /><p id="viewer-status" role="status"></p></div>
     <div class="viewer-caption"><div><h2 id="viewer-title"></h2><p id="viewer-description"></p><p class="viewer-issuer" id="viewer-issuer"></p></div><div class="viewer-navigation"><button type="button" data-viewer-prev aria-label="${esc(l.previousImage)}">←</button><button type="button" data-viewer-zoom aria-pressed="false">${esc(l.zoom)}</button><button type="button" data-viewer-next aria-label="${esc(l.nextImage)}">→</button></div></div>
-    <div class="viewer-bottom"><span id="viewer-issued"></span><div><a id="viewer-original" target="_blank" rel="noopener noreferrer">${esc(l.originalImage)} ↗</a><a id="viewer-download" download>${esc(l.downloadImage)} ↓</a></div></div>
+    <div class="viewer-bottom"><div class="viewer-dates"><span id="viewer-issued"></span><span id="viewer-expires" hidden></span></div><div><a id="viewer-original" target="_blank" rel="noopener noreferrer">${esc(l.originalImage)} ↗</a><a id="viewer-pdf" download hidden>${esc(l.originalPdf)} ↓</a><a id="viewer-download" download>${esc(l.downloadImage)} ↓</a></div></div>
   </dialog>`;
+    }
+
+    function certificationsSection(lang, prefix) {
+      const l = labels[lang];
+      if (!data.certifications?.length) return "";
+      return `    <section id="certifications" class="section container certifications-section" aria-labelledby="certifications-heading">
+      <div class="section-heading"><p class="section-eyebrow">${icon("award")}${esc(l.certifications)}</p><h2 id="certifications-heading">${esc(l.certificationsTitle)}</h2><p class="section-description">${esc(l.certificationsIntro)}</p></div>
+      <div class="certifications-grid">${data.certifications.map(c => `<article class="certification-card" id="certification-${esc(c.id)}">
+        <a class="certificate-image certification-image" href="${esc(prefix + c.src)}" target="_blank" rel="noopener noreferrer" data-certification="${esc(c.id)}" data-group-label="${esc(l.certifications)}" data-title="${esc(t(c.title, lang))}" data-description="${esc(t(c.description, lang))}" data-issuer="${esc(t(c.issuer, lang))}" data-issued="${esc(l.issued + ": " + formatDate(c.issued, lang))}" data-expires="${esc(l.expires + ": " + formatDate(c.expires, lang))}" data-original="${c.original ? esc(prefix + c.original) : ""}" data-alt="${esc(t(c.alt, lang))}" aria-label="${esc(l.viewImage + ": " + t(c.title, lang))}">
+          <img src="${esc(prefix + c.src)}" width="${c.width}" height="${c.height}" alt="${esc(t(c.alt, lang))}" loading="lazy" decoding="async" /><span class="certificate-image-error" hidden>${esc(l.imageError)}</span><span class="image-open" aria-hidden="true">${esc(l.viewImage)} ↗</span>
+        </a><div class="certification-body"><p class="certification-issuer">${esc(t(c.issuer, lang))}</p><h3>${esc(t(c.title, lang))}</h3><p>${esc(t(c.description, lang))}</p><p class="certification-recipient">${esc(l.recipient)}: <strong>${esc(c.recipient)}</strong></p>
+          <dl class="certification-dates"><div><dt>${esc(l.issued)}</dt><dd><time datetime="${esc(c.issued)}">${esc(formatDate(c.issued, lang))}</time></dd></div><div><dt>${esc(l.expires)}</dt><dd><time datetime="${esc(c.expires)}">${esc(formatDate(c.expires, lang))}</time></dd></div></dl>
+          ${c.original ? `<a class="certification-pdf" href="${esc(prefix + c.original)}" download>${esc(l.originalPdf)} <span aria-hidden="true">↓</span></a>` : ""}
+        </div></article>`).join("")}</div>
+    </section>`;
     }
 
     function homePage(lang) {
@@ -466,6 +493,7 @@
       <div class="skills-grid">${data.skills.map((skill) => `<article class="skill-card"><div class="skill-header"><div class="skill-symbol">${icon(({ "AI / ML": "ai", "AI Agent / LLM": "agent", "Full-stack": "engineering", "Data / DevOps / QA": "data" })[skill.name])}</div><h3>${esc(skill.name)}</h3></div><p>${esc(t(skill.description, lang))}</p>${tagList(skill.items, lang)}</article>`).join("")}</div>
       <div class="toolbox"><h3>${esc(l.tools)}</h3>${tagList(data.tools, lang)}<p class="language-note"><strong>${esc(l.english)}:</strong> ${esc(t(data.english, lang))}</p></div>
     </div></section>
+${certificationsSection(lang, prefix)}
     <section id="awards" class="section container awards-section" aria-labelledby="awards-heading">
       ${sectionHeading("05", l.awards, l.awardsTitle)}
       <p class="milestones-label small-label">${esc(l.cvMilestones)}</p>
@@ -612,9 +640,9 @@
   <link rel="preload" href="${prefix}assets/fonts/be-vietnam-pro/be-vietnam-pro-400-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="${prefix}assets/fonts/be-vietnam-pro/be-vietnam-pro-400-vietnamese.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="${prefix}assets/fonts/be-vietnam-pro/fonts.css" />
-  <link rel="stylesheet" href="${prefix}portfolio.css?v=20261015-2" />
+  <link rel="stylesheet" href="${prefix}portfolio.css?v=20261024-1" />
   <script type="application/ld+json">${JSON.stringify(schema).replace(/</g, "\\u003c")}</script>
-  <script src="${prefix}portfolio.js?v=20261014-1" defer></script>
+  <script src="${prefix}portfolio.js?v=20261024-1" defer></script>
 </head>
 <body data-page="${project ? "project" : "home"}" data-language="${lang}">${body}</body>
 </html>\n`;

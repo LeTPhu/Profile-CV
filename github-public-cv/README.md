@@ -2,6 +2,18 @@
 
 Website tĩnh sử dụng dữ liệu từ **Le_Tan_Phu_CV_2026.pdf** và các ảnh giấy khen/chứng nhận do chủ hồ sơ cung cấp, cập nhật ngày **09/10/2026**. Nội dung tiếng Anh được dịch từ các nguồn này; không tự bổ sung kinh nghiệm hoặc chứng chỉ không có minh chứng.
 
+## Chứng Chỉ Google for Education (24/10/2026)
+
+Mục **Chứng chỉ / Certifications** (`#certifications`) đứng riêng sau Kỹ năng, không thuộc Thành tích hoặc thư viện giấy khen/chứng nhận tham gia (`#certificates`). Nguồn là hai PDF chủ hồ sơ cung cấp: Gemini Certified Educator và Gemini Certified Student – University, cùng cấp cho Lê Tấn Phú ngày 22/12/2025 và có hiệu lực đến 22/12/2028.
+
+- `data/portfolio.json` dùng mảng `certifications` độc lập với `certificates`. Mỗi mục có tên và mô tả Việt/Anh, đơn vị cấp, người nhận, ngày cấp, ngày hết hạn, ảnh toàn trang và đường dẫn PDF gốc. `id` chỉ là mã đường dẫn nội bộ, không phải mã xác thực chứng chỉ. Không bổ sung mã hoặc liên kết xác thực chưa được cung cấp.
+- `assets/certifications/` giữ PDF gốc nguyên byte. Ảnh PNG 2200 × 1700 được dựng trực tiếp từ trang PDF bằng Poppler, không cắt, chỉnh sửa hoặc tái tạo nội dung. Thông tin nguồn và SHA-256 ở `sources.json`. PDF được mã hóa nhưng đọc được với mật khẩu mở trống; không thay đổi mã hóa hoặc quyền của bản gốc.
+- Trang quản trị có nhóm Chứng chỉ riêng, hỗ trợ nội dung hai ngôn ngữ, ảnh, ngày tháng, sắp xếp, xóa/hoàn tác và ẩn/hiện toàn mục. File sao lưu cũ không có mảng này được nạp thành danh sách rỗng. Đường dẫn PDF phải là file có sẵn trong `assets/`; giao diện chưa hỗ trợ tải PDF mới trực tiếp. Chọn/tải ảnh mới vẫn giữ byte gốc như các ảnh minh chứng khác.
+- Lightbox dùng chung cơ chế phóng to, bàn phím, giữ focus, ảnh lỗi và tải xuống, nhưng chỉ chuyển qua lại trong cùng nhóm chứng chỉ hoặc cùng nhóm giấy khen. Ngày hết hạn và PDF gốc được cập nhật theo ảnh đang xem, không lưu nhầm thông tin khi chuyển nhóm. Liên kết ảnh/PDF vẫn dùng được khi tắt JavaScript.
+- Dữ liệu CV A4 Việt/Anh được dựng từ cùng nguồn. Chứng chỉ hiển thị thành mục riêng; tên chứng chỉ dẫn đến PDF gốc, đơn vị cấp và hai ngày được giữ rõ ràng. Tên người nhận không lặp khi trùng tên ở đầu CV. Bản in tiếng Anh có chứng chỉ dùng khoảng cách giữa các mục gọn hơn, không giảm cỡ chữ hoặc bỏ dự án/thành tích.
+
+Chạy `node scripts/build-portfolio.cjs` để dựng trang và dữ liệu A4, không sửa HTML/JSON generated bằng tay. `node verify-all.cjs` bao gồm `verify-certifications.cjs`: dữ liệu/đường dẫn/ngày tháng, file gốc, hai ngôn ngữ, 320–1440 px, xem ảnh, bàn phím, tải PDF, lỗi ảnh, tắt JavaScript, A4 và quản trị mô phỏng. Nội dung PDF được đối chiếu trực tiếp; không có xác minh chứng chỉ độc lập qua hệ thống của Google.
+
 ## Các Đường Dẫn
 
 - Trang cá nhân: https://letphu.github.io/Profile-CV/
@@ -11,7 +23,7 @@ Website tĩnh sử dụng dữ liệu từ **Le_Tan_Phu_CV_2026.pdf** và các �
 - Mã nguồn: https://github.com/LeTPhu/Profile-CV
 - Quản trị: https://letphu.github.io/Profile-CV/admin/
 
-Trang chủ có giới thiệu, học vấn, 7 dự án/nghiên cứu, 2 kinh nghiệm, kỹ năng, công cụ, 6 thành tích, thư viện 5 giấy khen/chứng nhận và liên hệ. Mỗi dự án có một trang chi tiết riêng cho từng ngôn ngữ. Giao diện dùng Be Vietnam Pro, tông xanh rừng/kem và điểm nhấn vàng cho tư liệu.
+Trang chủ có giới thiệu, học vấn, 7 dự án/nghiên cứu, 2 kinh nghiệm, kỹ năng, công cụ, 2 chứng chỉ Google for Education, 6 thành tích, thư viện 5 giấy khen/chứng nhận và liên hệ. Mỗi dự án có một trang chi tiết riêng cho từng ngôn ngữ. Giao diện dùng Be Vietnam Pro, tông xanh rừng/kem và điểm nhấn vàng cho tư liệu.
 
 Bố cục thu gọn khoảng cách giữa các phần, khung minh họa và thẻ dự án; tên dài được xuống dòng thay vì bị cắt hoặc tràn màn hình. Khi lọc dự án, các thẻ tự lấp đầy số cột còn lại. Trang chi tiết chỉ hiện thư viện khi có ảnh thật; các ô thêm ảnh vẫn giữ đầy đủ trong trang quản trị. Ảnh trong thư viện hiển thị nguyên khung, không cắt nội dung chứng nhận hoặc sơ đồ.
 

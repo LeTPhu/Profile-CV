@@ -85,6 +85,11 @@ module.exports = () => {
     );
   for (const lang of ["vi", "en"]) {
     assert.equal(cv.documents[lang].education[0].degree, data.education.degree[lang], "A4 degree follows the shared source: " + lang);
+    assert.equal(cv.documents[lang].certifications.length, 2, "A4 certifications remain a separate generated list: " + lang);
+    assert.equal(cv.documents[lang].certifications[0].issued, "2025-12-22");
+    assert.equal(cv.documents[lang].certifications[0].expires, "2028-12-22");
+    assert.equal(cv.documents[lang].certifications[0].issuer, "Google for Education");
+    assert.equal(cv.documents[lang].certifications[0].recipient, "Lê Tấn Phú");
     const document = lang === "vi" ? vi : en;
     assert.ok(document.includes('<div><strong>4 / 4</strong><span>'), "An explicitly customized scholarship highlight is preserved: " + lang);
     assert.ok(document.includes(Renderer(data).esc(data.education.degree[lang])), "Homepage degree follows the shared source: " + lang);
@@ -122,6 +127,7 @@ module.exports = () => {
   data.projects = [];
   data.awards = [];
   data.certificates = [];
+  data.certifications = [];
   fs.writeFileSync(
     path.join(site, "data/portfolio.json"),
     JSON.stringify(data),
@@ -139,6 +145,11 @@ module.exports = () => {
     2,
   );
   assert.equal(fs.existsSync(path.join(site, "projects/manual.html")), true);
+  const emptyCV = JSON.parse(fs.readFileSync(path.join(site, "data/cv-public.json"), "utf8"));
+  for (const lang of ["vi", "en"]) {
+    assert.equal(emptyCV.documents[lang].visibility.certifications, false);
+    assert.deepEqual(emptyCV.documents[lang].certifications, []);
+  }
   assert.equal(fs.readFileSync(path.join(site, "index.html"), "utf8").includes("data-project-category"), false, "Empty projects omit exploration shortcuts");
   return "Regenerated bilingual content/A4, custom sections, settings, populated/hidden discipline links, safe obsolete-page cleanup and empty collections";
 };

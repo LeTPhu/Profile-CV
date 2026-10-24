@@ -9,6 +9,7 @@ const runAdminChecks = require('./verify-admin.cjs');
 const runLanguageChecks = require('./verify-language.cjs');
 const runGenerationChecks = require('./verify-generation.cjs');
 const runCompactChecks = require('./verify-compact.cjs');
+const runCertificationChecks = require('./verify-certifications.cjs');
 const { createServer } = require('./scripts/serve.cjs');
 const root = __dirname;
 
@@ -58,6 +59,7 @@ async function verifyLongPdf(page, baseURL) {
   const baseURL = `http://127.0.0.1:${address.port}`;
   const browser = await chromium.launch({ headless: true });
   try {
+    console.log(`PASS Certifications: ${await runCertificationChecks(browser, baseURL)}`);
     const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
     const ui = await runUiChecks(page, baseURL);
     console.log(`PASS UI: ${ui.join('; ')}`);

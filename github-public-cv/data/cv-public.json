@@ -43,7 +43,7 @@
         "experience": true,
         "projects": true,
         "customSections": false,
-        "certifications": false
+        "certifications": true
       },
       "contactVisibility": {
         "dob": false,
@@ -182,7 +182,28 @@
         }
       ],
       "customSections": [],
-      "certifications": []
+      "certifications": [
+        {
+          "title": "Gemini Certified Educator",
+          "issuer": "Google for Education",
+          "recipient": "Lê Tấn Phú",
+          "issued": "2025-12-22",
+          "expires": "2028-12-22",
+          "year": "2025",
+          "evidence": "assets/certifications/gemini-certified-educator.png",
+          "original": "assets/certifications/gemini-certified-educator.pdf"
+        },
+        {
+          "title": "Gemini Certified Student – University",
+          "issuer": "Google for Education",
+          "recipient": "Lê Tấn Phú",
+          "issued": "2025-12-22",
+          "expires": "2028-12-22",
+          "year": "2025",
+          "evidence": "assets/certifications/gemini-certified-student-university.png",
+          "original": "assets/certifications/gemini-certified-student-university.pdf"
+        }
+      ]
     },
     "en": {
       "profile": {
@@ -225,7 +246,7 @@
         "experience": true,
         "projects": true,
         "customSections": false,
-        "certifications": false
+        "certifications": true
       },
       "contactVisibility": {
         "dob": false,
@@ -364,7 +385,28 @@
         }
       ],
       "customSections": [],
-      "certifications": []
+      "certifications": [
+        {
+          "title": "Gemini Certified Educator",
+          "issuer": "Google for Education",
+          "recipient": "Lê Tấn Phú",
+          "issued": "2025-12-22",
+          "expires": "2028-12-22",
+          "year": "2025",
+          "evidence": "assets/certifications/gemini-certified-educator.png",
+          "original": "assets/certifications/gemini-certified-educator.pdf"
+        },
+        {
+          "title": "Gemini Certified Student – University",
+          "issuer": "Google for Education",
+          "recipient": "Lê Tấn Phú",
+          "issued": "2025-12-22",
+          "expires": "2028-12-22",
+          "year": "2025",
+          "evidence": "assets/certifications/gemini-certified-student-university.png",
+          "original": "assets/certifications/gemini-certified-student-university.pdf"
+        }
+      ]
     }
   }
 }

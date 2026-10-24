@@ -1,0 +1,24 @@
+{
+  "source": "Owner-provided original PDF attachments",
+  "added": "2026-10-24",
+  "previewMethod": "Poppler pdftoppm, first complete page, lossless PNG, scale-to 2200; no cropping or content edits",
+  "externalVerification": false,
+  "files": [
+    {
+      "originalAttachment": "master.encrypted.pdf",
+      "pdf": "gemini-certified-educator.pdf",
+      "sha256": "2c910bd20e692d49acec85aa47df66cc53588e75d079b087fe167a30098b03f0",
+      "preview": "gemini-certified-educator.png",
+      "width": 2200,
+      "height": 1700
+    },
+    {
+      "originalAttachment": "master.encrypted (1).pdf",
+      "pdf": "gemini-certified-student-university.pdf",
+      "sha256": "3ab481c1bca2f24c017463fbf1a15066257697050306ca3733f68303d14ef444",
+      "preview": "gemini-certified-student-university.png",
+      "width": 2200,
+      "height": 1700
+    }
+  ]
+}

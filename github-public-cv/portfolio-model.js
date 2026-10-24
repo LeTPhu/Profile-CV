@@ -8,6 +8,7 @@
     "projects",
     "experience",
     "skills",
+    "certifications",
     "awards",
     "contact",
   ];
@@ -19,6 +20,7 @@
     "projects",
     "experience",
     "skills",
+    "certifications",
     "awards",
     "contact",
     "aboutTitle",
@@ -26,6 +28,8 @@
     "projectSub",
     "experienceTitle",
     "skillsTitle",
+    "certificationsTitle",
+    "certificationsIntro",
     "awardsTitle",
     "contactTitle",
     "contactText",
@@ -57,6 +61,7 @@
         "Không phải dữ liệu portfolio đầy đủ / Not a complete portfolio file.",
       );
     d.certificates ??= [];
+    d.certifications ??= [];
     d.customSections ??= [];
     d.settings ??= {};
     d.settings.sectionOrder ??= [...sections];
@@ -123,6 +128,21 @@
         description: bi(),
         alt: bi(),
       };
+    if (kind === "certifications")
+      return {
+        id,
+        recipient: "",
+        issued: "",
+        expires: "",
+        original: "",
+        src: "",
+        width: 0,
+        height: 0,
+        title: bi(),
+        issuer: bi(),
+        description: bi(),
+        alt: bi(),
+      };
     if (kind === "customSections")
       return {
         id,
@@ -141,6 +161,7 @@
       d.profile.photo,
       ...d.projects.flatMap((p) => [p.image, ...p.gallery]),
       ...d.certificates,
+      ...d.certifications,
       ...d.customSections.map((s) => s.image),
     ].filter(Boolean);
   function validate(input) {
@@ -171,6 +192,7 @@
     for (const name of [
       "projects",
       "certificates",
+      "certifications",
       "experience",
       "skills",
       "awards",
@@ -179,7 +201,7 @@
     ])
       array(name);
     const ids = new Set(sections);
-    for (const kind of ["projects", "certificates", "customSections"]) {
+    for (const kind of ["projects", "certificates", "certifications", "customSections"]) {
       const ownIds = new Set();
       for (const item of d[kind]) {
         if (
@@ -261,10 +283,10 @@
       )
         errors.push("Invalid project GitHub URL");
     }
-    for (const c of d.certificates) {
+    for (const c of [...d.certificates, ...d.certifications]) {
       for (const key of ["title", "issuer", "description"])
         bilingual(c[key], "certificates." + key, true);
-      if (!["award", "participation"].includes(c.category))
+      if (d.certificates.includes(c) && !["award", "participation"].includes(c.category))
         errors.push("Invalid certificate category");
       if (
         !/^\d{4}-\d{2}-\d{2}$/.test(c.issued) ||
@@ -283,6 +305,17 @@
         errors.push(
           "Chứng nhận cần ảnh hợp lệ / Certificate needs a valid image.",
         );
+    }
+    for (const c of d.certifications) {
+      text(c.recipient, "certifications.recipient", true);
+      if (
+        !/^\d{4}-\d{2}-\d{2}$/.test(c.expires) ||
+        !Number.isFinite(Date.parse(c.expires)) ||
+        new Date(c.expires).toISOString().slice(0, 10) !== c.expires ||
+        c.expires < c.issued
+      ) errors.push("Ngày hết hạn không hợp lệ / Invalid expiration date.");
+      if (c.original && (!assetPath(c.original) || !/\.pdf$/i.test(c.original)))
+        errors.push("PDF chứng chỉ phải ở assets/ / Invalid certification PDF path.");
     }
     for (const s of d.customSections) {
       bilingual(s.title, "customSections.title", true);

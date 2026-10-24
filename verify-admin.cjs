@@ -34,6 +34,7 @@ module.exports = async (browser, baseURL) => {
       type: "blob",
     }));
   tree.push({ path: "github-public-cv/" + source.profile.pdf, type: "blob" });
+  tree.push(...source.certifications.map(c => ({ path: "github-public-cv/" + c.original, type: "blob" })));
   await page.route("https://api.github.com/**", async (route) => {
     const request = route.request(),
       p = new URL(request.url()).pathname,
@@ -256,6 +257,7 @@ module.exports = async (browser, baseURL) => {
     "about",
     "projects",
     "skills",
+    "certifications",
     "awards",
     "writing",
     "contact",
@@ -292,6 +294,17 @@ module.exports = async (browser, baseURL) => {
     "Custom bilingual sections, real ordering/visibility, exact sandboxed preview, remove/undo",
   );
 
+  await goTab("Chứng chỉ");
+  assert.equal(await page.locator(".record").count(), 2);
+  assert.equal(await page.locator('[data-path="certifications.0.expires"]').inputValue(), "2028-12-22");
+  assert.equal(await page.locator('[data-path="certifications.0.title.en"]').inputValue(), "Gemini Certified Educator");
+  await page.locator('[data-path="certifications.0.description.vi"]').fill("Mô tả chứng chỉ trong bản nháp.");
+  assert.equal(await page.locator('[data-path="certifications.0.description.en"]').inputValue(), source.certifications[0].description.en);
+  await page.locator("#preview").click();
+  assert.equal(await frame.locator("#certifications .certification-card").count(), 2);
+  await page.locator("#preview-dialog").getByRole("button", { name: /Đóng/ }).click();
+  await page.locator("#undo").click();
+  results.push("Separate editable bilingual certifications, expiration dates and sandboxed preview");
   await goTab("Hồ sơ cá nhân");
   const upload = page.locator('.image-actions input[type="file"]').first();
   await upload.setInputFiles({
@@ -329,6 +342,7 @@ module.exports = async (browser, baseURL) => {
     0,
   );
   assert.equal(backup.data.profile.summary.en, originalEnglish);
+  assert.deepEqual(backup.data.certifications, source.certifications, "Backup keeps both certification languages and original evidence paths");
   assert.deepEqual(Model.validate(backup.data), []);
   await page.locator("#import").setInputFiles({
     name: "bad.json",
@@ -374,6 +388,14 @@ module.exports = async (browser, baseURL) => {
     await page.locator("#publish").click();
     await confirm();
   };
+  for (const asset of [source.certifications[0].src, source.certifications[0].original]) {
+    const index = tree.findIndex(entry => entry.path === "github-public-cv/" + asset);
+    const [missing] = tree.splice(index, 1);
+    await beginPublish();
+    await page.locator("#status").filter({ hasText: "Thiếu file ảnh/PDF: " + asset }).waitFor();
+    assert.equal(requests.some(x => x.method === "POST" || x.method === "PATCH"), false, "Missing certification evidence blocks publication before writes");
+    tree.splice(index, 0, missing);
+  }
   currentHead = "concurrent";
   await beginPublish();
   await page
